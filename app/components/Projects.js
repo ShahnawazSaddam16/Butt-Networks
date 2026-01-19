@@ -17,7 +17,7 @@ export default function Projects({
   projects: projectsData = defaultProjects,
   heading = "Our Work",
   subHeading = "Modern, fast and built for real users",
-  single = false, 
+  single = false,
 }) {
   const sectionRef = useRef(null);
   const [visible, setVisible] = useState(false);
@@ -28,6 +28,21 @@ export default function Projects({
     (projectsData || []).forEach((p) => (initial[p.id] = 0));
     return initial;
   });
+
+  // Keep indexMap in sync if projectsData changes (e.g., loaded async)
+  useEffect(() => {
+    setIndexMap((prev) => {
+      const next = { ...prev };
+      (projectsData || []).forEach((p) => {
+        if (next[p.id] === undefined) next[p.id] = 0;
+      });
+      // remove keys for projects that no longer exist (optional)
+      Object.keys(next).forEach((key) => {
+        if (!(projectsData || []).some((p) => p.id === key)) delete next[key];
+      });
+      return next;
+    });
+  }, [projectsData]);
 
   const { isDarkMode } = useTheme();
 
@@ -43,13 +58,17 @@ export default function Projects({
     );
     if (sectionRef.current) observer.observe(sectionRef.current);
     return () => {
-      if (sectionRef.current) observer.unobserve(sectionRef.current);
+      try {
+        if (sectionRef.current) observer.unobserve(sectionRef.current);
+      } catch (e) {
+        // ignore if observer already disconnected
+      }
     };
   }, []);
 
   function go(projectId, dir) {
     setIndexMap((prev) => {
-      const project = projectsData.find((p) => p.id === projectId);
+      const project = (projectsData || []).find((p) => p.id === projectId);
       const max = project?.images?.length || 1;
       const current = prev[projectId] ?? 0;
       const next = (current + dir + max) % max;
@@ -57,11 +76,9 @@ export default function Projects({
     });
   }
 
-  // decide if we're rendering a single (case-study) view
   const singleProjectMode =
     single || (Array.isArray(projectsData) && projectsData.length === 1);
 
-  // sort/filter
   let sortedProjects = [...(projectsData || [])].sort(
     (a, b) => (b.priority || 0) - (a.priority || 0)
   );
@@ -106,16 +123,14 @@ export default function Projects({
     ? "border border-gray-700"
     : "border border-gray-200";
 
-  // ----- NEW: modal state for repo chooser -----
+  // modal state for repo chooser
   const [repoModalOpen, setRepoModalOpen] = useState(false);
   const [repoModalLinks, setRepoModalLinks] = useState([]);
   const [repoModalTitle, setRepoModalTitle] = useState("");
 
-  // helper: normalize link to full URL (ensure protocol)
   const normalizeUrl = (raw) =>
     raw && String(raw).startsWith("http") ? raw : `https://${raw}`;
 
-  // helper: friendly repo label from URL
   const getRepoLabel = (raw) => {
     try {
       const url = new URL(normalizeUrl(raw));
@@ -125,16 +140,13 @@ export default function Projects({
       if (parts.length === 1) return parts[0];
       return url.hostname;
     } catch (e) {
-      // fallback: show the raw string truncated
       return String(raw).replace(/^https?:\/\//, "");
     }
   };
 
-  // open either directly (single) or open modal (multiple)
   const openRepoHandler = (githubLink, title = "Repository") => {
     if (!githubLink) return;
 
-    // Ensure links is always an array of objects { name?, url }
     const links = Array.isArray(githubLink)
       ? githubLink
           .map((l) =>
@@ -155,7 +167,6 @@ export default function Projects({
     setRepoModalOpen(true);
   };
 
-  // close modal on escape
   useEffect(() => {
     if (!repoModalOpen) return;
     const onKey = (e) => {
@@ -190,23 +201,31 @@ export default function Projects({
           {/* Hero carousel — big image */}
           <section className="mb-12 grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
             {/* LEFT: IMAGE CAROUSEL */}
-            <div className="relative w-full aspect-4/3 rounded-xl overflow-hidden bg-black/5 lg:sticky lg:top-24">
-              <div className="relative w-full h-105 rounded-xl overflow-hidden bg-black/5">
-                <Image
-                  key={idx}
-                  src={project.images[idx]}
-                  alt={`${project.heading} screenshot ${idx + 1}`}
-                  fill
-                  priority
-                  className="object-contain"
-                />
+            <div className="relative w-full rounded-xl overflow-hidden bg-black/5 lg:sticky lg:top-24">
+              {/* Ensure a reliable height on mobile & desktop */}
+              <div className="relative w-full h-56 sm:h-72 md:h-96 rounded-xl overflow-hidden bg-black/5">
+                {project.images && project.images.length > 0 ? (
+                  <Image
+                    key={idx}
+                    src={project.images[idx]}
+                    alt={`${project.heading} screenshot ${idx + 1}`}
+                    fill
+                    priority
+                    className="object-contain"
+                  />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center text-sm text-gray-500">
+                    No image
+                  </div>
+                )}
               </div>
 
-              {project.images.length > 1 && (
+              {project.images?.length > 1 && (
                 <>
                   <button
                     onClick={() => go(project.id, -1)}
                     className={`absolute left-3 top-1/2 -translate-y-1/2 ${controlBtnBg} p-2 rounded-full`}
+                    aria-label="previous image"
                   >
                     <ChevronLeft size={18} />
                   </button>
@@ -214,6 +233,7 @@ export default function Projects({
                   <button
                     onClick={() => go(project.id, +1)}
                     className={`absolute right-3 top-1/2 -translate-y-1/2 ${controlBtnBg} p-2 rounded-full`}
+                    aria-label="next image"
                   >
                     <ChevronRight size={18} />
                   </button>
@@ -222,7 +242,7 @@ export default function Projects({
 
               {/* DOTS */}
               <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2">
-                {project.images.map((_, i) => (
+                {project.images?.map((_, i) => (
                   <button
                     key={i}
                     onClick={() =>
@@ -231,6 +251,7 @@ export default function Projects({
                     className={`w-2.5 h-2.5 rounded-full transition ${
                       idx === i ? "bg-blue-500 scale-125" : "bg-white/70"
                     }`}
+                    aria-label={`Go to image ${i + 1}`}
                   />
                 ))}
               </div>
@@ -245,9 +266,7 @@ export default function Projects({
                   >
                     {project.heading}
                   </h1>
-                  <p className={`${subText} max-w-3xl`}>
-                    {project.description}
-                  </p>
+                  <p className={`${subText} max-w-3xl`}>{project.description}</p>
                   <div className="mt-4 flex flex-wrap gap-3 items-center">
                     <div className="mt-4 flex flex-wrap gap-3 items-center">
                       {project.githubLink && (
@@ -347,7 +366,6 @@ export default function Projects({
                           rel="noopener noreferrer"
                           className="flex items-center gap-3 no-underline group"
                         >
-                          {/* Avatar */}
                           <div
                             className={`${authorAvatar} group-hover:brightness-90 transition-all flex items-center justify-center`}
                           >
@@ -358,7 +376,6 @@ export default function Projects({
                               .join("")}
                           </div>
 
-                          {/* Text */}
                           <div>
                             <div
                               className={
@@ -387,10 +404,7 @@ export default function Projects({
 
                 <div className="mt-8">
                   <h4 className="text-lg font-medium mb-2">Deep Dive</h4>
-                  {/* Placeholder for long-form case study content — you can replace with real sections */}
-                  <div
-                    className={isDarkMode ? "text-gray-300" : "text-gray-700"}
-                  >
+                  <div className={isDarkMode ? "text-gray-300" : "text-gray-700"}>
                     <p className="mb-3">{project.description}</p>
                     {project.highlights && project.highlights.length > 0 && (
                       <>
@@ -428,16 +442,20 @@ export default function Projects({
               </h3>
               <ul className="space-y-2 max-h-60 overflow-auto">
                 {repoModalLinks.map((link, idx) => {
-                  // determine a unique key
-                  const key =
-                    typeof link === "string" ? link : link?.url || idx;
-
+                  const url = typeof link === "string" ? link : link?.url;
+                  if (!url) return null;
+                  const displayName = link?.name || getRepoLabel(url);
+                  const key = url + "-" + idx;
                   return (
                     <li key={key} className="flex items-center justify-between">
-                      <span className="text-sm">{link.name}</span>
+                      <span className="text-sm">{displayName}</span>
                       <button
                         onClick={() => {
-                          window.open(url, "_blank", "noopener,noreferrer");
+                          window.open(
+                            normalizeUrl(url),
+                            "_blank",
+                            "noopener,noreferrer"
+                          );
                           setRepoModalOpen(false);
                         }}
                         className={repoBtn}
@@ -504,23 +522,29 @@ export default function Projects({
                 </span>
               </div>
 
-              <div className="aspect-video w-full relative overflow-hidden">
-                {project.images?.map((src, idx) => (
-                  <Image
-                    key={idx}
-                    src={src}
-                    fill
-                    alt={`${project.heading} ${idx + 1}`}
-                    className={`absolute inset-0 w-full h-full transition-opacity duration-500 object-contain ${
-                      indexMap[project.id] === idx
-                        ? "opacity-100 z-10"
-                        : "opacity-0 z-0"
-                    }`}
-                    draggable={false}
-                  />
-                ))}
+              {/* Ensure container has explicit heights on small screens */}
+              <div className="relative w-full h-40 sm:h-52 md:h-56 lg:h-40 overflow-hidden">
+                {project.images?.length > 0 ? (
+                  project.images.map((src, idx) => (
+                    <Image
+                      key={idx}
+                      src={src}
+                      fill
+                      alt={`${project.heading} ${idx + 1}`}
+                      className={`absolute inset-0 w-full h-full transition-opacity duration-500 object-contain ${
+                        indexMap[project.id] === idx
+                          ? "opacity-100 z-10"
+                          : "opacity-0 z-0 pointer-events-none"
+                      }`}
+                      draggable={false}
+                    />
+                  ))
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center text-sm text-gray-500">
+                    No image
+                  </div>
+                )}
               </div>
-              
 
               <button
                 aria-label="previous"
@@ -629,7 +653,6 @@ export default function Projects({
                         rel="noopener noreferrer"
                         className="flex items-center gap-3 no-underline group"
                       >
-                        {/* Avatar */}
                         <div
                           className={`${authorAvatar} group-hover:brightness-90 transition-all flex items-center justify-center`}
                         >
@@ -640,7 +663,6 @@ export default function Projects({
                             .join("")}
                         </div>
 
-                        {/* Text */}
                         <div>
                           <div
                             className={
@@ -666,10 +688,7 @@ export default function Projects({
                   })}
                 </div>
 
-                <Link
-                  href={`/projects/${project.id}`}
-                  className={caseStudyLink}
-                >
+                <Link href={`/projects/${project.id}`} className={caseStudyLink}>
                   Case study <ArrowRight size={16} />
                 </Link>
               </div>
@@ -689,7 +708,7 @@ export default function Projects({
         </div>
       )}
 
-      {/* Repo chooser modal (grid view uses same modal state) */}
+      {/* Repo chooser modal (grid view) */}
       {repoModalOpen && (
         <div
           role="dialog"
@@ -707,13 +726,13 @@ export default function Projects({
               <span className="font-medium">{repoModalTitle}</span>
             </h3>
             <ul className="space-y-2 max-h-60 overflow-auto">
-              {repoModalLinks.map((linkObj) => {
+              {repoModalLinks.map((linkObj, idx) => {
                 const url = linkObj?.url;
                 if (!url) return null;
                 const displayName = linkObj?.name || getRepoLabel(url);
 
                 return (
-                  <li key={url} className="flex items-center justify-between">
+                  <li key={url + "-" + idx} className="flex items-center justify-between">
                     <span className="text-sm">{displayName}</span>
                     <button
                       onClick={() => {
