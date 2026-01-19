@@ -14,8 +14,8 @@ export default function Home() {
       <Home_ />
       <About />
       <Skills />
-      <Services />
       <Projects limit={3} />
+      <Services />
       <MakeWeb />
       <Quiz_App />
       <Founder />
