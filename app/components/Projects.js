@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import { projects as defaultProjects } from "../data/projects"; // adjust path
+import { projects as defaultProjects } from "../data/projects";
 import { useTheme } from "./ThemeProvider";
 import Link from "next/link";
 import Image from "next/image";
