@@ -102,7 +102,7 @@ const Founder = () => {
           </h2>
 
           <p className={`text-lg font-semibold mb-4 ${subtitleText}`}>
-            Founder & Full-Stack Developer
+            Intern-begginer
           </p>
 
           <p
