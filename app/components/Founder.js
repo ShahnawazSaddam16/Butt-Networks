@@ -98,7 +98,7 @@ const Founder = () => {
 
         <div className="text-center md:text-left flex flex-col items-center md:items-start max-w-xl">
           <h2 className={`text-3xl font-bold mb-2 ${titleText}`}>
-            Shahnawaz Saddam Butt🫡
+            Shahnawaz Saddam Butt
           </h2>
 
           <p className={`text-lg font-semibold mb-4 ${subtitleText}`}>
