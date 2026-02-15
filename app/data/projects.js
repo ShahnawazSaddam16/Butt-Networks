@@ -234,7 +234,7 @@ export const projects = [
     heading: "Key and Chains",
     description:
       "A powerful and secure e-commerce store designed to manage products, content, and system data efficiently, featuring role-based access control, real-time analytics, and centralized tools for monitoring and maintaining application performance.",
-    demoLink: "https://admin-dashboard.buttnetworks.com/",
+    demoLink: "https://key-chains.buttnetworks.com/",
     githubLink: "https://github.com/ShahanwazSaddam144/Key---Chains",
     githubLink: "https://github.com/ShahanwazSaddam144/Key---Chains",
 
@@ -259,6 +259,6 @@ export const projects = [
       "Real-time products, customer supports and user interface",
       "User, content, and system management from a centralized panel",
     ],
-    priority: 9,
+    priority: 5,
   },
 ];

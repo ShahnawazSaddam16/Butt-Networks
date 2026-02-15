@@ -15,7 +15,8 @@ import {
   User2,
   FolderGit,
   Phone,
-  Bot 
+  Bot, 
+  Gamepad2
 } from 'lucide-react';
 
 const Navbar = () => {
@@ -31,18 +32,11 @@ const Navbar = () => {
     <nav className="fixed top-0 bg-gray-50  Navbar left-0 w-full p-4 z-10">
       <div className="flex justify-between items-center">
         {/* Logo */}
-        <h1 className="text-[30px] font-bold cursor-pointer" onClick={() => router.push("/")}>Butt Networks</h1>
+        <h1 className="text-[30px] font-bold cursor-pointer" onClick={() => router.push("/")}>Butt 
+          <span className='text-blue-600'> Networks</span></h1>
 
         {/* Desktop links - visible only after 1021px */}
         <ul className="hidden min-[1021px]:flex space-x-8 items-center">
-          <li>
-            <Link
-              href="/"
-              className="flex items-center gap-2 hover:text-yellow-300 hover:bg-gray-700 px-4 py-2 rounded font-semibold"
-            >
-              <Home size={18} /> Home
-            </Link>
-          </li>
           <li>
             <Link
               href="/#About"
@@ -64,7 +58,15 @@ const Navbar = () => {
               href="/#founder"
               className="flex items-center gap-2 hover:text-yellow-300 hover:bg-gray-500 dark:hover:bg-gray-700 px-4 py-2 rounded font-semibold"
             >
-              <User2 size={18} /> Our Founder
+              <User2 size={18} /> Founders
+            </Link>
+          </li>
+            <li>
+            <Link
+              href="#challenge"
+              className="flex items-center gap-2 hover:text-yellow-300 hover:bg-gray-500 dark:hover:bg-gray-700 px-4 py-2 rounded font-semibold"
+            >
+              <Gamepad2 size={18} /> Challenge
             </Link>
           </li>
           <li>
@@ -96,14 +98,6 @@ const Navbar = () => {
         <ul className="min-[1021px]:hidden mt-4 space-y-4 w-40 mx-auto text-center rounded-lg py-4 shadow-lg">
           <li>
             <Link
-              href="/"
-              className="flex items-center justify-center gap-2 px-3 py-2 rounded active:bg-gray-400 dark:active:bg-gray-700"
-            >
-              <Home size={18} /> Home
-            </Link>
-          </li>
-          <li>
-            <Link
               href="/#About"
               className="flex items-center justify-center gap-2 px-3 py-2 rounded active:bg-gray-400 dark:active:bg-gray-700"
             >
@@ -123,7 +117,15 @@ const Navbar = () => {
               href="/#founder"
               className="flex items-center justify-center gap-2 px-3 py-2 rounded active:bg-gray-400 dark:active:bg-gray-700"
             >
-              <User2 size={18} /> Our Founder
+              <User2 size={18} /> Founders
+            </Link>
+          </li>
+              <li>
+              <Link
+              href="#challenge"
+              className="flex items-center justify-center gap-2 px-3 py-2 rounded active:bg-gray-400 dark:active:bg-gray-700"
+            >
+              <Gamepad2 size={18} /> Challenge
             </Link>
           </li>
           <li>

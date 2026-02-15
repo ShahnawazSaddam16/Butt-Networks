@@ -7,6 +7,7 @@ import Offer from "./components/Offer";
 import Services from "./components/Services";
 import Quiz_App from "./components/Quiz-App";
 import MakeWeb from "./components/MakeWeb";
+import Challenge from "./components/Challenge";
 
 export default function Home() {
   return (
@@ -17,6 +18,7 @@ export default function Home() {
       <Projects limit={3} />
       <Services />
       <MakeWeb />
+      <Challenge />
       <Quiz_App />
       <Founder />
       <Offer />

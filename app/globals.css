@@ -76,6 +76,14 @@ body.dark-mode .Skills {
   @apply text-white;
 }
 
+body.dark-mode .Challenge h1{
+  @apply text-white
+}
+
+body.dark-mode .Challenge p{
+  @apply text-gray-300
+}
+
 body.dark-mode .Skills h1 {
   @apply text-white;
 }
