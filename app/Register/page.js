@@ -1,13 +1,50 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import Navbar from "../components/Navbar";
 
 const Register = () => {
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    const formData = new FormData(e.target);
+
+    const name = formData.get("name");
+    const email = formData.get("email");
+    const password = formData.get("password");
+
+    try {
+      const res = await fetch("/api/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name, email, password }),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        alert("Registered Successfully ✅");
+        e.target.reset();
+      } else {
+        alert(data.error);
+      }
+    } catch (err) {
+      alert("Something went wrong ❌");
+    }
+
+    setLoading(false);
+  };
+
   return (
     <>
       <Navbar />
 
       <section className="flex flex-col justify-center items-center min-h-screen px-6 lg:px-24 py-20 bg-gradient-to-br from-indigo-50 to-white">
-        {/* Header */}
         <header className="text-center mb-12">
           <h1 className="text-5xl md:text-6xl font-extrabold text-gray-900">
             Join the <span className="text-blue-600">Ultimate Web Dev Challenge</span>
@@ -17,18 +54,22 @@ const Register = () => {
           </p>
         </header>
 
-        {/* Registration Form */}
         <div className="w-full max-w-md bg-white shadow-xl rounded-xl p-8">
           <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">
             Create Your Account
           </h2>
 
-          <form className="space-y-5">
+          <form className="space-y-5" onSubmit={handleSubmit}>
+            
             {/* Full Name */}
             <div>
-              <label className="block text-sm font-medium text-gray-700">Full Name</label>
+              <label className="block text-sm font-medium text-gray-700">
+                Full Name
+              </label>
               <input
+                name="name"
                 type="text"
+                required
                 placeholder="John Doe"
                 className="mt-1 w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
@@ -36,9 +77,13 @@ const Register = () => {
 
             {/* Email */}
             <div>
-              <label className="block text-sm font-medium text-gray-700">Email</label>
+              <label className="block text-sm font-medium text-gray-700">
+                Email
+              </label>
               <input
+                name="email"
                 type="email"
+                required
                 placeholder="john@example.com"
                 className="mt-1 w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
@@ -46,24 +91,27 @@ const Register = () => {
 
             {/* Password */}
             <div>
-              <label className="block text-sm font-medium text-gray-700">Password</label>
+              <label className="block text-sm font-medium text-gray-700">
+                Password
+              </label>
               <input
+                name="password"
                 type="password"
+                required
                 placeholder="Enter your password"
                 className="mt-1 w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
 
-            {/* Submit Button */}
             <button
               type="submit"
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-3 rounded-xl transition duration-300"
+              disabled={loading}
+              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-3 rounded-xl transition duration-300 disabled:opacity-50"
             >
-              Register & Start Challenge
+              {loading ? "Registering..." : "Register & Start Challenge"}
             </button>
           </form>
 
-          {/* Info / Progress Note */}
           <p className="mt-6 text-center text-gray-600 text-sm">
             📈 Your progress will be tracked as you complete challenges and unlock new modules.
           </p>
