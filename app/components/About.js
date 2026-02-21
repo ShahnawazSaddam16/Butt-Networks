@@ -98,17 +98,19 @@ const About = ({ copyVariant = "professional" }) => {
       className={`mt-16 py-16 px-6 rounded-lg shadow-sm transition-colors duration-200 ${sectionBg}`}
     >
       <div
-        className={`max-w-5xl mx-auto text-center border-t-[1] ${border} pt-10`}
+        className={`max-w-5xl mx-auto text-center pt-8`}
       >
-        <header className="flex items-center justify-center gap-3 mb-6">
-          <Network className={`w-10 h-10 ${iconColor}`} aria-hidden="true" />
+        <header className="flex items-center justify-center gap-3 mb-8">
+          <Network className={`w-12 h-12 ${iconColor}`} aria-hidden="true" />
           <h2
             id="about-heading"
-            className={`text-4xl font-extrabold ${titleText}`}
+            className={`text-4xl md:text-5xl font-extrabold ${titleText}`}
           >
-            About
+            About Us
           </h2>
         </header>
+
+        <div className={`h-1 w-20 mx-auto mb-8 rounded-full bg-gradient-to-r ${isDarkMode ? "from-blue-400 to-cyan-400" : "from-blue-600 to-indigo-600"}`}></div>
 
         <div className="mx-auto max-w-3xl">
           {!started && (
@@ -140,13 +142,13 @@ const About = ({ copyVariant = "professional" }) => {
           )}
 
           {revealSignature && (
-            <div className={`mt-4 text-right italic ${subtitleText}`}>
-              — From Our CEO
+            <div className={`mt-6 text-right italic font-semibold text-blue-500`}>
+              — Built by The Butt Networks Team
             </div>
           )}
         </div>
 
-        <div className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div className="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-6">
           {[
             "Real-World Practice",
             "Modern Web Stack",
@@ -154,12 +156,12 @@ const About = ({ copyVariant = "professional" }) => {
           ].map((title, idx) => (
             <div
               key={idx}
-              className={`p-5 rounded-xl ${cardInnerBg} border ${borderClass} shadow-sm transition hover:shadow-md`}
+              className={`p-6 rounded-2xl ${cardInnerBg} border-2 ${borderClass} shadow-md hover:shadow-lg transition-all transform hover:-translate-y-1`}
             >
-              <div className={`text-lg font-semibold ${titleText}`}>
+              <div className={`text-lg font-bold ${titleText}`}>
                 {title}
               </div>
-              <p className={`mt-1 text-sm ${subtitleText}`}>
+              <p className={`mt-2 text-sm leading-relaxed ${subtitleText}`}>
                 {title === "Real-World Practice" &&
                   "We build practical projects to learn how modern applications work in real scenarios."}
                 {title === "Modern Web Stack" &&
@@ -171,7 +173,7 @@ const About = ({ copyVariant = "professional" }) => {
           ))}
         </div>
 
-        <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+        <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
           <FeatureCard
             Icon={ShieldCheck}
             title="Secure Solutions"
@@ -229,7 +231,7 @@ const About = ({ copyVariant = "professional" }) => {
           <div className="mt-4 sm:mt-0 flex gap-3 justify-center sm:justify-end">
             <Link
               href="/About"
-              className="inline-flex items-center px-5 py-2 bg-blue-600 text-white font-semibold rounded-xl shadow hover:bg-blue-700 transition"
+              className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold rounded-xl shadow-lg hover:shadow-xl hover:from-blue-700 hover:to-indigo-700 transition-all transform hover:scale-105"
               aria-label="Explore our blogs"
             >
               Explore Our Blogs
@@ -242,18 +244,18 @@ const About = ({ copyVariant = "professional" }) => {
 };
 
 function FeatureCard({ Icon, title, desc, colorClass, isDarkMode }) {
-  const cardBg = isDarkMode ? "bg-gray-900" : "bg-gray-100";
+  const cardBg = isDarkMode ? "bg-gray-900/50" : "bg-gray-100/50";
   const borderClass = isDarkMode ? "border-gray-700" : "border-gray-200";
   const titleText = isDarkMode ? "text-gray-200" : "text-gray-800";
   const subtitleText = isDarkMode ? "text-gray-400" : "text-gray-600";
 
   return (
     <div
-      className={`flex flex-col items-center p-4 rounded-xl ${cardBg} border ${borderClass} shadow-sm transition hover:shadow-md`}
+      className={`flex flex-col items-center p-6 rounded-2xl ${cardBg} border-2 ${borderClass} shadow-md hover:shadow-lg transition-all transform hover:-translate-y-1 group`}
     >
-      <Icon className={`w-10 h-10 mb-3 ${colorClass}`} aria-hidden="true" />
-      <h4 className={`${titleText} font-semibold`}>{title}</h4>
-      <p className={`${subtitleText} text-sm mt-1`}>{desc}</p>
+      <Icon className={`w-12 h-12 mb-3 ${colorClass} group-hover:scale-110 transition-transform`} aria-hidden="true" />
+      <h4 className={`${titleText} font-bold text-lg`}>{title}</h4>
+      <p className={`${subtitleText} text-sm mt-2 leading-relaxed`}>{desc}</p>
     </div>
   );
 }
@@ -273,9 +275,9 @@ function TeamAvatar({ name, role, isDarkMode }) {
 
   return (
     <div
-      className={`flex items-center gap-3 border ${
+      className={`flex items-center gap-3 border-2 ${
         isDarkMode ? "border-gray-700" : "border-gray-100"
-      } rounded-xl p-2`}
+      } rounded-2xl p-3 transition-all hover:shadow-md`}
     >
       <div
         className={`w-12 h-12 flex items-center justify-center rounded-full ${avatarBg} text-white font-bold`}
@@ -283,8 +285,8 @@ function TeamAvatar({ name, role, isDarkMode }) {
         {initials}
       </div>
       <div className="text-left">
-        <div className={`text-sm font-medium ${nameText}`}>{name}</div>
-        <div className={`text-xs ${roleText}`}>{role}</div>
+        <div className={`text-sm font-bold ${nameText}`}>{name}</div>
+        <div className={`text-xs font-medium ${roleText}`}>{role}</div>
       </div>
     </div>
   );

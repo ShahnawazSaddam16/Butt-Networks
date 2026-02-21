@@ -488,22 +488,23 @@ export default function Projects({
       id="projects"
       className={`mt-20 px-4 md:px-16 mb-10 max-w-7xl mx-auto ${rootText}`}
     >
-      <div className="text-center mb-8">
+      <div className="text-center mb-12">
         <h2
-          className={`text-4xl font-extrabold mb-2 transition-transform duration-700 ${headingClass} ${
+          className={`text-4xl md:text-5xl font-extrabold mb-4 transition-transform duration-700 ${headingClass} ${
             visible ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
           }`}
         >
           {heading}
         </h2>
-        <p className={subText}>{subHeading}</p>
+        <p className={`text-lg ${subText}`}>{subHeading}</p>
+        <div className={`h-1 w-20 mx-auto mt-4 rounded-full transition-all ${isDarkMode ? "bg-gradient-to-r from-blue-400 to-cyan-400" : "bg-gradient-to-r from-blue-600 to-indigo-600"}`}></div>
       </div>
 
       <div className="grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         {sortedProjects.map((project, i) => (
           <article
             key={project.id}
-            className={`${cardBase} ${borderClass} rounded-2xl overflow-hidden transform transition-all duration-500 ${
+            className={`${cardBase} ${borderClass} rounded-2xl overflow-hidden transform transition-all duration-500 hover:shadow-2xl hover:-translate-y-1 ${
               visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
             }`}
             style={{ animationDelay: `${i * 120}ms` }}
@@ -511,10 +512,10 @@ export default function Projects({
             <div className={`relative ${cardHeaderBg}`}>
               <div className="absolute right-3 top-3 z-20">
                 <span
-                  className={`inline-flex items-center gap-2 px-2 py-1 rounded-full text-xs font-semibold ${
+                  className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold ${
                     isDarkMode
-                      ? "bg-yellow-600 text-black"
-                      : "bg-yellow-100 text-yellow-800"
+                      ? "bg-yellow-600/80 text-black"
+                      : "bg-yellow-100 text-yellow-900"
                   }`}
                   title={`Priority ${project.priority}`}
                 >

@@ -75,19 +75,19 @@ export default function Services() {
   return (
     <section
       id="services"
-      className={`py-12 px-5 mt-20 transition-colors duration-200 ${sectionBg}`}
+      className={`py-16 px-5 mt-20 transition-colors duration-200 ${sectionBg}`}
     >
       <div className="max-w-6xl mx-auto">
-        <header className="text-center mb-8">
-          <h2 className={`text-3xl md:text-4xl font-extrabold ${headingText}`}>
+        <header className="text-center mb-12">
+          <h2 className={`text-3xl md:text-5xl font-extrabold ${headingText} mb-4`}>
             Services
           </h2>
           <p
-            className={`mt-2 text-sm md:text-base ${subtitleText} max-w-2xl mx-auto`}
+            className={`mt-2 text-base md:text-lg ${subtitleText} max-w-2xl mx-auto`}
           >
-            What we build — bite-sized and honest. Pick a service to learn more
-            or get in touch for a quick chat.
+            Comprehensive software solutions from concept to deployment. Expert services tailored for modern businesses.
           </p>
+          <div className={`h-1 w-20 bg-gradient-to-r ${accent} mx-auto mt-4 rounded-full`}></div>
         </header>
 
         {/* MOBILE CAROUSEL */}
@@ -151,36 +151,43 @@ export default function Services() {
           {services.map((s, i) => (
             <article
               key={i}
-              className={`p-6 rounded-2xl ${cardBg} ${cardBorder} shadow-sm hover:shadow-lg transition transform hover:-translate-y-1`}
+              className={`p-6 rounded-2xl ${cardBg} ${cardBorder} shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-2 group`}
               role="article"
               aria-labelledby={`service-${i}-title`}
             >
               <div className="flex items-start gap-4">
                 <div
-                  className={`flex-none w-14 h-14 rounded-xl flex items-center justify-center bg-gradient-to-r ${accent} text-white`}
+                  className={`flex-none w-16 h-16 rounded-xl flex items-center justify-center bg-gradient-to-r ${accent} text-white group-hover:scale-110 transition-transform`}
                 >
-                  <s.Icon size={26} aria-hidden="true" />
+                  <s.Icon size={28} aria-hidden="true" />
                 </div>
                 <div className="flex-1">
                   <h3
                     id={`service-${i}-title`}
-                    className={`text-lg font-semibold ${headingText}`}
+                    className={`text-lg font-bold ${headingText}`}
                   >
                     {s.Name}
                   </h3>
-                  <p className={`mt-2 text-sm ${cardSubtle}`}>{s.Service}</p>
+                  <p className={`mt-2 text-sm leading-relaxed ${cardSubtle}`}>{s.Service}</p>
 
                   {/* Badges */}
-                  <div className="mt-3 flex flex-wrap gap-2">
+                  <div className="mt-4 flex flex-wrap gap-2">
                     {s.badges.map((b, idx) => (
                       <span
                         key={idx}
-                        className={`text-xs px-2 py-1 rounded-full ${badgeBg} border ${badgeBorder} ${badgeText}`}
+                        className={`text-xs px-3 py-1 rounded-full font-medium ${badgeBg} border-2 ${badgeBorder} ${badgeText} transition-colors`}
                       >
                         {b}
                       </span>
                     ))}
                   </div>
+                  
+                  <Link
+                    href="/contact"
+                    className={`inline-flex items-center mt-4 text-sm font-semibold px-4 py-2 rounded-lg bg-gradient-to-r ${accent} text-white hover:shadow-lg transition-all`}
+                  >
+                    Get Started
+                  </Link>
                 </div>
               </div>
             </article>

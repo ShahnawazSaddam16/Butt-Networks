@@ -8,6 +8,7 @@ import Services from "./components/Services";
 import Quiz_App from "./components/Quiz-App";
 import MakeWeb from "./components/MakeWeb";
 import Challenge from "./components/Challenge";
+import Testimonials from "./components/Testimonials";
 
 export default function Home() {
   return (
@@ -20,6 +21,7 @@ export default function Home() {
       <MakeWeb />
       <Quiz_App />
       <Founder />
+      <Testimonials />
       <Offer />
     </>
   );

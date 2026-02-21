@@ -156,12 +156,13 @@ export default function Hero() {
   const titleText = isDarkMode ? "text-gray-200" : "text-gray-700";
   const subtitleText = isDarkMode ? "text-gray-400" : "text-gray-700";
   const sectionBg = isDarkMode ? "bg-gray-900/60" : "bg-white/60";
+  const gradientText = isDarkMode ? "from-blue-400 to-cyan-400" : "from-blue-600 to-indigo-600";
 
   return (
     <section
       id="home"
       aria-label="Home — Hero"
-      className={`relative overflow-hidden ${sectionBg} py-10 sm:py-16 mt-18 md:mt-22 lg:mt-24 xl:mt-24`}
+      className={`relative overflow-hidden ${sectionBg} py-16 sm:py-20 mt-18 md:mt-22 lg:mt-24 xl:mt-24`}
     >
       <div className="pointer-events-none absolute inset-0 -z-10 hidden md:block">
         <div className="m-auto w-[1200px] max-w-full">
@@ -183,31 +184,38 @@ export default function Hero() {
           >
             <motion.h1
               variants={fadeUp}
-              className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight ${
+              className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight ${
                 isDarkMode ? "text-white" : "text-gray-900"
               }`}
             >
               <span className="block">
-                Wahb <span className="text-gray-400"> & </span>{" "}
-                <span className="text-blue-600">Shahnawaz</span>
+                Digital Solutions
               </span>
               <span
-                className={`block mt-2 text-lg sm:text-xl font-semibold ${subtitleText}`}
+                className={`block mt-2 bg-gradient-to-r ${gradientText} bg-clip-text text-transparent`}
               >
-                Collaborative design + development
+                Built to Scale
               </span>
             </motion.h1>
 
+            <motion.p
+              variants={fadeUp}
+              className={`mt-6 text-base sm:text-lg ${subtitleText} max-w-xl mx-auto lg:mx-0 leading-relaxed`}
+            >
+              Full-stack software development for modern businesses. Expert design, architecture, and deployment with proven technologies.
+            </motion.p>
+
             <motion.div
               variants={fadeUp}
-              className={`mt-4 text-base sm:text-lg ${subtitleText} max-w-xl mx-auto lg:mx-0`}
+              className={`mt-6 text-base sm:text-lg ${subtitleText} max-w-xl mx-auto lg:mx-0`}
             >
               <Typewriter
                 words={[
-                  "Design systems & component libraries",
-                  "React & Next.js architecture",
-                  "Polished UI/UX for startups",
-                  "Performance-first production builds",
+                  "React & Next.js applications",
+                  "Scalable backend architectures",
+                  "Cloud deployment & DevOps",
+                  "Mobile-first responsive design",
+                  "Production-ready code quality",
                 ]}
                 loop={0}
                 cursor
@@ -218,26 +226,18 @@ export default function Hero() {
               />
             </motion.div>
 
-            <motion.p
-              variants={fadeUp}
-              className={`mt-4 ${subtitleText} max-w-lg mx-auto lg:mx-0`}
-            >
-              Together, we deliver quick, user-friendly, and enjoyable online
-              experiences by fusing front-end development with visual design.
-            </motion.p>
-
             <motion.div
               variants={fadeUp}
-              className="mt-6 flex flex-col sm:flex-row items-center gap-3 sm:gap-4 justify-center lg:justify-start"
+              className="mt-8 flex flex-col sm:flex-row items-center gap-3 sm:gap-4 justify-center lg:justify-start"
             >
               <Link
                 href="#services"
                 aria-label="See our services"
-                className="inline-flex items-center justify-center px-5 py-3 rounded-xl bg-blue-600 text-white font-semibold shadow hover:bg-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-300"
+                className="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold shadow-lg hover:shadow-xl hover:from-blue-700 hover:to-indigo-700 transition-all transform hover:scale-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-300"
               >
-                Our Services
+                Explore Services
                 <svg
-                  className="ml-3 -mr-1 h-4 w-4"
+                  className="ml-3 -mr-1 h-5 w-5"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
