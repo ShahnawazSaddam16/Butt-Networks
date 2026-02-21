@@ -16,7 +16,8 @@ import {
   FolderGit,
   Phone,
   Bot, 
-  Gamepad2
+  Gamepad2,
+  HomeIcon
 } from 'lucide-react';
 
 const Navbar = () => {
@@ -37,6 +38,14 @@ const Navbar = () => {
 
         {/* Desktop links - visible only after 1021px */}
         <ul className="hidden min-[1021px]:flex space-x-8 items-center">
+            <li>
+            <Link
+              href="/"
+              className="flex items-center gap-2 hover:text-yellow-300 hover:bg-gray-500 dark:hover:bg-gray-700 px-4 py-2 rounded font-semibold"
+            >
+              <HomeIcon size={18} /> Home
+            </Link>
+          </li>
           <li>
             <Link
               href="/#About"
@@ -58,15 +67,7 @@ const Navbar = () => {
               href="/#founder"
               className="flex items-center gap-2 hover:text-yellow-300 hover:bg-gray-500 dark:hover:bg-gray-700 px-4 py-2 rounded font-semibold"
             >
-              <User2 size={18} /> Founders
-            </Link>
-          </li>
-            <li>
-            <Link
-              href="#challenge"
-              className="flex items-center gap-2 hover:text-yellow-300 hover:bg-gray-500 dark:hover:bg-gray-700 px-4 py-2 rounded font-semibold"
-            >
-              <Gamepad2 size={18} /> Challenge
+              <User2 size={18} /> Team
             </Link>
           </li>
           <li>
@@ -96,6 +97,14 @@ const Navbar = () => {
       {/* Mobile dropdown - visible only on small screens */}
       {isOpen && (
         <ul className="min-[1021px]:hidden mt-4 space-y-4 w-40 mx-auto text-center rounded-lg py-4 shadow-lg">
+            <li>
+            <Link
+              href="/"
+              className="flex items-center justify-center gap-2 px-3 py-2 rounded active:bg-gray-400 dark:active:bg-gray-700"
+            >
+              <HomeIcon size={18} /> Home
+            </Link>
+          </li>
           <li>
             <Link
               href="/#About"
@@ -117,15 +126,7 @@ const Navbar = () => {
               href="/#founder"
               className="flex items-center justify-center gap-2 px-3 py-2 rounded active:bg-gray-400 dark:active:bg-gray-700"
             >
-              <User2 size={18} /> Founders
-            </Link>
-          </li>
-              <li>
-              <Link
-              href="#challenge"
-              className="flex items-center justify-center gap-2 px-3 py-2 rounded active:bg-gray-400 dark:active:bg-gray-700"
-            >
-              <Gamepad2 size={18} /> Challenge
+              <User2 size={18} /> Team
             </Link>
           </li>
           <li>
