@@ -416,7 +416,7 @@ function AuthorCard({ isDark }) {
   return (
     <motion.div
       variants={fadeIn}
-      className={`flex items-center gap-4 p-4 rounded-2xl border ${
+      className={`flex items-center gap-4 p-4 rounded-2xl border  ${
         isDark ? "bg-gray-800/70 border-gray-700" : "bg-gray-50 border-gray-100"
       }`}
     >
@@ -469,7 +469,7 @@ function AuthorCard({ isDark }) {
 
 function DividerLabel({ label, isDark }) {
   return (
-    <div className="flex items-center gap-3 my-5">
+    <div className="flex items-center gap-3 my-5 justify-center">
       <div className={`flex-1 h-px ${isDark ? "bg-gray-700" : "bg-gray-100"}`} />
       <span className={`text-[11px] font-bold uppercase tracking-widest ${isDark ? "text-gray-500" : "text-gray-400"}`}>
         {label}

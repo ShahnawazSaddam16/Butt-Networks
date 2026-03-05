@@ -65,13 +65,13 @@ const Navbar = () => {
           </li>
 
           <li>
-            <Link href="/Projects" className={`${linkBase} ${linkStyle}`}>
+            <Link href="/projects" className={`${linkBase} ${linkStyle}`}>
               <FolderGit size={18} /> Projects
             </Link>
           </li>
 
           <li>
-            <Link href="#testimonials" className={`${linkBase} ${linkStyle}`}>
+            <Link href="/#testimonials" className={`${linkBase} ${linkStyle}`}>
               <MessageSquareQuote size={18} /> Testimonials
             </Link>
           </li>
