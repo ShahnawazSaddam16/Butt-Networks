@@ -72,14 +72,14 @@ export const projects = [
     heading: "Client–Dev Collaboration Platform",
     description:
       "A unified platform connecting clients and development teams — request quotes, receive email alerts, view project progress & assignees, chat with developers, and automatically sync GitHub repo activity to project status.",
-    demoLink: "https://dashboard.wahb.space",
+    demoLink: "https://Dashboard.wahb.space",
     githubLink: [
       {
-        url: "https://github.com/wahb-amir/dev-dashboard",
+        url: "https://github.com/wahb-amir/dev-Dashboard",
         name: "Client App",
       },
       {
-        url: "https://github.com/wahb-amir/dashboard",
+        url: "https://github.com/wahb-amir/Dashboard",
         name: "Developer App",
       },
     ],
@@ -108,7 +108,7 @@ export const projects = [
     status: "Updating",
     highlights: [
       "Built a comprehensive client portal allowing quote requests, project progress tracking, visibility into who’s working on what, and direct chat with assigned developers.",
-      "Developed a developer dashboard to manage tasks, update progress, assign team members, and efficiently review client requests in a single workspace.",
+      "Developed a developer Dashboard to manage tasks, update progress, assign team members, and efficiently review client requests in a single workspace.",
       "Implemented role-based access control (RBAC) ensuring Clients, PMs, and Developers see only the views and actions relevant to them.",
       "Automated user setup and project onboarding, including GitHub repository creation and webhook integration to sync commits and PR events directly to project status.",
       "Integrated real-time communication with Socket.io, plus email and in-app alerts for quote responses, status changes, and mentions to keep all stakeholders informed.",
@@ -200,15 +200,15 @@ export const projects = [
     id: "Admin-Dashboard",
     heading: "Admin-Dashboard",
     description:
-      "A powerful and secure admin dashboard designed to manage users, content, and system data efficiently, featuring role-based access control, real-time analytics, and centralized tools for monitoring and maintaining application performance.",
-    demoLink: "https://admin-dashboard.buttnetworks.com/",
+      "A powerful and secure admin Dashboard designed to manage users, content, and system data efficiently, featuring role-based access control, real-time analytics, and centralized tools for monitoring and maintaining application performance.",
+    demoLink: "https://admin-Dashboard.buttnetworks.com/",
     githubLink: "https://github.com/ShahanwazSaddam144/admin-panel",
     githubLink: "https://github.com/ShahanwazSaddam144/admin-panel",
 
     images: [
       "/projects/Dashboard/Home.png",
       "/projects/Dashboard/Login.png",
-      "/projects/DashBoard/Dashboard.png",
+      "/projects/Dashboard/Dashboard.png",
     ],
     tech: ["Next.js", "Node.js", "MongoDB", "Express", "Tailwind CSS"],
     authors: [
@@ -223,7 +223,7 @@ export const projects = [
     status: "completed",
     highlights: [
       "Role-based admin access with secure authentication",
-      "Real-time dashboard analytics and activity monitoring",
+      "Real-time Dashboard analytics and activity monitoring",
       "User, content, and system management from a centralized panel",
     ],
     priority: 8,
