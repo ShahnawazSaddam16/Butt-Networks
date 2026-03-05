@@ -132,7 +132,7 @@ export default function Services() {
                       </div>
                       <div className="mt-3">
                         <Link
-                          href="/contact"
+                          href="/Contact"
                           className="inline-flex items-center text-xs font-medium px-3 py-1 rounded-full bg-gray-100/50 hover:bg-gray-200 transition"
                         >
                           Get a quote
@@ -183,7 +183,7 @@ export default function Services() {
                   </div>
                   
                   <Link
-                    href="/contact"
+                    href="/Contact"
                     className={`inline-flex items-center mt-4 text-sm font-semibold px-4 py-2 rounded-lg bg-gradient-to-r ${accent} text-white hover:shadow-lg transition-all`}
                   >
                     Get Started
