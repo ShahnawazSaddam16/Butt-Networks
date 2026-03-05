@@ -420,7 +420,6 @@ function AuthorCard({ isDark }) {
         isDark ? "bg-gray-800/70 border-gray-700" : "bg-gray-50 border-gray-100"
       }`}
     >
-      {/* Avatar */}
       <div
         className={`w-14 h-14 sm:w-16 sm:h-16 flex-none rounded-full ring-2 overflow-hidden ${
           isDark ? "ring-gray-700" : "ring-gray-200"

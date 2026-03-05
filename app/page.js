@@ -14,23 +14,34 @@ import MakeWeb from "./components/MakeWeb";
 import Testimonials from "./components/Testimonials";
 
 export default function Home() {
-  const triggerHaptic = useHaptic();
+const triggerHaptic = useHaptic();
 
-  useEffect(() => {
-    const handleClick = (e) => {
-      const target = e.target 
-      if (
-        target.tagName === "BUTTON" ||
-        target.tagName === "A" ||
-        target.getAttribute("role") === "button"
-      ) {
-        triggerHaptic("selection");
-      }
-    };
+useEffect(() => {
+  const handleClick = (e) => {
+    const target = e.target ;
+    let pattern = "medium"; // default
 
-    document.addEventListener("click", handleClick, { capture: true });
-    return () => document.removeEventListener("click", handleClick, { capture: true });
-  }, [triggerHaptic]);
+    // Determine pattern based on element type
+    if (target.tagName === "BUTTON") {
+      pattern = "rigid";      // solid click
+    } else if (target.tagName === "A") {
+      pattern = "soft";       // lighter tap
+    } else if (target.getAttribute("role") === "button") {
+      pattern = "medium";     // standard interactive
+    } else if (typeof (target).onclick === "function") {
+      pattern = "light";    
+    } else {
+      return;                 
+    }
+    // debugging log
+    // console.log(`Haptic triggered on <${target.tagName.toLowerCase()}> with pattern "${pattern}"`, target);
+
+    triggerHaptic(pattern);
+  };
+
+  document.addEventListener("click", handleClick, { capture: true });
+  return () => document.removeEventListener("click", handleClick, { capture: true });
+}, [triggerHaptic]);
 
   return (
     <>
