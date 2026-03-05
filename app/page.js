@@ -6,7 +6,7 @@ import Home_ from "./components/Home";
 import About from "./components/About";
 import Skills from "./components/Skills";
 import Projects from "./components/Projects";
-import Founder from "./components/Founder";
+import Team from "./components/Team";
 import Offer from "./components/Offer";
 import Services from "./components/Services";
 import Quiz_App from "./components/Quiz-App";
@@ -51,8 +51,8 @@ useEffect(() => {
       <Projects limit={3} />
       <Services />
       <MakeWeb />
-      <Quiz_App />
-      <Founder />
+      {/* <Quiz_App /> */}
+      <Team />
       <Testimonials />
       <Offer />
     </>

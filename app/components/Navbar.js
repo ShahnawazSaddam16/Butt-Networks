@@ -77,7 +77,7 @@ const Navbar = () => {
           </li>
 
           <li>
-            <Link href="/#founder" className={`${linkBase} ${linkStyle}`}>
+            <Link href="/#team" className={`${linkBase} ${linkStyle}`}>
               <User2 size={18} /> Team
             </Link>
           </li>
