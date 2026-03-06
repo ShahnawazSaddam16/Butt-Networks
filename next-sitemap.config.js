@@ -20,7 +20,6 @@ module.exports = {
       { userAgent: '*', allow: '/' },
     ],
     additionalSitemaps: [
-      'https://buttnetworks.com/sitemap.xml',
       'https://buttnetworks.com/sitemap-0.xml', 
     ],
   },
