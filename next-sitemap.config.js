@@ -19,8 +19,5 @@ module.exports = {
     policies: [
       { userAgent: '*', allow: '/' },
     ],
-    additionalSitemaps: [
-      'https://buttnetworks.com/sitemap-0.xml', 
-    ],
   },
 };
