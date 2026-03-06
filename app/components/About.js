@@ -50,7 +50,7 @@ const STATS = [
   { value: 5,  suffix: "+",   label: "Projects shipped"   },
   { value: 2,  suffix: "",    label: "Team members"        },
   { value: 10, suffix: "+",   label: "Technologies used"  },
-  { value: 1,  suffix: " yr", label: "Building together"  },
+  { value: 1,  suffix: "+ yr", label: "Building together"  },
 ];
 
 // ← Replace URLs with real portfolio links

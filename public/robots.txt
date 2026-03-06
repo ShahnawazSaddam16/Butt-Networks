@@ -7,4 +7,3 @@ Host: https://buttnetworks.com
 
 # Sitemaps
 Sitemap: https://buttnetworks.com/sitemap.xml
-Sitemap: https://buttnetworks.com/sitemap-0.xml
