@@ -1,5 +1,5 @@
 import { Geist, Geist_Mono } from "next/font/google";
-import ThemeProvider from "./components/ThemeProvider"; 
+import ThemeProvider from "./components/ThemeProvider";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import "./globals.css";
@@ -52,7 +52,7 @@ export const metadata = {
     siteName: "Butt Networks",
     images: [
       {
-        url: "/butt.png", 
+        url: "/butt.png",
         width: 1200,
         height: 630,
         alt: "Butt Networks - Professional Web Development",
@@ -64,7 +64,8 @@ export const metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Butt Networks | Digital Solutions Agency",
-    description: "High-performance web apps and dashboards built with Next.js and Tailwind CSS.",
+    description:
+      "High-performance web apps and dashboards built with Next.js and Tailwind CSS.",
     images: ["/butt.png"],
   },
   robots: {
@@ -73,9 +74,9 @@ export const metadata = {
     googleBot: {
       index: true,
       follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
     },
   },
 };
@@ -86,51 +87,67 @@ const jsonLd = {
     {
       "@type": "Organization",
       "@id": "https://buttnetworks.com/#organization",
-      "name": "Butt Networks",
-      "url": "https://buttnetworks.com",
-      "logo": "https://buttnetworks.com/butt.png",
-      "sameAs": [
+      name: "Butt Networks",
+      url: "https://buttnetworks.com",
+      logo: "https://buttnetworks.com/butt.png",
+      sameAs: [
         "https://github.com/ShahanwazSaddam144/Butt-Networks",
-        "https://github.com/wahb-amir"
+        "https://github.com/wahb-amir",
       ],
-      "contactPoint": {
+      contactPoint: {
         "@type": "ContactPoint",
-        "contactType": "technical support",
-        "url": "https://buttnetworks.com/Contact"
+        contactType: "technical support",
+        url: "https://buttnetworks.com/Contact",
       },
-      "founders": [
+      founders: [
         {
           "@type": "Person",
-          "name": "Wahb Amir",
-          "url": "https://wahb.space",
-          "sameAs": ["https://github.com/wahb-amir"]
+          name: "Wahb Amir",
+          url: "https://wahb.space",
+          sameAs: ["https://github.com/wahb-amir"],
         },
         {
           "@type": "Person",
-          "name": "Shahnawaz Saddam",
-          "url": "https://shahnawaz.buttnetworks.com",
-          "sameAs": ["https://github.com/ShahanwazSaddam144"]
-        }
-      ]
+          name: "Shahnawaz Saddam",
+          url: "https://shahnawaz.buttnetworks.com",
+          sameAs: ["https://github.com/ShahanwazSaddam144"],
+        },
+      ],
     },
     {
       "@type": "WebSite",
       "@id": "https://buttnetworks.com/#website",
-      "url": "https://buttnetworks.com",
-      "name": "Butt Networks",
-      "publisher": { "@id": "https://buttnetworks.com/#organization" }
+      url: "https://buttnetworks.com",
+      name: "Butt Networks",
+      publisher: { "@id": "https://buttnetworks.com/#organization" },
     },
     {
       "@type": "ItemList",
-      "name": "Our Featured Projects",
-      "description": "A collection of high-end digital products developed by Butt Networks.",
-      "itemListElement": [
-        { "@type": "ListItem", "position": 1, "url": "https://boltform.wahb.space", "name": "Boltform" },
-        { "@type": "ListItem", "position": 2, "url": "https://digital-x.buttnetworks.com", "name": "Digital-X" },
-        { "@type": "ListItem", "position": 3, "url": "https://admin-dashboard.buttnetworks.com", "name": "Enterprise Admin Dashboard" }
-      ]
-    }
-  ]
+      name: "Our Featured Projects",
+      description:
+        "A collection of high-end digital products developed by Butt Networks.",
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          url: "https://boltform.wahb.space",
+          name: "Boltform",
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          url: "https://digital-x.buttnetworks.com",
+          name: "Digital-X",
+        },
+        {
+          "@type": "ListItem",
+          position: 3,
+          url: "https://admin-dashboard.buttnetworks.com",
+          name: "Enterprise Admin Dashboard",
+        },
+      ],
+    },
+  ],
 };
 
 export default function RootLayout({ children }) {
@@ -141,8 +158,28 @@ export default function RootLayout({ children }) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/favicon/apple-touch-icon.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="/favicon/favicon-32x32.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="/favicon/favicon-16x16.png"
+        />
+        <link rel="manifest" href="/favicon/site.webmanifest" />
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
         <ThemeProvider>
           <Navbar />
           <main>{children}</main>
