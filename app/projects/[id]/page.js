@@ -1,12 +1,55 @@
-"use client";
-import { projects } from "../../data/projects";
+// app/projects/[id]/page.js
 import Projects from "../../components/Projects";
-import { useParams } from "next/navigation";
+import { projects } from "../../data/projects";
 
-export default function ProjectCaseStudy() {
-  const params = useParams();
+/**
+ * Return params for every project so Next.js statically generates /projects/[id]
+ * next-sitemap will pick these up when building the sitemap.
+ */
+export async function generateStaticParams() {
+  // ensure IDs are strings
+  return projects.map((p) => ({ id: String(p.id) }));
+}
+
+export async function generateMetadata({ params }) {
+  const project = projects.find((p) => String(p.id) === String(params.id));
+  if (!project) {
+    return {
+      title: "Project not found — Butt Networks",
+      description: "Project not found.",
+    };
+  }
+
+  const title = project.title || `Project • ${project.id}`;
+  const description =
+    project.description?.slice(0, 160) ||
+    project.summary ||
+    "Case study by Butt Networks";
+
+  const url = `https://buttnetworks.com/projects/${params.id}`;
+  const images = project.image ? [project.image] : undefined;
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      url,
+      images,
+    },
+    twitter: {
+      card: images ? "summary_large_image" : "summary",
+      title,
+      description,
+      images,
+    },
+  };
+}
+
+export default function ProjectCaseStudy({ params }) {
   const { id } = params;
-  const project = projects.find((p) => p.id === id);
+  const project = projects.find((p) => String(p.id) === String(id));
 
   if (!project) {
     return <div className="p-10 text-center">Project not found</div>;
