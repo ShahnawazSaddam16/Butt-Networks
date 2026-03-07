@@ -12,8 +12,8 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }) {
-  const id = await params.id;
-  const project = projects.find((p) => String(p.id) === String(id));
+  const id = await params;
+  const project = projects.find((p) => String(p.id) === String(p.id));
   if (!project) {
     return {
       title: "Project not found — Butt Networks",
@@ -27,7 +27,7 @@ export async function generateMetadata({ params }) {
     project.summary ||
     "Case study by Butt Networks";
 
-  const url = `https://buttnetworks.com/projects/${params.id}`;
+  const url = `https://buttnetworks.com/projects/${id}`;
   const images = project.image ? [project.image] : undefined;
 
   return {
