@@ -12,7 +12,8 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }) {
-  const project = projects.find((p) => String(p.id) === String(params.id));
+  const id = await params.id;
+  const project = projects.find((p) => String(p.id) === String(id));
   if (!project) {
     return {
       title: "Project not found — Butt Networks",
