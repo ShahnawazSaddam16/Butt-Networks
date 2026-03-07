@@ -154,7 +154,6 @@ export default function Home() {
 
   return (
     <>
-      {/* Above fold — SSR, hydrates immediately */}
       <Home_ />
 
       <LazySection Component={About}        minHeight={HEIGHTS.About}        id="about"        />

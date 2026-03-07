@@ -47,8 +47,8 @@ export async function generateMetadata({ params }) {
   };
 }
 
-export default function ProjectCaseStudy({ params }) {
-  const { id } = params;
+export default async function ProjectCaseStudy({ params }) {
+  const { id } = await params;
   const project = projects.find((p) => String(p.id) === String(id));
 
   if (!project) {
