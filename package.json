@@ -25,7 +25,8 @@
     "react-simple-typewriter": "^5.0.1",
     "swiper": "^12.1.2",
     "swiper-react": "^1.0.0",
-    "tailwind-merge": "^3.5.0"
+    "tailwind-merge": "^3.5.0",
+    "typewriter-effect": "^2.22.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.4",

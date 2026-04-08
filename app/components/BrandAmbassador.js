@@ -1,9 +1,7 @@
-"use client";
-
 import { User2, Mail, Phone, Globe } from "lucide-react";
 import Image from "next/image";
 import React from "react";
-import { Typewriter } from "react-simple-typewriter";
+import Typewriter from "typewriter-effect";
 
 const BrandAmbassador = () => {
   return (
@@ -18,8 +16,8 @@ const BrandAmbassador = () => {
             </h1>
           </div>
 
-          <h2 className="mt-4 text-2xl sm:text-3xl font-bold text-gray-800">
-            Representing Innovation & Excellence
+          <h2 className="Ambassador-Text mt-4 text-2xl sm:text-3xl font-bold text-gray-800">
+            Representing Innovation <span className="text-blue-600">& Excellence</span>
           </h2>
 
           <p className="mt-2 text-gray-500 max-w-xl">
@@ -56,7 +54,7 @@ const BrandAmbassador = () => {
               Brand Ambassador & Full Stack Developer
             </p>
 
-            <p className="mt-4 text-gray-600 leading-relaxed">
+            <p className="Ambassador-P mt-4 text-gray-600 leading-relaxed">
               Passionate about building scalable digital solutions, our brand
               ambassador represents the core values of innovation, performance,
               and reliability. With expertise in modern web technologies, they
@@ -82,12 +80,12 @@ const BrandAmbassador = () => {
         </div>
 
         {/* Speech Section */}
-        <div className="mt-14 bg-gray-50 border border-gray-200 rounded-xl p-6 sm:p-8 shadow-sm">
-          <h3 className="text-xl font-semibold text-gray-800 text-center">
+        <div className="Ambassador mt-14 bg-gray-50 border border-gray-200 rounded-xl p-6 sm:p-8 shadow-sm">
+          <h3 className="Ambassador-Text text-xl font-semibold text-gray-800 text-center">
             Ambassador’s Message
           </h3>
 
-          <p className="mt-4 text-gray-600 leading-relaxed text-center max-w-3xl mx-auto">
+          <p className="Ambassador-P mt-4 text-gray-600 leading-relaxed text-center max-w-3xl mx-auto">
             <Typewriter
               options={{
                 strings: [
@@ -106,4 +104,4 @@ const BrandAmbassador = () => {
   );
 };
 
-export default BrandAmbassador;
+export default BrandAmbassador; 
