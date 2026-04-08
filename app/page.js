@@ -33,6 +33,7 @@ import { useEffect, useRef, useState, memo } from "react";
 import dynamic from "next/dynamic";
 import useHaptic from "@/lib/haptic";
 import useGlobalHaptics from "@/lib/useGlobalHaptics";
+import BrandAmbassador from "./components/BrandAmbassador";
 
 /* ─────────────────────────────────────────────────────────────
    IMPORTS
@@ -161,6 +162,7 @@ export default function Home() {
       <LazySection Component={Projects}     minHeight={HEIGHTS.Projects}     id="projects"     limit={3} />
       <LazySection Component={Services}     minHeight={HEIGHTS.Services}     id="services"     />
       <LazySection Component={MakeWeb}      minHeight={HEIGHTS.MakeWeb}      id="make-web"     />
+      <BrandAmbassador />
       <LazySection Component={Team}         minHeight={HEIGHTS.Team}         id="team"         />
       <LazySection Component={Testimonials} minHeight={HEIGHTS.Testimonials} id="testimonials" />
       <LazySection Component={Offer}        minHeight={HEIGHTS.Offer}        id="offer"        />

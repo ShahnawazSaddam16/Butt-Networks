@@ -201,6 +201,18 @@ body.dark-mode .Quiz-Text {
   @apply text-gray-400;
 }
 
+body.dark-mode .Ambassador{
+  @apply bg-gray-800/50
+}
+
+body.dark-mode .Ambassador-Text{
+  @apply text-white
+}
+
+body.dark-mode .Ambassador-P{
+  @apply text-gray-500
+}
+
 :-webkit-scrollbar {
   width: 6px;
   height: 6px;
