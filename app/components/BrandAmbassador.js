@@ -71,7 +71,7 @@ const BrandAmbassador = () => {
             {/* Contact Info */}
             <div className="mt-5">
               <button className="bg-blue-600 px-6 py-2 flex gap-2 rounded-[10px] text-white
-              font-semibold">
+              font-semibold hover:bg-blue-700 cursor-pointer">
               <PhoneCall size={20}/> View Contact Info</button>
             </div>
 
