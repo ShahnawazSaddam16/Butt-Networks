@@ -1,7 +1,13 @@
 import { User2, Mail, Phone, Globe } from "lucide-react";
 import Image from "next/image";
 import React from "react";
-import Typewriter from "typewriter-effect";
+import dynamic from "next/dynamic";
+
+// Dynamically import Typewriter to avoid SSR issues
+const Typewriter = dynamic(() => import("typewriter-effect"), {
+  ssr: false,
+  loading: () => <span>At our software house, we believe in transforming ideas into impactful digital experiences...</span>
+});
 
 const BrandAmbassador = () => {
   return (
@@ -9,37 +15,38 @@ const BrandAmbassador = () => {
       <section className="mt-20 py-5 px-4 sm:px-10">
         {/* Header */}
         <header className="flex flex-col justify-center items-center text-center">
-          <div className="Ambassador bg-blue-50 border-1 px-4 py-1 border-blue-300 flex gap-2 rounded-[5px]">
-            <User2 size={15} className="mt-1 text-blue-500" />
+          <div className="Ambassador bg-blue-50 border px-4 py-1 border-blue-300 flex gap-2 rounded-[5px]">
+            <User2 size={15} className="BrandAmbassador-Icon mt-1 text-blue-500" />
             <h1 className="font-semibold text-blue-500 uppercase">
               Our Brand-Ambassador
             </h1>
           </div>
 
           <h2 className="Ambassador-Text mt-4 text-2xl sm:text-3xl font-bold text-gray-800">
-            Representing Innovation <span className="text-blue-600">& Excellence</span>
+            Representing Innovation <span className="BrandAmbassador-Highlight text-blue-600">& Excellence</span>
           </h2>
 
-          <p className="mt-2 text-gray-500 max-w-xl">
+          <p className="Ambassador-P mt-2 text-gray-500 max-w-xl">
             Our ambassador stands as the face of our software house, driving
             vision, innovation, and trust across our global community.
           </p>
         </header>
 
         {/* Main Content */}
-        <div className="flex flex-col lg:flex-row justify-between items-center gap-10 mt-10">
+        <div className="BrandAmbassador-Content flex flex-col lg:flex-row justify-between items-center gap-10 mt-10">
           
           {/* Image Section */}
-          <div className="ml-5 flex justify-center">
-            <div className="relative">
+          <div className="BrandAmbassador-ImageSection ml-5 flex justify-center">
+            <div className="BrandAmbassador-ImageContainer relative">
               <Image
                 src={"/Ambassador.jpeg"}
                 alt="Brand Ambassador"
                 width={180}
                 height={180}
-                className="rounded-xl shadow-lg object-cover"
+                className="BrandAmbassador-Image rounded-xl shadow-lg object-cover"
+                priority
               />
-              <span className="absolute bottom-0 right-0 bg-blue-500 text-white text-xs px-2 py-1 rounded">
+              <span className="BrandAmbassador-Verified absolute bottom-0 right-0 bg-blue-500 text-white text-xs px-2 py-1 rounded">
                 Verified
               </span>
             </div>
@@ -47,10 +54,10 @@ const BrandAmbassador = () => {
 
           {/* Info Section */}
           <div className="flex-1 text-center lg:text-left">
-            <h3 className="text-xl font-semibold text-gray-800">
-              Shahnawaz Saddam Butt
+            <h3 className="Ambassador-Text text-xl font-semibold text-gray-800">
+              M.Ali
             </h3>
-            <p className="text-blue-500 font-medium">
+            <p className="BrandAmbassador-Role text-blue-500 font-medium">
               Brand Ambassador & Full Stack Developer
             </p>
 
@@ -62,17 +69,17 @@ const BrandAmbassador = () => {
             </p>
 
             {/* Contact Info */}
-            <div className="mt-6 space-y-2">
+            <div className=" mt-6 space-y-2">
               <div className="flex items-center gap-2 justify-center lg:justify-start text-gray-600">
-                <Mail size={16} />
+                <Mail size={16} className="Ambassador-P" />
                 <span>contact@getadeveloper.com</span>
               </div>
-              <div className="flex items-center gap-2 justify-center lg:justify-start text-gray-600">
-                <Phone size={16} />
+              <div className="BrandAmbassador-ContactItem flex items-center gap-2 justify-center lg:justify-start text-gray-600">
+                <Phone size={16} className="Ambassador-P" />
                 <span>+92 300 0000000</span>
               </div>
-              <div className="flex items-center gap-2 justify-center lg:justify-start text-gray-600">
-                <Globe size={16} />
+              <div className="BrandAmbassador-ContactItem flex items-center gap-2 justify-center lg:justify-start text-gray-600">
+                <Globe size={16} className="Ambassador-P" />
                 <span>www.getadeveloper.com</span>
               </div>
             </div>
@@ -85,7 +92,7 @@ const BrandAmbassador = () => {
             Ambassador’s Message
           </h3>
 
-          <p className="Ambassador-P mt-4 text-gray-600 leading-relaxed text-center max-w-3xl mx-auto">
+          <div className="Ambassador-P mt-4 text-gray-600 leading-relaxed text-center max-w-3xl mx-auto">
             <Typewriter
               options={{
                 strings: [
@@ -97,7 +104,7 @@ const BrandAmbassador = () => {
                 deleteSpeed: 10,
               }}
             />
-          </p>
+          </div>
         </div>
       </section>
     </>
