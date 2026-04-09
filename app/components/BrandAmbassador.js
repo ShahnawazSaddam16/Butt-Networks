@@ -1,4 +1,4 @@
-import { User2, Mail, Phone, Globe } from "lucide-react";
+import { User2, Mail, Phone, Globe, PhoneCall } from "lucide-react";
 import Image from "next/image";
 import React from "react";
 import dynamic from "next/dynamic";
@@ -69,22 +69,14 @@ const BrandAmbassador = () => {
             </p>
 
             {/* Contact Info */}
-            <div className=" mt-6 space-y-2">
-              <div className="flex items-center gap-2 justify-center lg:justify-start text-gray-600">
-                <Mail size={16} className="Ambassador-P" />
-                <span>contact@getadeveloper.com</span>
-              </div>
-              <div className="BrandAmbassador-ContactItem flex items-center gap-2 justify-center lg:justify-start text-gray-600">
-                <Phone size={16} className="Ambassador-P" />
-                <span>+92 300 0000000</span>
-              </div>
-              <div className="BrandAmbassador-ContactItem flex items-center gap-2 justify-center lg:justify-start text-gray-600">
-                <Globe size={16} className="Ambassador-P" />
-                <span>www.getadeveloper.com</span>
-              </div>
+            <div className="mt-5">
+              <button className="bg-blue-600 px-6 py-2 flex gap-2 rounded-[10px] text-white
+              font-semibold">
+              <PhoneCall size={20}/> View Contact Info</button>
             </div>
-          </div>
-        </div>
+
+            </div>
+            </div>
 
         {/* Speech Section */}
         <div className="Ambassador mt-14 bg-gray-50 border border-gray-200 rounded-xl p-6 sm:p-8 shadow-sm">
