@@ -1,29 +1,56 @@
-import { User2, Mail, Phone, Globe, PhoneCall } from "lucide-react";
+"use client";
+
+import { User2, PhoneCall } from "lucide-react";
+import { FaWhatsapp, FaInstagram } from "react-icons/fa";
+import { MdEmail } from "react-icons/md";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import dynamic from "next/dynamic";
 
 // Dynamically import Typewriter to avoid SSR issues
 const Typewriter = dynamic(() => import("typewriter-effect"), {
   ssr: false,
-  loading: () => <span>At our software house, we believe in transforming ideas into impactful digital experiences...</span>
+  loading: () => (
+    <span>
+      At our software house, we believe in transforming ideas into impactful
+      digital experiences. Our mission is not just to build applications, but to
+      create intelligent solutions that drive growth and innovation. We are
+      committed to delivering high-quality, scalable, and user-focused products
+      that make a real difference. As a brand ambassador, I proudly represent a
+      team that values creativity, integrity, and excellence in everything we
+      do. We continuously explore new technologies and push boundaries to stay
+      ahead in the digital world. Our goal is to empower businesses and
+      individuals by turning their visions into reality. Together, we are
+      building a future where technology connects, inspires, and transforms
+      lives — one project at a time.
+    </span>
+  ),
 });
 
 const BrandAmbassador = () => {
+  const [showPopup, setShowPopup] = useState(false);
+  const [selectedInfo, setSelectedInfo] = useState("");
+
   return (
     <>
       <section className="mt-20 py-5 px-4 sm:px-10">
         {/* Header */}
         <header className="flex flex-col justify-center items-center text-center">
           <div className="Ambassador bg-blue-50 border px-4 py-1 border-blue-300 flex gap-2 rounded-[5px]">
-            <User2 size={15} className="BrandAmbassador-Icon mt-1 text-blue-500" />
+            <User2
+              size={15}
+              className="BrandAmbassador-Icon mt-1 text-blue-500"
+            />
             <h1 className="font-semibold text-blue-500 uppercase">
               Our Brand-Ambassador
             </h1>
           </div>
 
           <h2 className="Ambassador-Text mt-4 text-2xl sm:text-3xl font-bold text-gray-800">
-            Representing Innovation <span className="BrandAmbassador-Highlight text-blue-600">& Excellence</span>
+            Representing Innovation{" "}
+            <span className="BrandAmbassador-Highlight text-blue-600">
+              & Excellence
+            </span>
           </h2>
 
           <p className="Ambassador-P mt-2 text-gray-500 max-w-xl">
@@ -34,7 +61,6 @@ const BrandAmbassador = () => {
 
         {/* Main Content */}
         <div className="BrandAmbassador-Content flex flex-col lg:flex-row justify-between items-center gap-10 mt-10">
-          
           {/* Image Section */}
           <div className="BrandAmbassador-ImageSection ml-5 flex justify-center">
             <div className="BrandAmbassador-ImageContainer relative">
@@ -58,37 +84,80 @@ const BrandAmbassador = () => {
               M.Ali
             </h3>
             <p className="BrandAmbassador-Role text-blue-500 font-medium">
-              Brand Ambassador & Full Stack Developer
+              Brand Ambassador
             </p>
 
-            <p className="Ambassador-P mt-4 text-gray-600 leading-relaxed">
+            <p className="Ambassador-P mt-4 text-gray-600 sm:text-left text-center w-full leading-relaxed">
               Passionate about building scalable digital solutions, our brand
               ambassador represents the core values of innovation, performance,
-              and reliability. With expertise in modern web technologies, they
-              bridge the gap between ideas and execution.
+              and reliability. With a strong focus on user experience and modern
+              technologies, they continuously strive to deliver impactful and
+              efficient solutions. Their dedication and forward-thinking mindset
+              help drive our mission to create meaningful digital
+              transformation.
             </p>
 
-            {/* Contact Info */}
-            <div className="mt-5">
-              <button className="bg-blue-600 px-6 py-2 flex gap-2 rounded-[10px] text-white
-              font-semibold hover:bg-blue-700 cursor-pointer">
-              <PhoneCall size={20}/> View Contact Info</button>
+            {/* Contact Button */}
+            <div className="mt-5 flex sm:justify-start justify-center">
+              <button
+                onClick={() => setShowPopup(!showPopup)}
+                className="bg-blue-600 px-6 py-2 flex gap-2 rounded-[10px] text-white font-semibold hover:bg-blue-700 cursor-pointer"
+              >
+                <PhoneCall size={20} />{" "}
+                {showPopup ? "Hide Contact Info" : "View Contact Info"}
+              </button>
             </div>
 
-            </div>
-            </div>
+            {/* 🔥 POPUP SECTION */}
+            {showPopup && (
+              <div className="mt-6 flex flex-col items-center lg:items-start gap-3">
+                {/* Selected Info */}
+                {selectedInfo && (
+                  <p className="text-blue-600 font-medium">{selectedInfo}</p>
+                )}
+
+                {/* Icons */}
+                <div className="flex gap-4">
+                  {/* WhatsApp */}
+                  <div
+                    onClick={() => setSelectedInfo("+92 300 1234567")}
+                    className="bg-green-500 p-4 rounded-full text-white cursor-pointer hover:scale-110 transition"
+                  >
+                    <FaWhatsapp size={20} />
+                  </div>
+
+                  {/* Instagram */}
+                  <div
+                    onClick={() => setSelectedInfo("@m.ali.dev")}
+                    className="bg-pink-500 p-4 rounded-full text-white cursor-pointer hover:scale-110 transition"
+                  >
+                    <FaInstagram size={20} />
+                  </div>
+
+                  {/* Email */}
+                  <div
+                    onClick={() => setSelectedInfo("mali@example.com")}
+                    className="bg-gray-700 p-4 rounded-full text-white cursor-pointer hover:scale-110 transition"
+                  >
+                    <MdEmail size={20} />
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
 
         {/* Speech Section */}
-        <div className="Ambassador mt-14 bg-gray-50 border border-gray-200 rounded-xl p-6 sm:p-8 shadow-sm">
+        <div className="Ambassador mt-14 bg-blue-50 border border-blue-300 rounded-xl p-6 sm:p-8 shadow-sm">
           <h3 className="Ambassador-Text text-xl font-semibold text-gray-800 text-center">
-            Ambassador’s Message
+            Ambassador’s <span className="text-blue-600">Message</span>
           </h3>
 
           <div className="Ambassador-P mt-4 text-gray-600 leading-relaxed text-center max-w-3xl mx-auto">
             <Typewriter
               options={{
                 strings: [
-                  "At our software house, we believe in transforming ideas into impactful digital experiences. Our mission is not just to build applications, but to create solutions that empower businesses and individuals worldwide. As a brand ambassador, I proudly represent a team that values innovation, integrity, and excellence. Together, we are shaping the future of technology — one project at a time."
+                  "At our software house, we believe in transforming ideas into impactful digital experiences...",
                 ],
                 autoStart: true,
                 loop: true,
@@ -103,4 +172,4 @@ const BrandAmbassador = () => {
   );
 };
 
-export default BrandAmbassador; 
+export default BrandAmbassador;
