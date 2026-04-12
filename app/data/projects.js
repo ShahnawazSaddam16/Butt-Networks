@@ -67,68 +67,7 @@ export const projects = [
     ],
     priority: 4,
   },
-  {
-    id: "client-dev-platform",
-    heading: "Client–Dev Collaboration Platform",
-    description:
-      "A unified platform connecting clients and development teams — request quotes, receive email alerts, view project progress & assignees, chat with developers, and automatically sync GitHub repo activity to project status.",
-    demoLink: "https://Dashboard.wahb.space",
-    githubLink: [
-      {
-        url: "https://github.com/wahb-amir/dev-Dashboard",
-        name: "Client App",
-      },
-      {
-        url: "https://github.com/wahb-amir/Dashboard",
-        name: "Developer App",
-      },
-    ],
-    images: [
-      "/projects/Platform/Login.png",
-      "/projects/Platform/Dashboard.png",
-      "/projects/Platform/Quote.png",
-    ],
-    tech: [
-      "Next.js",
-      "React",
-      "Node.js",
-      "Tailwind",
-      "MongoDB",
-      "GitHub Webhooks",
-    ],
-    authors: [
-      {
-        name: "Wahb Amir",
-        role: "Full-Stack Engineer",
-        portfolio: "https://wahb.space",
-      },
-    ],
-    role: "Full-Stack Engineer",
-    category: "Platform",
-    status: "Updating",
-    highlights: [
-      "Built a comprehensive client portal allowing quote requests, project progress tracking, visibility into who’s working on what, and direct chat with assigned developers.",
-      "Developed a developer Dashboard to manage tasks, update progress, assign team members, and efficiently review client requests in a single workspace.",
-      "Implemented role-based access control (RBAC) ensuring Clients, PMs, and Developers see only the views and actions relevant to them.",
-      "Automated user setup and project onboarding, including GitHub repository creation and webhook integration to sync commits and PR events directly to project status.",
-      "Integrated real-time communication with Socket.io, plus email and in-app alerts for quote responses, status changes, and mentions to keep all stakeholders informed.",
-      "Deployed the platform with CI/CD pipelines and secure OAuth authentication for seamless GitHub integration.",
-      "Delivered a unified collaboration surface that improved visibility, reduced coordination friction, and allowed clients to track progress while developers maintained an organized workflow.",
-      "Enabled automation for repository creation and progress tracking, and implemented key features including quote requests, notifications, real-time chat, progress timelines, and role-based authorization.",
-    ],
-    startDate: "November 1,2025",
-    endDate: null,
-    outcome:
-      "Delivered a single collaboration surface that improved visibility and reduced coordination friction for both clients and developers.",
-    problem:
-      "Clients and development teams lacked a single workspace to request quotes, track progress, communicate, and sync repository activity into task status.",
-    stats: {
-      automation: "Auto repo creation & webhook sync for project status",
-      features:
-        "Quote requests, email alerts, real-time chat, progress timeline, role-based auth",
-    },
-    priority: 10,
-  },
+
 
   //   {
   //     id: "tic-tac-toe",
@@ -156,46 +95,7 @@ export const projects = [
   //     ],
   //     priority: 3,
   //   },
-  {
-    id: "ecommerce-store",
-    heading: "E-Commerce Store",
-    description:
-      "A safe, ready-to-use online store with JWT authentication, Stripe payments, and persistent cart syncing across devices.",
-    demoLink: "https://boltform.buttnetworks.com/",
-    githubLink: "https://github.com/coder101-js/Ecommer-Store",
-    downloadLink: "BoltForm.apk",
-    githubLink: "https://github.com/wahb-amir/Ecommer-Store",
-
-    images: [
-      "/projects/Ecom/light-shop.png",
-      "/projects/Ecom/light-men.png",
-      "/projects/Ecom/light-women.png",
-      "/projects/Ecom/light-product.png",
-      "/projects/Ecom/stripe.png",
-    ],
-    tech: ["Next.js", "Node.js", "MongoDB", "Stripe", "Tailwind CSS"],
-    authors: [
-      {
-        name: "Wahb Amir",
-        role: "Frontend & UX & Backend & Payments",
-        portfolio: "https://wahb.space",
-      },
-      {
-        name: "Shahnawaz Butt",
-        role: "Mobile App",
-        portfolio: "https://shahnawaz.buttnetworks.com",
-      },
-    ],
-    startDate: "July 19, 2025",
-    endDate: "July 26, 2025",
-    status: "completed",
-    highlights: [
-      "Secure Stripe checkout and payment flows",
-      "JWT authentication and cart persistence",
-      "Category browsing and admin-ready product management",
-    ],
-    priority: 7,
-  },
+  
   {
     id: "Admin-Dashboard",
     heading: "Admin-Dashboard",
@@ -260,5 +160,36 @@ export const projects = [
       "User, content, and system management from a centralized panel",
     ],
     priority: 5,
+  },
+    {
+    id: "Get-a-Developer",
+    heading: "Get-a-Developer",
+    description: "A modern platform built to connect clients with skilled developers across various technologies. Discover, chat, and hire trusted professionals with ease, explore portfolios, and collaborate securely — all in one place designed to streamline your development needs and accelerate project success.",
+    demoLink: "",
+    githubLink: "https://github.com/ShahanwazSaddam144/get-a-developer2",
+    githubLink: "https://github.com/ShahanwazSaddam144/get-a-developer2",
+
+    images: [
+      "/projects/GetDevelopers/Hero.png",
+      "/projects/GetDevelopers/Hero.png",
+      "/projects/GetDevelopers/Hero.png",
+    ],
+    tech: ["Next.js", "Node.js", "MongoDB", "Express", "Tailwind CSS"],
+    authors: [
+      {
+        name: "Shahnawaz Butt",
+        role: "Full Stack",
+        portfolio: "https://shahnawaz.buttnetworks.com",
+      },
+    ],
+    startDate: "March 25, 2026",
+    endDate: "April 12, 2026",
+    status: "completed",
+    highlights: [
+      "Role-based admin access with secure authentication",
+      "Real-time Dashboard analytics and activity monitoring",
+      "User, content, and system management from a centralized panel",
+    ],
+    priority: 9.5,
   },
 ];
