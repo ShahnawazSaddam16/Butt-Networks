@@ -1,296 +1,175 @@
 "use client";
 
-import { PhoneCall, CheckCircle2, Mail, Instagram } from "lucide-react";
-import { FaWhatsapp } from "react-icons/fa";
+import { User2, PhoneCall } from "lucide-react";
+import { FaWhatsapp, FaInstagram } from "react-icons/fa";
+import { MdEmail } from "react-icons/md";
 import Image from "next/image";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import dynamic from "next/dynamic";
 
+// Dynamically import Typewriter to avoid SSR issues
 const Typewriter = dynamic(() => import("typewriter-effect"), {
   ssr: false,
   loading: () => (
-    <span className="text-blue-700/60 italic">
+    <span>
       At our software house, we believe in transforming ideas into impactful
-      digital experiences…
+      digital experiences. Our mission is not just to build applications, but to
+      create intelligent solutions that drive growth and innovation. We are
+      committed to delivering high-quality, scalable, and user-focused products
+      that make a real difference. As a brand ambassador, I proudly represent a
+      team that values creativity, integrity, and excellence in everything we
+      do. We continuously explore new technologies and push boundaries to stay
+      ahead in the digital world. Our goal is to empower businesses and
+      individuals by turning their visions into reality. Together, we are
+      building a future where technology connects, inspires, and transforms
+      lives — one project at a time.
     </span>
   ),
 });
 
-const CONTACT_ITEMS = [
-  {
-    id: "whatsapp",
-    Icon: FaWhatsapp,
-    label: "WhatsApp",
-    value: "+92 300 1234567",
-    href: "https://wa.me/923001234567",
-    bg: "bg-emerald-500 hover:bg-emerald-600",
-    pill: "bg-emerald-50 text-emerald-700 border-emerald-200",
-  },
-  {
-    id: "instagram",
-    Icon: Instagram,
-    label: "Instagram",
-    value: "@m.ali.dev",
-    href: "https://instagram.com/m.ali.dev",
-    bg: "bg-pink-500 hover:bg-pink-600",
-    pill: "bg-pink-50 text-pink-700 border-pink-200",
-  },
-  {
-    id: "email",
-    Icon: Mail,
-    label: "Email",
-    value: "mali@example.com",
-    href: "mailto:mali@example.com",
-    bg: "bg-blue-600 hover:bg-blue-700",
-    pill: "bg-blue-50 text-blue-700 border-blue-200",
-  },
-];
-
-const AMBASSADOR_MESSAGE =
-  "At our software house, we believe in transforming ideas into impactful digital experiences. Our mission is not just to build applications, but to create intelligent solutions that drive growth and innovation. We are committed to delivering high-quality, scalable, and user-focused products that make a real difference.";
-
-export default function BrandAmbassador() {
-  const [showContact, setShowContact] = useState(false);
-  const [activeContact, setActiveContact] = useState(null);
-  const [visible, setVisible] = useState(false);
-  const sectionRef = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.1 },
-    );
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => observer.disconnect();
-  }, []);
-
-  const handleContactClick = (id) => {
-    setActiveContact((prev) => (prev === id ? null : id));
-  };
-
-  const active = CONTACT_ITEMS.find((c) => c.id === activeContact);
+const BrandAmbassador = () => {
+  const [showPopup, setShowPopup] = useState(false);
+  const [selectedInfo, setSelectedInfo] = useState("");
 
   return (
-    <section
-      ref={sectionRef}
-      className="relative py-24 px-4 sm:px-8 overflow-hidden"
-    >
-      {/* Subtle background decoration */}
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute -top-32 -right-32 w-[500px] h-[500px] rounded-full bg-blue-100/40 blur-3xl" />
-        <div className="absolute bottom-0 -left-20 w-[300px] h-[300px] rounded-full bg-blue-50/60 blur-2xl" />
-      </div>
+    <>
+      <section className="mt-20 py-5 px-4 sm:px-10">
+        {/* Header */}
+        <header className="flex flex-col justify-center items-center text-center">
+          <div className="Ambassador bg-blue-50 border px-4 py-1 border-blue-300 flex gap-2 rounded-[5px]">
+            <User2
+              size={15}
+              className="BrandAmbassador-Icon mt-1 text-blue-500"
+            />
+            <h1 className="font-semibold text-blue-500 uppercase">
+              Our Brand-Ambassador
+            </h1>
+          </div>
 
-      <div className="relative max-w-5xl mx-auto">
-        {/* ── Section Label ── */}
-        <div
-          className={`flex justify-center transition-all duration-700 ${
-            visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-          }`}
-        >
-          <span className="inline-flex items-center gap-2 bg-blue-50 border border-blue-200 text-blue-600 text-xs font-semibold tracking-widest uppercase px-4 py-1.5 rounded-full">
-            <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
-            Brand Ambassador
-          </span>
-        </div>
-
-        {/* ── Heading ── */}
-        <div
-          className={`mt-5 text-center transition-all duration-700 delay-100 ${
-            visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-          }`}
-        >
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 tracking-tight">
-            Representing{" "}
-            <span className="text-blue-600">Innovation & Excellence</span>
+          <h2 className="Ambassador-Text mt-4 text-2xl sm:text-3xl font-bold text-gray-800">
+            Representing Innovation{" "}
+            <span className="BrandAmbassador-Highlight text-blue-600">
+              & Excellence
+            </span>
           </h2>
-          <p className="mt-3 text-gray-500 max-w-lg mx-auto text-base leading-relaxed">
-            The face of our software house — driving vision, trust, and impact
-            across our global community.
+
+          <p className="Ambassador-P mt-2 text-gray-500 max-w-xl">
+            Our ambassador stands as the face of our software house, driving
+            vision, innovation, and trust across our global community.
           </p>
-        </div>
+        </header>
 
-        {/* ── Main Card ── */}
-        <div
-          className={`mt-12 grid lg:grid-cols-[auto_1fr] gap-10 items-start transition-all duration-700 delay-200 ${
-            visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-          }`}
-        >
-          {/* Left — Image & Identity */}
-          <div className="flex flex-col items-center lg:items-start gap-5">
-            {/* Avatar */}
-            <div className="relative group">
-              <div className="absolute inset-0 rounded-2xl bg-blue-500/20 scale-105 group-hover:scale-110 transition-transform duration-500" />
-              <div className="relative w-44 h-44 rounded-2xl overflow-hidden ring-4 ring-white shadow-xl">
-                <Image
-                  src="/Ambassador.jpeg"
-                  alt="M.Ali — Brand Ambassador"
-                  fill
-                  className="object-cover"
-                  priority
-                />
-              </div>
-              <div className="absolute -bottom-2 -right-2 flex items-center gap-1 bg-blue-600 text-white text-[11px] font-semibold px-2.5 py-1 rounded-full shadow-md">
-                <CheckCircle2 size={11} />
+        {/* Main Content */}
+        <div className="BrandAmbassador-Content flex flex-col lg:flex-row justify-between items-center gap-10 mt-10">
+          {/* Image Section */}
+          <div className="BrandAmbassador-ImageSection ml-5 flex justify-center">
+            <div className="BrandAmbassador-ImageContainer relative">
+              <Image
+                src={"/Ambassador.jpeg"}
+                alt="Brand Ambassador"
+                width={180}
+                height={180}
+                className="BrandAmbassador-Image rounded-xl shadow-lg object-cover"
+                priority
+              />
+              <span className="BrandAmbassador-Verified absolute bottom-0 right-0 bg-blue-500 text-white text-xs px-2 py-1 rounded">
                 Verified
-              </div>
-            </div>
-
-            {/* Name & role */}
-            <div className="text-center lg:text-left">
-              <p className="text-xl font-bold text-gray-900">M. Ali</p>
-              <p className="text-blue-500 text-sm font-medium mt-0.5">
-                Brand Ambassador
-              </p>
-            </div>
-
-            {/* Stats row */}
-            <div className="flex gap-4 text-center">
-              {[
-                { value: "3+", label: "Years" },
-                { value: "40+", label: "Projects" },
-                { value: "100%", label: "Committed" },
-              ].map(({ value, label }) => (
-                <div
-                  key={label}
-                  className="flex flex-col items-center px-3 py-2 bg-blue-50 rounded-xl border border-blue-100"
-                >
-                  <span className="text-lg font-bold text-blue-700">
-                    {value}
-                  </span>
-                  <span className="text-[11px] text-blue-400 font-medium uppercase tracking-wide">
-                    {label}
-                  </span>
-                </div>
-              ))}
+              </span>
             </div>
           </div>
 
-          {/* Right — Bio & Contact */}
-          <div className="space-y-6">
-            <p className="text-gray-600 leading-relaxed text-[15px]">
-              Passionate about building scalable digital solutions, M. Ali
-              represents the core values of innovation, performance, and
-              reliability. With a sharp focus on user experience and modern
-              technologies, he continuously strives to deliver impactful and
-              efficient solutions. His forward-thinking mindset drives our
-              mission to create meaningful digital transformation.
+          {/* Info Section */}
+          <div className="flex-1 text-center lg:text-left">
+            <h3 className="Ambassador-Text text-xl font-semibold text-gray-800">
+              M.Ali
+            </h3>
+            <p className="BrandAmbassador-Role text-blue-500 font-medium">
+              Brand Ambassador
             </p>
 
-            {/* Tags */}
-            <div className="flex flex-wrap gap-2">
-              {["Full-Stack Dev", "UX Focused", "Agile", "Open Source"].map(
-                (tag) => (
-                  <span
-                    key={tag}
-                    className="text-xs font-medium text-blue-700 bg-blue-50 border border-blue-100 px-3 py-1 rounded-full"
-                  >
-                    {tag}
-                  </span>
-                ),
-              )}
+            <p className="Ambassador-P mt-4 text-gray-600 sm:text-left text-center w-full leading-relaxed">
+              Passionate about building scalable digital solutions, our brand
+              ambassador represents the core values of innovation, performance,
+              and reliability. With a strong focus on user experience and modern
+              technologies, they continuously strive to deliver impactful and
+              efficient solutions. Their dedication and forward-thinking mindset
+              help drive our mission to create meaningful digital
+              transformation.
+            </p>
+
+            {/* Contact Button */}
+            <div className="mt-5 flex sm:justify-start justify-center">
+              <button
+                onClick={() => setShowPopup(!showPopup)}
+                className="bg-blue-600 px-6 py-2 flex gap-2 rounded-[10px] text-white font-semibold hover:bg-blue-700 cursor-pointer"
+              >
+                <PhoneCall size={20} />{" "}
+                {showPopup ? "Hide Contact Info" : "View Contact Info"}
+              </button>
             </div>
 
-            {/* Contact toggle */}
-            <div className="pt-2">
-              <button
-                onClick={() => {
-                  setShowContact(!showContact);
-                  setActiveContact(null);
-                }}
-                className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 active:scale-95 text-white font-semibold px-5 py-2.5 rounded-xl transition-all duration-200 shadow-md shadow-blue-200"
-              >
-                <PhoneCall size={17} />
-                {showContact ? "Hide Contact Info" : "View Contact Info"}
-              </button>
+            {/* 🔥 POPUP SECTION */}
+            {showPopup && (
+              <div className="mt-6 flex flex-col items-center lg:items-start gap-3">
+                {/* Selected Info */}
+                {selectedInfo && (
+                  <p className="text-blue-600 font-medium">{selectedInfo}</p>
+                )}
 
-              {/* Contact panel */}
-              <div
-                className={`overflow-hidden transition-all duration-500 ease-in-out ${
-                  showContact
-                    ? "max-h-40 opacity-100 mt-5"
-                    : "max-h-0 opacity-0"
-                }`}
-              >
-                <div className="flex flex-col gap-3">
-                  <div className="flex gap-3">
-                    {CONTACT_ITEMS.map(({ id, Icon, label, bg }) => (
-                      <button
-                        key={id}
-                        onClick={() => handleContactClick(id)}
-                        title={label}
-                        className={`${bg} text-white w-11 h-11 rounded-xl flex items-center justify-center transition-all duration-200 active:scale-95 ${
-                          activeContact === id
-                            ? "ring-2 ring-offset-2 ring-current scale-105"
-                            : ""
-                        }`}
-                      >
-                        <Icon size={18} />
-                      </button>
-                    ))}
+                {/* Icons */}
+                <div className="flex gap-4">
+                  {/* WhatsApp */}
+                  <div
+                    onClick={() => setSelectedInfo("+92 300 1234567")}
+                    className="bg-green-500 p-4 rounded-full text-white cursor-pointer hover:scale-110 transition"
+                  >
+                    <FaWhatsapp size={20} />
                   </div>
 
-                  {/* Inline info display */}
-                  {active && (
-                    <a
-                      href={active.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`inline-flex items-center gap-2 border px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 hover:opacity-80 w-fit ${active.pill}`}
-                    >
-                      <active.Icon size={14} />
-                      {active.value}
-                    </a>
-                  )}
+                  {/* Instagram */}
+                  <div
+                    onClick={() => setSelectedInfo("@m.ali.dev")}
+                    className="bg-pink-500 p-4 rounded-full text-white cursor-pointer hover:scale-110 transition"
+                  >
+                    <FaInstagram size={20} />
+                  </div>
+
+                  {/* Email */}
+                  <div
+                    onClick={() => setSelectedInfo("mali@example.com")}
+                    className="bg-gray-700 p-4 rounded-full text-white cursor-pointer hover:scale-110 transition"
+                  >
+                    <MdEmail size={20} />
+                  </div>
                 </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
 
-        {/* ── Ambassador Message ── */}
-        <div
-          className={`mt-16 transition-all duration-700 delay-300 ${
-            visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-          }`}
-        >
-          <div className="relative bg-gradient-to-br from-blue-600 to-blue-700 rounded-2xl p-8 sm:p-10 overflow-hidden shadow-xl shadow-blue-200/50">
-            {/* Decorative quote mark */}
-            <span className="pointer-events-none absolute -top-4 left-6 text-[120px] leading-none text-white/10 font-serif select-none">
-              "
-            </span>
+        {/* Speech Section */}
+        <div className="Ambassador mt-14 bg-blue-50 border border-blue-300 rounded-xl p-6 sm:p-8 shadow-sm">
+          <h3 className="Ambassador-Text text-xl font-semibold text-gray-800 text-center">
+            Ambassador’s <span className="text-blue-600">Message</span>
+          </h3>
 
-            <p className="text-xs font-semibold text-blue-200 uppercase tracking-widest mb-3">
-              Ambassador's Message
-            </p>
-
-            <div className="relative text-white text-base sm:text-lg leading-relaxed font-light min-h-[80px]">
-              <Typewriter
-                options={{
-                  strings: [AMBASSADOR_MESSAGE],
-                  autoStart: true,
-                  loop: true,
-                  delay: 25,
-                  deleteSpeed: 8,
-                }}
-              />
-            </div>
-
-            {/* Signature */}
-            <div className="mt-6 flex items-center gap-3">
-              <div className="w-8 h-px bg-blue-400" />
-              <p className="text-blue-200 text-sm font-medium">
-                M. Ali &mdash; Brand Ambassador
-              </p>
-            </div>
+          <div className="Ambassador-P mt-4 text-gray-600 leading-relaxed text-center max-w-3xl mx-auto">
+            <Typewriter
+              options={{
+                strings: [
+                  "At our software house, we believe in transforming ideas into impactful digital experiences...",
+                ],
+                autoStart: true,
+                loop: true,
+                delay: 30,
+                deleteSpeed: 10,
+              }}
+            />
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
-}
+};
+
+export default BrandAmbassador;
