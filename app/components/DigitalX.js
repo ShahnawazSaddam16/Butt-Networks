@@ -11,8 +11,8 @@ const project = {
     "Animations & micro-interactions",
     "Clean & modular code",
   ],
-  imageUrl: "/digital-x.png", 
-  liveUrl: "https://digital-x.buttnetworks.com",   
+  imageUrl: "/digital-x.png",
+  liveUrl: "https://digital-x.buttnetworks.com",
   repoUrl: "https://github.com/ShahanwazSaddam144/digital-x",
 };
 
@@ -37,7 +37,10 @@ const DigitalX = () => {
 
           <ul className="list-disc list-inside space-y-2 text-gray-600">
             {project.features.map((feat, idx) => (
-              <li key={idx} className="DigitalX-ul hover:text-gray-900 transition-colors">
+              <li
+                key={idx}
+                className="DigitalX-ul hover:text-gray-900 transition-colors"
+              >
                 {feat}
               </li>
             ))}

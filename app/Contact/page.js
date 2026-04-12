@@ -56,7 +56,7 @@ const Contact = () => {
       setCopiedEmail(email);
       setTimeout(
         () => setCopiedEmail((prev) => (prev === email ? null : prev)),
-        2200
+        2200,
       );
     } catch {
       // fallback: open mail client
@@ -421,8 +421,8 @@ const Contact = () => {
       status === "sent"
         ? "bg-emerald-600 hover:bg-emerald-600 focus-visible:ring-emerald-400"
         : status === "error"
-        ? "bg-red-600 hover:bg-red-600 focus-visible:ring-red-400"
-        : "focus-visible:ring-slate-400"
+          ? "bg-red-600 hover:bg-red-600 focus-visible:ring-red-400"
+          : "focus-visible:ring-slate-400"
     }
   `}
           >
@@ -438,10 +438,10 @@ const Contact = () => {
                 {status === "sending"
                   ? "Sending…"
                   : status === "sent"
-                  ? "Message Sent"
-                  : status === "error"
-                  ? "Try Again"
-                  : "Get Started"}
+                    ? "Message Sent"
+                    : status === "error"
+                      ? "Try Again"
+                      : "Get Started"}
               </span>
             </span>
           </button>

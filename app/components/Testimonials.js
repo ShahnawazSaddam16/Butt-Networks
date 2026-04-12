@@ -1,7 +1,14 @@
 "use client";
 
 import React, { useRef, useEffect, useState } from "react";
-import { Star, Quote, CheckCircle, TrendingUp, Award, Heart } from "lucide-react";
+import {
+  Star,
+  Quote,
+  CheckCircle,
+  TrendingUp,
+  Award,
+  Heart,
+} from "lucide-react";
 import { useTheme } from "./ThemeProvider";
 
 const Testimonials = () => {
@@ -32,7 +39,7 @@ const Testimonials = () => {
           observer.disconnect();
         }
       },
-      { threshold: 0.2 }
+      { threshold: 0.2 },
     );
 
     if (sectionRef.current) {
@@ -135,7 +142,8 @@ const Testimonials = () => {
         </div>
 
         <p className={`text-lg ${subtitleText} mt-4`}>
-          Trusted by leading businesses and startups. Hear what our clients have to say.
+          Trusted by leading businesses and startups. Hear what our clients have
+          to say.
         </p>
 
         <div
@@ -193,8 +201,8 @@ const Testimonials = () => {
                       idx % 3 === 0
                         ? "bg-gradient-to-r from-blue-500 to-cyan-500"
                         : idx % 3 === 1
-                        ? "bg-gradient-to-r from-purple-500 to-pink-500"
-                        : "bg-gradient-to-r from-green-500 to-teal-500"
+                          ? "bg-gradient-to-r from-purple-500 to-pink-500"
+                          : "bg-gradient-to-r from-green-500 to-teal-500"
                     }`}
                   >
                     {testimonial.avatar}
@@ -214,8 +222,8 @@ const Testimonials = () => {
                     idx % 3 === 0
                       ? "text-blue-500"
                       : idx % 3 === 1
-                      ? "text-purple-500"
-                      : "text-green-500"
+                        ? "text-purple-500"
+                        : "text-green-500"
                   }`}
                 />
               </div>

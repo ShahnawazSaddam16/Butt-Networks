@@ -15,7 +15,13 @@ import {
   Layers,
 } from "lucide-react";
 import { useTheme } from "./ThemeProvider";
-import { FaReact, FaNodeJs, FaPython, FaDocker, FaGithub } from "react-icons/fa";
+import {
+  FaReact,
+  FaNodeJs,
+  FaPython,
+  FaDocker,
+  FaGithub,
+} from "react-icons/fa";
 import {
   SiTypescript,
   SiNextdotjs,
@@ -371,20 +377,52 @@ const useTeamData = () =>
             icon: <Globe size={11} />,
             skills: [
               { name: "Next.js", icon: <SiNextdotjs />, category: "Frontend" },
-              { name: "React", icon: <FaReact className="text-cyan-400" />, category: "Frontend" },
-              { name: "TypeScript", icon: <SiTypescript className="text-blue-500" />, category: "Frontend" },
-              { name: "React Native", icon: <SiReact className="text-sky-400" />, category: "Frontend" },
-              { name: "Tailwind", icon: <SiTailwindcss className="text-sky-500" />, category: "Frontend" },
+              {
+                name: "React",
+                icon: <FaReact className="text-cyan-400" />,
+                category: "Frontend",
+              },
+              {
+                name: "TypeScript",
+                icon: <SiTypescript className="text-blue-500" />,
+                category: "Frontend",
+              },
+              {
+                name: "React Native",
+                icon: <SiReact className="text-sky-400" />,
+                category: "Frontend",
+              },
+              {
+                name: "Tailwind",
+                icon: <SiTailwindcss className="text-sky-500" />,
+                category: "Frontend",
+              },
             ],
           },
           {
             label: "Backend & Infra",
             icon: <Server size={11} />,
             skills: [
-              { name: "Node.js", icon: <FaNodeJs className="text-green-500" />, category: "Backend" },
-              { name: "Python", icon: <FaPython className="text-blue-500" />, category: "Backend" },
-              { name: "MongoDB", icon: <SiMongodb className="text-green-600" />, category: "Database" },
-              { name: "Docker", icon: <FaDocker className="text-blue-400" />, category: "DevOps" },
+              {
+                name: "Node.js",
+                icon: <FaNodeJs className="text-green-500" />,
+                category: "Backend",
+              },
+              {
+                name: "Python",
+                icon: <FaPython className="text-blue-500" />,
+                category: "Backend",
+              },
+              {
+                name: "MongoDB",
+                icon: <SiMongodb className="text-green-600" />,
+                category: "Database",
+              },
+              {
+                name: "Docker",
+                icon: <FaDocker className="text-blue-400" />,
+                category: "DevOps",
+              },
             ],
           },
         ],
@@ -405,28 +443,68 @@ const useTeamData = () =>
             icon: <Globe size={11} />,
             skills: [
               { name: "Next.js", icon: <SiNextdotjs />, category: "Frontend" },
-              { name: "TypeScript", icon: <SiTypescript className="text-blue-500" />, category: "Frontend" },
-              { name: "Framer", icon: <Layers size={12} className="text-pink-400" />, category: "Frontend" },
+              {
+                name: "TypeScript",
+                icon: <SiTypescript className="text-blue-500" />,
+                category: "Frontend",
+              },
+              {
+                name: "Framer",
+                icon: <Layers size={12} className="text-pink-400" />,
+                category: "Frontend",
+              },
             ],
           },
           {
             label: "Backend & AI",
             icon: <Server size={11} />,
             skills: [
-              { name: "Node.js", icon: <FaNodeJs className="text-green-500" />, category: "Backend" },
-              { name: "Python", icon: <FaPython className="text-blue-500" />, category: "Backend" },
-              { name: "PyTorch", icon: <SiPytorch className="text-orange-500" />, category: "AI" },
-              { name: "C++", icon: <SiCplusplus className="text-blue-600" />, category: "Backend" },
-              { name: "PostgreSQL", icon: <SiPostgresql className="text-sky-600" />, category: "Database" },
+              {
+                name: "Node.js",
+                icon: <FaNodeJs className="text-green-500" />,
+                category: "Backend",
+              },
+              {
+                name: "Python",
+                icon: <FaPython className="text-blue-500" />,
+                category: "Backend",
+              },
+              {
+                name: "PyTorch",
+                icon: <SiPytorch className="text-orange-500" />,
+                category: "AI",
+              },
+              {
+                name: "C++",
+                icon: <SiCplusplus className="text-blue-600" />,
+                category: "Backend",
+              },
+              {
+                name: "PostgreSQL",
+                icon: <SiPostgresql className="text-sky-600" />,
+                category: "Database",
+              },
             ],
           },
           {
             label: "DevOps",
             icon: <GitBranch size={11} />,
             skills: [
-              { name: "Docker", icon: <FaDocker className="text-blue-400" />, category: "DevOps" },
-              { name: "Nginx", icon: <Zap size={12} className="text-green-400" />, category: "DevOps" },
-              { name: "Actions", icon: <GitBranch size={12} className="text-gray-400" />, category: "DevOps" },
+              {
+                name: "Docker",
+                icon: <FaDocker className="text-blue-400" />,
+                category: "DevOps",
+              },
+              {
+                name: "Nginx",
+                icon: <Zap size={12} className="text-green-400" />,
+                category: "DevOps",
+              },
+              {
+                name: "Actions",
+                icon: <GitBranch size={12} className="text-gray-400" />,
+                category: "DevOps",
+              },
             ],
           },
         ],

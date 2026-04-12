@@ -2,11 +2,26 @@
 
 import React, { useRef, useState, useCallback, useEffect } from "react";
 import Link from "next/link";
-import { motion, useInView, useReducedMotion, AnimatePresence } from "framer-motion";
 import {
-  ShieldCheck, Cpu, Lightbulb, Rocket,
-  Code2, Users, ArrowRight, Sparkles,
-  ExternalLink, X, Globe, Github, Twitter,
+  motion,
+  useInView,
+  useReducedMotion,
+  AnimatePresence,
+} from "framer-motion";
+import {
+  ShieldCheck,
+  Cpu,
+  Lightbulb,
+  Rocket,
+  Code2,
+  Users,
+  ArrowRight,
+  Sparkles,
+  ExternalLink,
+  X,
+  Globe,
+  Github,
+  Twitter,
 } from "lucide-react";
 import { useTheme } from "./ThemeProvider";
 
@@ -16,41 +31,53 @@ import { useTheme } from "./ThemeProvider";
 
 const VALUE_PROPS = [
   {
-    emoji: "⚡", headline: "We ship fast.",
+    emoji: "⚡",
+    headline: "We ship fast.",
     body: "From idea to deployed product — no bloat, no bureaucracy.",
-    accentFrom: "#38bdf8", accentTo: "#6366f1",
+    accentFrom: "#38bdf8",
+    accentTo: "#6366f1",
   },
   {
-    emoji: "🔒", headline: "We build right.",
+    emoji: "🔒",
+    headline: "We build right.",
     body: "Clean code, tested APIs, and secure infrastructure by default.",
-    accentFrom: "#34d399", accentTo: "#059669",
+    accentFrom: "#34d399",
+    accentTo: "#059669",
   },
   {
-    emoji: "🌍", headline: "We scale up.",
+    emoji: "🌍",
+    headline: "We scale up.",
     body: "Architected for growth — from MVP to thousands of users.",
-    accentFrom: "#f97316", accentTo: "#ef4444",
+    accentFrom: "#f97316",
+    accentTo: "#ef4444",
   },
 ];
 
 const FEATURES = [
-  { Icon: ShieldCheck, label: "Secure by default",   color: "#34d399" },
-  { Icon: Cpu,         label: "High performance",    color: "#a855f7" },
-  { Icon: Lightbulb,   label: "Innovative thinking", color: "#fbbf24" },
-  { Icon: Rocket,      label: "Fast deployment",     color: "#38bdf8" },
-  { Icon: Code2,       label: "Clean architecture",  color: "#6366f1" },
-  { Icon: Users,       label: "Team collaboration",  color: "#fb923c" },
+  { Icon: ShieldCheck, label: "Secure by default", color: "#34d399" },
+  { Icon: Cpu, label: "High performance", color: "#a855f7" },
+  { Icon: Lightbulb, label: "Innovative thinking", color: "#fbbf24" },
+  { Icon: Rocket, label: "Fast deployment", color: "#38bdf8" },
+  { Icon: Code2, label: "Clean architecture", color: "#6366f1" },
+  { Icon: Users, label: "Team collaboration", color: "#fb923c" },
 ];
 
 const STACK_TAGS = [
-  "Next.js", "React", "TypeScript", "Node.js",
-  "PostgreSQL", "Docker", "GitHub Actions", "Tailwind CSS",
+  "Next.js",
+  "React",
+  "TypeScript",
+  "Node.js",
+  "PostgreSQL",
+  "Docker",
+  "GitHub Actions",
+  "Tailwind CSS",
 ];
 
 const STATS = [
-  { value: 5,  suffix: "+",   label: "Projects shipped"   },
-  { value: 2,  suffix: "",    label: "Team members"        },
-  { value: 10, suffix: "+",   label: "Technologies used"  },
-  { value: 1,  suffix: "+ yr", label: "Building together"  },
+  { value: 5, suffix: "+", label: "Projects shipped" },
+  { value: 2, suffix: "", label: "Team members" },
+  { value: 10, suffix: "+", label: "Technologies used" },
+  { value: 1, suffix: "+ yr", label: "Building together" },
 ];
 
 // ← Replace URLs with real portfolio links
@@ -83,14 +110,19 @@ const SPRING = { stiffness: 200, damping: 22, mass: 0.8 };
 
 const fadeUp = {
   hidden: { opacity: 0, y: 22, filter: "blur(4px)" },
-  show:   { opacity: 1, y: 0,  filter: "blur(0px)",
-    transition: { duration: 0.52, ease: [0.22, 1, 0.36, 1] } },
+  show: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: { duration: 0.52, ease: [0.22, 1, 0.36, 1] },
+  },
 };
 
 const scaleIn = {
   hidden: { opacity: 0, scale: 0.85 },
   show: (i = 0) => ({
-    opacity: 1, scale: 1,
+    opacity: 1,
+    scale: 1,
     transition: { duration: 0.38, delay: i * 0.055, ease: [0.22, 1, 0.36, 1] },
   }),
 };
@@ -109,7 +141,9 @@ function useCountUp(active, target, duration = 1000) {
       if (!start) start = ts;
       const p = Math.min((ts - start) / duration, 1);
       const eased = 1 - (1 - p) * (1 - p); // ease-out quad
-      setCount(isInt ? Math.round(target * eased) : +(target * eased).toFixed(1));
+      setCount(
+        isInt ? Math.round(target * eased) : +(target * eased).toFixed(1),
+      );
       if (p < 1) requestAnimationFrame(step);
     };
     requestAnimationFrame(step);
@@ -128,10 +162,31 @@ function AmbientOrbs({ isDark }) {
         @keyframes abtOrb1{0%,100%{transform:translate(0,0) scale(1)}45%{transform:translate(24px,-30px) scale(1.06)}70%{transform:translate(-16px,18px) scale(0.96)}}
         @keyframes abtOrb2{0%,100%{transform:translate(0,0) scale(1)}40%{transform:translate(-20px,25px) scale(1.04)}65%{transform:translate(14px,-16px) scale(0.97)}}
       `}</style>
-      <div aria-hidden className="absolute -top-24 -left-32 w-[420px] h-[420px] rounded-full pointer-events-none"
-        style={{ background: isDark ? "radial-gradient(circle,rgba(99,102,241,.13) 0%,transparent 68%)" : "radial-gradient(circle,rgba(59,130,246,.07) 0%,transparent 68%)", filter: "blur(64px)", animation: "abtOrb1 15s ease-in-out infinite", willChange: "transform" }} />
-      <div aria-hidden className="absolute -bottom-24 -right-32 w-[380px] h-[380px] rounded-full pointer-events-none"
-        style={{ background: isDark ? "radial-gradient(circle,rgba(56,189,248,.10) 0%,transparent 68%)" : "radial-gradient(circle,rgba(168,85,247,.05) 0%,transparent 68%)", filter: "blur(64px)", animation: "abtOrb2 18s ease-in-out infinite", animationDelay: "5s", willChange: "transform" }} />
+      <div
+        aria-hidden
+        className="absolute -top-24 -left-32 w-[420px] h-[420px] rounded-full pointer-events-none"
+        style={{
+          background: isDark
+            ? "radial-gradient(circle,rgba(99,102,241,.13) 0%,transparent 68%)"
+            : "radial-gradient(circle,rgba(59,130,246,.07) 0%,transparent 68%)",
+          filter: "blur(64px)",
+          animation: "abtOrb1 15s ease-in-out infinite",
+          willChange: "transform",
+        }}
+      />
+      <div
+        aria-hidden
+        className="absolute -bottom-24 -right-32 w-[380px] h-[380px] rounded-full pointer-events-none"
+        style={{
+          background: isDark
+            ? "radial-gradient(circle,rgba(56,189,248,.10) 0%,transparent 68%)"
+            : "radial-gradient(circle,rgba(168,85,247,.05) 0%,transparent 68%)",
+          filter: "blur(64px)",
+          animation: "abtOrb2 18s ease-in-out infinite",
+          animationDelay: "5s",
+          willChange: "transform",
+        }}
+      />
     </>
   );
 }
@@ -168,7 +223,9 @@ function SectionLabel({ emoji, label, isDark, inView }) {
 function PortfolioModal({ member, isDark, onClose }) {
   // Close on Escape
   useEffect(() => {
-    const onKey = (e) => { if (e.key === "Escape") onClose(); };
+    const onKey = (e) => {
+      if (e.key === "Escape") onClose();
+    };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [onClose]);
@@ -176,10 +233,17 @@ function PortfolioModal({ member, isDark, onClose }) {
   // Lock scroll
   useEffect(() => {
     document.body.style.overflow = "hidden";
-    return () => { document.body.style.overflow = ""; };
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, []);
 
-  const initials = member.name.split(" ").map((n) => n[0]).slice(0, 2).join("").toUpperCase();
+  const initials = member.name
+    .split(" ")
+    .map((n) => n[0])
+    .slice(0, 2)
+    .join("")
+    .toUpperCase();
 
   return (
     /* Backdrop */
@@ -211,13 +275,16 @@ function PortfolioModal({ member, isDark, onClose }) {
         {/* Gradient header band */}
         <div
           className="h-28 relative flex items-end px-6 pb-4"
-          style={{ background: `linear-gradient(135deg,${member.accentFrom},${member.accentTo})` }}
+          style={{
+            background: `linear-gradient(135deg,${member.accentFrom},${member.accentTo})`,
+          }}
         >
           {/* Shimmer sweep */}
           <motion.div
             className="absolute inset-0 pointer-events-none"
             style={{
-              backgroundImage: "linear-gradient(105deg,transparent 35%,rgba(255,255,255,.25) 50%,transparent 65%)",
+              backgroundImage:
+                "linear-gradient(105deg,transparent 35%,rgba(255,255,255,.25) 50%,transparent 65%)",
               backgroundSize: "220% 100%",
               backgroundRepeat: "no-repeat",
             }}
@@ -230,7 +297,11 @@ function PortfolioModal({ member, isDark, onClose }) {
           <motion.div
             initial={{ scale: 0.5, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            transition={{ delay: 0.15, duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+            transition={{
+              delay: 0.15,
+              duration: 0.45,
+              ease: [0.22, 1, 0.36, 1],
+            }}
             className="w-16 h-16 rounded-2xl bg-white/20 backdrop-blur-sm border-2 border-white/40 flex items-center justify-center text-white text-xl font-black shadow-lg"
           >
             {initials}
@@ -254,14 +325,17 @@ function PortfolioModal({ member, isDark, onClose }) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           >
-            <h3 className={`text-lg font-black ${isDark ? "text-gray-100" : "text-gray-900"}`}>
+            <h3
+              className={`text-lg font-black ${isDark ? "text-gray-100" : "text-gray-900"}`}
+            >
               {member.name}
             </h3>
             <p
               className="text-xs font-semibold mt-0.5"
               style={{
                 background: `linear-gradient(90deg,${member.accentFrom},${member.accentTo})`,
-                WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
               }}
             >
               {member.role}
@@ -272,7 +346,11 @@ function PortfolioModal({ member, isDark, onClose }) {
           <motion.p
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.27, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            transition={{
+              delay: 0.27,
+              duration: 0.4,
+              ease: [0.22, 1, 0.36, 1],
+            }}
             className={`mt-3 text-sm leading-relaxed ${isDark ? "text-gray-300" : "text-gray-600"}`}
           >
             {member.bio}
@@ -284,12 +362,12 @@ function PortfolioModal({ member, isDark, onClose }) {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.33, duration: 0.4 }}
             className="flex flex-wrap gap-2 mt-4"
-          >
-            
-          </motion.div>
+          ></motion.div>
 
           {/* Divider */}
-          <div className={`my-5 h-px ${isDark ? "bg-gray-700" : "bg-gray-100"}`} />
+          <div
+            className={`my-5 h-px ${isDark ? "bg-gray-700" : "bg-gray-100"}`}
+          />
 
           {/* Action buttons */}
           <motion.div
@@ -306,13 +384,19 @@ function PortfolioModal({ member, isDark, onClose }) {
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
               className="flex items-center justify-center gap-2.5 w-full py-3 rounded-xl text-sm font-bold text-white shadow-lg hover:shadow-xl transition-shadow"
-              style={{ background: `linear-gradient(135deg,${member.accentFrom},${member.accentTo})` }}
+              style={{
+                background: `linear-gradient(135deg,${member.accentFrom},${member.accentTo})`,
+              }}
             >
               <Globe size={15} />
               Explore Portfolio
               <motion.span
                 animate={{ x: [0, 4, 0] }}
-                transition={{ duration: 1.1, repeat: Infinity, ease: "easeInOut" }}
+                transition={{
+                  duration: 1.1,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
               >
                 <ExternalLink size={13} />
               </motion.span>
@@ -346,7 +430,12 @@ function PortfolioModal({ member, isDark, onClose }) {
    ───────────────────────────────────────────────────────────── */
 
 function TeamCard({ member, index, isDark, inView, prefersReduced, onOpen }) {
-  const initials = member.name.split(" ").map((n) => n[0]).slice(0, 2).join("").toUpperCase();
+  const initials = member.name
+    .split(" ")
+    .map((n) => n[0])
+    .slice(0, 2)
+    .join("")
+    .toUpperCase();
   const [hovered, setHovered] = useState(false);
 
   return (
@@ -356,36 +445,52 @@ function TeamCard({ member, index, isDark, inView, prefersReduced, onOpen }) {
       variants={fadeUp}
       initial="hidden"
       animate={inView ? "show" : "hidden"}
-      whileHover={prefersReduced ? {} : { y: -5, scale: 1.02, transition: { duration: 0.2 } }}
+      whileHover={
+        prefersReduced
+          ? {}
+          : { y: -5, scale: 1.02, transition: { duration: 0.2 } }
+      }
       whileTap={{ scale: 0.97 }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       onClick={() => onOpen(member)}
       aria-label={`View ${member.name}'s portfolio`}
       className={`relative w-full text-left flex items-center gap-4 p-4 rounded-2xl border cursor-pointer group transition-shadow ${
-        isDark ? "bg-gray-800 border-gray-700 hover:border-gray-500" : "bg-white border-gray-100 hover:border-gray-300"
+        isDark
+          ? "bg-gray-800 border-gray-700 hover:border-gray-500"
+          : "bg-white border-gray-100 hover:border-gray-300"
       }`}
       style={{
         boxShadow: hovered
-          ? isDark ? "0 8px 32px rgba(0,0,0,.45)" : "0 8px 32px rgba(0,0,0,.12)"
-          : isDark ? "0 4px 20px rgba(0,0,0,.25)" : "0 2px 14px rgba(0,0,0,.06)",
+          ? isDark
+            ? "0 8px 32px rgba(0,0,0,.45)"
+            : "0 8px 32px rgba(0,0,0,.12)"
+          : isDark
+            ? "0 4px 20px rgba(0,0,0,.25)"
+            : "0 2px 14px rgba(0,0,0,.06)",
       }}
     >
       {/* Hover glow from accent */}
       <div
         className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-400 pointer-events-none"
-        style={{ background: `radial-gradient(ellipse at top left, ${member.accentFrom}15 0%, transparent 65%)` }}
+        style={{
+          background: `radial-gradient(ellipse at top left, ${member.accentFrom}15 0%, transparent 65%)`,
+        }}
       />
 
       {/* Gradient avatar */}
       <div className="relative flex-none w-12 h-12">
         <div
           className="absolute inset-0 rounded-full p-[2px]"
-          style={{ background: `linear-gradient(135deg,${member.accentFrom},${member.accentTo})` }}
+          style={{
+            background: `linear-gradient(135deg,${member.accentFrom},${member.accentTo})`,
+          }}
         >
           <div
             className="w-full h-full rounded-full flex items-center justify-center text-sm font-black text-white"
-            style={{ background: `linear-gradient(135deg,${member.accentFrom},${member.accentTo})` }}
+            style={{
+              background: `linear-gradient(135deg,${member.accentFrom},${member.accentTo})`,
+            }}
           >
             {initials}
           </div>
@@ -394,8 +499,16 @@ function TeamCard({ member, index, isDark, inView, prefersReduced, onOpen }) {
 
       {/* Info */}
       <div className="flex-1 min-w-0 text-left">
-        <p className={`text-sm font-bold ${isDark ? "text-gray-100" : "text-gray-900"}`}>{member.name}</p>
-        <p className={`text-xs mt-0.5 ${isDark ? "text-gray-400" : "text-gray-500"}`}>{member.role}</p>
+        <p
+          className={`text-sm font-bold ${isDark ? "text-gray-100" : "text-gray-900"}`}
+        >
+          {member.name}
+        </p>
+        <p
+          className={`text-xs mt-0.5 ${isDark ? "text-gray-400" : "text-gray-500"}`}
+        >
+          {member.role}
+        </p>
       </div>
 
       {/* Right side: "View" hint + online dot */}
@@ -426,7 +539,7 @@ function TeamCard({ member, index, isDark, inView, prefersReduced, onOpen }) {
    ───────────────────────────────────────────────────────────── */
 
 function ValueCard({ vp, index, isDark, prefersReduced }) {
-  const ref    = useRef(null);
+  const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-50px" });
 
   return (
@@ -437,23 +550,47 @@ function ValueCard({ vp, index, isDark, prefersReduced }) {
       initial="hidden"
       animate={inView ? "show" : "hidden"}
       transition={{ delay: index * 0.1 }}
-      whileHover={prefersReduced ? {} : { y: -5, transition: { duration: 0.22 } }}
+      whileHover={
+        prefersReduced ? {} : { y: -5, transition: { duration: 0.22 } }
+      }
       className={`relative rounded-2xl overflow-hidden border flex flex-col gap-3 p-6 group ${
         isDark ? "bg-gray-800 border-gray-700" : "bg-white border-gray-100"
       }`}
-      style={{ boxShadow: isDark ? "0 4px 24px rgba(0,0,0,.3)" : "0 2px 16px rgba(0,0,0,.07)" }}
+      style={{
+        boxShadow: isDark
+          ? "0 4px 24px rgba(0,0,0,.3)"
+          : "0 2px 16px rgba(0,0,0,.07)",
+      }}
     >
-      <div className="absolute top-0 left-0 right-0 h-[3px]"
-        style={{ background: `linear-gradient(90deg,${vp.accentFrom},${vp.accentTo})` }} />
-      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-2xl"
-        style={{ background: `radial-gradient(ellipse at top left, ${vp.accentFrom}18 0%, transparent 60%)` }} />
+      <div
+        className="absolute top-0 left-0 right-0 h-[3px]"
+        style={{
+          background: `linear-gradient(90deg,${vp.accentFrom},${vp.accentTo})`,
+        }}
+      />
+      <div
+        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-2xl"
+        style={{
+          background: `radial-gradient(ellipse at top left, ${vp.accentFrom}18 0%, transparent 60%)`,
+        }}
+      />
 
       <span className="text-3xl leading-none">{vp.emoji}</span>
-      <h3 className="text-lg font-black"
-        style={{ background: `linear-gradient(120deg,${vp.accentFrom},${vp.accentTo})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
+      <h3
+        className="text-lg font-black"
+        style={{
+          background: `linear-gradient(120deg,${vp.accentFrom},${vp.accentTo})`,
+          WebkitBackgroundClip: "text",
+          WebkitTextFillColor: "transparent",
+        }}
+      >
         {vp.headline}
       </h3>
-      <p className={`text-sm leading-relaxed ${isDark ? "text-gray-300" : "text-gray-600"}`}>{vp.body}</p>
+      <p
+        className={`text-sm leading-relaxed ${isDark ? "text-gray-300" : "text-gray-600"}`}
+      >
+        {vp.body}
+      </p>
     </motion.div>
   );
 }
@@ -463,7 +600,7 @@ function ValueCard({ vp, index, isDark, prefersReduced }) {
    ───────────────────────────────────────────────────────────── */
 
 function StatsStrip({ isDark, prefersReduced }) {
-  const ref    = useRef(null);
+  const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-40px" });
   const active = inView && !prefersReduced;
 
@@ -474,7 +611,8 @@ function StatsStrip({ isDark, prefersReduced }) {
   const counts = [c0, c1, c2, c3];
 
   return (
-    <div ref={ref}
+    <div
+      ref={ref}
       className={`grid grid-cols-2 sm:grid-cols-4 gap-px rounded-2xl overflow-hidden border ${
         isDark ? "border-gray-700 bg-gray-700" : "border-gray-100 bg-gray-100"
       }`}
@@ -488,11 +626,16 @@ function StatsStrip({ isDark, prefersReduced }) {
           animate={inView ? "show" : "hidden"}
           className={`flex flex-col items-center justify-center py-6 px-4 gap-1 ${isDark ? "bg-gray-800" : "bg-white"}`}
         >
-          <span className="text-3xl font-black tabular-nums bg-gradient-to-r from-indigo-400 to-sky-400 bg-clip-text text-transparent"
-            style={{ WebkitTextFillColor: "transparent" }}>
-            {prefersReduced ? s.value : counts[i]}{s.suffix}
+          <span
+            className="text-3xl font-black tabular-nums bg-gradient-to-r from-indigo-400 to-sky-400 bg-clip-text text-transparent"
+            style={{ WebkitTextFillColor: "transparent" }}
+          >
+            {prefersReduced ? s.value : counts[i]}
+            {s.suffix}
           </span>
-          <span className={`text-xs font-medium text-center ${isDark ? "text-gray-400" : "text-gray-500"}`}>
+          <span
+            className={`text-xs font-medium text-center ${isDark ? "text-gray-400" : "text-gray-500"}`}
+          >
             {s.label}
           </span>
         </motion.div>
@@ -506,20 +649,20 @@ function StatsStrip({ isDark, prefersReduced }) {
    ───────────────────────────────────────────────────────────── */
 
 export default function About() {
-  const { isDarkMode }  = useTheme?.() ?? { isDarkMode: false };
-  const prefersReduced  = useReducedMotion() ?? false;
+  const { isDarkMode } = useTheme?.() ?? { isDarkMode: false };
+  const prefersReduced = useReducedMotion() ?? false;
   const [activeModal, setActiveModal] = useState(null);
 
-  const headerRef    = useRef(null);
+  const headerRef = useRef(null);
   const headerInView = useInView(headerRef, { once: true, margin: "-40px" });
-  const featRef      = useRef(null);
-  const featInView   = useInView(featRef, { once: true, margin: "-40px" });
-  const stackRef     = useRef(null);
-  const stackInView  = useInView(stackRef, { once: true, margin: "-40px" });
-  const teamRef      = useRef(null);
-  const teamInView   = useInView(teamRef, { once: true, margin: "-40px" });
+  const featRef = useRef(null);
+  const featInView = useInView(featRef, { once: true, margin: "-40px" });
+  const stackRef = useRef(null);
+  const stackInView = useInView(stackRef, { once: true, margin: "-40px" });
+  const teamRef = useRef(null);
+  const teamInView = useInView(teamRef, { once: true, margin: "-40px" });
 
-  const openModal  = useCallback((member) => setActiveModal(member), []);
+  const openModal = useCallback((member) => setActiveModal(member), []);
   const closeModal = useCallback(() => setActiveModal(null), []);
 
   return (
@@ -534,22 +677,33 @@ export default function About() {
         {!prefersReduced && <AmbientOrbs isDark={isDarkMode} />}
 
         <div className="relative max-w-5xl mx-auto">
-
           {/* ── Header ── */}
           <div ref={headerRef} className="text-center mb-16">
             <motion.div
-              initial={prefersReduced ? false : { opacity: 0, y: -14, scale: 0.9 }}
+              initial={
+                prefersReduced ? false : { opacity: 0, y: -14, scale: 0.9 }
+              }
               animate={headerInView ? { opacity: 1, y: 0, scale: 1 } : {}}
               transition={{ duration: 0.42, ease: [0.22, 1, 0.36, 1] }}
               className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-6 text-xs font-semibold uppercase tracking-widest border ${
-                isDarkMode ? "bg-gray-700 text-gray-200 border-gray-600" : "bg-gray-50 text-gray-700 border-gray-100"
+                isDarkMode
+                  ? "bg-gray-700 text-gray-200 border-gray-600"
+                  : "bg-gray-50 text-gray-700 border-gray-100"
               }`}
             >
               <motion.span
                 className="w-1.5 h-1.5 rounded-full"
                 style={{ background: isDarkMode ? "#818cf8" : "#6366f1" }}
-                animate={prefersReduced ? {} : { scale: [1, 1.6, 1], opacity: [1, 0.4, 1] }}
-                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                animate={
+                  prefersReduced
+                    ? {}
+                    : { scale: [1, 1.6, 1], opacity: [1, 0.4, 1] }
+                }
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
               />
               <Sparkles size={11} className="opacity-60" />
               Who We Are
@@ -557,13 +711,25 @@ export default function About() {
 
             <motion.h2
               id="about-heading"
-              initial={prefersReduced ? false : { opacity: 0, y: 28, filter: "blur(8px)" }}
-              animate={headerInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
-              transition={{ duration: 0.6, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
+              initial={
+                prefersReduced
+                  ? false
+                  : { opacity: 0, y: 28, filter: "blur(8px)" }
+              }
+              animate={
+                headerInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}
+              }
+              transition={{
+                duration: 0.6,
+                delay: 0.08,
+                ease: [0.22, 1, 0.36, 1],
+              }}
               className={`text-4xl md:text-5xl font-black tracking-tight mb-4 ${isDarkMode ? "text-gray-100" : "text-gray-900"}`}
             >
               A small team.{" "}
-              <span className={`bg-gradient-to-r ${isDarkMode ? "from-indigo-400 to-sky-400" : "from-blue-500 to-indigo-600"} bg-clip-text text-transparent`}>
+              <span
+                className={`bg-gradient-to-r ${isDarkMode ? "from-indigo-400 to-sky-400" : "from-blue-500 to-indigo-600"} bg-clip-text text-transparent`}
+              >
                 Big output.
               </span>
             </motion.h2>
@@ -571,19 +737,32 @@ export default function About() {
             <motion.p
               initial={prefersReduced ? false : { opacity: 0, y: 14 }}
               animate={headerInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.52, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+              transition={{
+                duration: 0.52,
+                delay: 0.2,
+                ease: [0.22, 1, 0.36, 1],
+              }}
               className={`text-base md:text-lg max-w-2xl mx-auto leading-relaxed ${isDarkMode ? "text-gray-300" : "text-gray-600"}`}
             >
-              Butt Networks builds reliable, scalable web products — from landing pages to full-stack platforms.
-              Strong engineering. Thoughtful design.
+              Butt Networks builds reliable, scalable web products — from
+              landing pages to full-stack platforms. Strong engineering.
+              Thoughtful design.
             </motion.p>
 
             <motion.div
               initial={{ scaleX: 0, opacity: 0 }}
               animate={headerInView ? { scaleX: 1, opacity: 1 } : {}}
-              transition={{ delay: 0.45, duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+              transition={{
+                delay: 0.45,
+                duration: 0.65,
+                ease: [0.22, 1, 0.36, 1],
+              }}
               className="h-1 w-20 mx-auto mt-6 rounded-full origin-center"
-              style={{ background: isDarkMode ? "linear-gradient(90deg,#6366f1,#38bdf8)" : "linear-gradient(90deg,#3b82f6,#6366f1)" }}
+              style={{
+                background: isDarkMode
+                  ? "linear-gradient(90deg,#6366f1,#38bdf8)"
+                  : "linear-gradient(90deg,#3b82f6,#6366f1)",
+              }}
             />
           </div>
 
@@ -594,17 +773,33 @@ export default function About() {
 
           {/* Value props */}
           <div className="mb-14">
-            <SectionLabel emoji="💡" label="Why us" isDark={isDarkMode} inView={headerInView} />
+            <SectionLabel
+              emoji="💡"
+              label="Why us"
+              isDark={isDarkMode}
+              inView={headerInView}
+            />
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
               {VALUE_PROPS.map((vp, i) => (
-                <ValueCard key={vp.headline} vp={vp} index={i} isDark={isDarkMode} prefersReduced={prefersReduced} />
+                <ValueCard
+                  key={vp.headline}
+                  vp={vp}
+                  index={i}
+                  isDark={isDarkMode}
+                  prefersReduced={prefersReduced}
+                />
               ))}
             </div>
           </div>
 
           {/* Feature pills */}
           <div ref={featRef} className="mb-14">
-            <SectionLabel emoji="✦" label="What we bring" isDark={isDarkMode} inView={featInView} />
+            <SectionLabel
+              emoji="✦"
+              label="What we bring"
+              isDark={isDarkMode}
+              inView={featInView}
+            />
             <div className="flex flex-wrap gap-2 justify-center">
               {FEATURES.map((f, i) => (
                 <motion.div
@@ -613,9 +808,20 @@ export default function About() {
                   variants={scaleIn}
                   initial="hidden"
                   animate={featInView ? "show" : "hidden"}
-                  whileHover={prefersReduced ? {} : { scale: 1.07, y: -2, transition: { type: "spring", stiffness: 380 } }}
+                  whileHover={
+                    prefersReduced
+                      ? {}
+                      : {
+                          scale: 1.07,
+                          y: -2,
+                          transition: { type: "spring", stiffness: 380 },
+                        }
+                  }
                   className="flex items-center gap-2 px-3 py-2 rounded-full border text-xs font-semibold cursor-default"
-                  style={{ borderColor: `${f.color}35`, background: isDarkMode ? `${f.color}12` : `${f.color}08` }}
+                  style={{
+                    borderColor: `${f.color}35`,
+                    background: isDarkMode ? `${f.color}12` : `${f.color}08`,
+                  }}
                 >
                   <f.Icon size={13} style={{ color: f.color }} aria-hidden />
                   <span style={{ color: f.color }}>{f.label}</span>
@@ -626,7 +832,12 @@ export default function About() {
 
           {/* Stack tags */}
           <div ref={stackRef} className="mb-14">
-            <SectionLabel emoji="🛠" label="Our stack" isDark={isDarkMode} inView={stackInView} />
+            <SectionLabel
+              emoji="🛠"
+              label="Our stack"
+              isDark={isDarkMode}
+              inView={stackInView}
+            />
             <div className="flex flex-wrap gap-2 justify-center">
               {STACK_TAGS.map((tag, i) => (
                 <motion.span
@@ -636,7 +847,9 @@ export default function About() {
                   initial="hidden"
                   animate={stackInView ? "show" : "hidden"}
                   className={`px-3 py-1.5 rounded-lg text-xs font-semibold border ${
-                    isDarkMode ? "bg-gray-700 text-gray-200 border-gray-600" : "bg-gray-50 text-gray-700 border-gray-100"
+                    isDarkMode
+                      ? "bg-gray-700 text-gray-200 border-gray-600"
+                      : "bg-gray-50 text-gray-700 border-gray-100"
                   }`}
                 >
                   {tag}
@@ -647,7 +860,12 @@ export default function About() {
 
           {/* Team */}
           <div ref={teamRef}>
-            <SectionLabel emoji="👥" label="The team" isDark={isDarkMode} inView={teamInView} />
+            <SectionLabel
+              emoji="👥"
+              label="The team"
+              isDark={isDarkMode}
+              inView={teamInView}
+            />
 
             {/* Hint text */}
             <motion.p
@@ -677,27 +895,46 @@ export default function About() {
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={teamInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              transition={{
+                duration: 0.5,
+                delay: 0.3,
+                ease: [0.22, 1, 0.36, 1],
+              }}
               className={`rounded-2xl p-8 text-center border ${
-                isDarkMode ? "bg-gray-800/60 border-gray-700" : "bg-gray-50 border-gray-100"
+                isDarkMode
+                  ? "bg-gray-800/60 border-gray-700"
+                  : "bg-gray-50 border-gray-100"
               }`}
             >
-              <p className={`text-sm font-medium mb-2 ${isDarkMode ? "text-gray-300" : "text-gray-600"}`}>
+              <p
+                className={`text-sm font-medium mb-2 ${isDarkMode ? "text-gray-300" : "text-gray-600"}`}
+              >
                 Want to know the full story?
               </p>
-              <h3 className={`text-xl font-extrabold mb-5 ${isDarkMode ? "text-gray-100" : "text-gray-900"}`}>
+              <h3
+                className={`text-xl font-extrabold mb-5 ${isDarkMode ? "text-gray-100" : "text-gray-900"}`}
+              >
                 Read our blog &amp; meet the founders
               </h3>
-              <motion.div whileHover={prefersReduced ? {} : { scale: 1.04 }} whileTap={{ scale: 0.97 }}>
+              <motion.div
+                whileHover={prefersReduced ? {} : { scale: 1.04 }}
+                whileTap={{ scale: 0.97 }}
+              >
                 <Link
                   href="/About"
                   className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-sm text-white shadow-lg hover:shadow-xl transition-shadow"
-                  style={{ background: "linear-gradient(135deg,#6366f1,#38bdf8)" }}
+                  style={{
+                    background: "linear-gradient(135deg,#6366f1,#38bdf8)",
+                  }}
                 >
                   Explore Our Blog
                   <motion.span
                     animate={prefersReduced ? {} : { x: [0, 5, 0] }}
-                    transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut" }}
+                    transition={{
+                      duration: 1.2,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    }}
                   >
                     <ArrowRight size={16} />
                   </motion.span>

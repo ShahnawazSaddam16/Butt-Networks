@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import { useTheme } from './ThemeProvider';
+import { useState } from "react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useTheme } from "./ThemeProvider";
 import {
   Sun,
   Moon,
@@ -14,8 +14,8 @@ import {
   FolderGit,
   Phone,
   HomeIcon,
-  MessageSquareQuote
-} from 'lucide-react';
+  MessageSquareQuote,
+} from "lucide-react";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -38,7 +38,6 @@ const Navbar = () => {
       }`}
     >
       <div className="flex justify-between items-center max-w-7xl mx-auto">
-        
         {/* Logo */}
         <h1
           className="text-2xl md:text-3xl font-bold cursor-pointer hover:scale-105 transition-transform duration-200"
