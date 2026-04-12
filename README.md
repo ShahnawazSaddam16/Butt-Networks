@@ -4,15 +4,18 @@
 > Live site: https://buttnetworks.com
 
 ## What this repo is
+
 This repository contains the Next.js + React frontend for the Butt Networks website — marketing pages, project showcases, contact API, and static assets. It is the single‑page/front‑end entry used to showcase services, portfolio items, team bios, and a quote/estimate widget.
 
 ## Quick links
-- Live site: https://buttnetworks.com  
+
+- Live site: https://buttnetworks.com
 - Contact emails shown on site: dev.buttnetworks@gmail.com, wahbamir2010@gmail.com, shahnawazsaddamb@gmail.com.
 
 ---
 
 # Features
+
 - Marketing site with sections for About, Services, Projects, Team, Testimonials, Contact form and an estimate/quote UI.
 - Projects gallery with per‑project pages.
 - Contact API route for form submissions.
@@ -22,6 +25,7 @@ This repository contains the Next.js + React frontend for the Butt Networks webs
 ---
 
 # Tech stack
+
 - Next.js (App Router)
 - React
 - Tailwind CSS
@@ -34,10 +38,12 @@ This repository contains the Next.js + React frontend for the Butt Networks webs
 # Setup & local development
 
 ## Prerequisites
+
 - Node.js 18+ (recommended)
 - npm or pnpm
 
 ## Install & run
+
 ```bash
 # install dependencies (npm)
 npm install
@@ -55,6 +61,7 @@ npm start
 _Note:_ If you use `pnpm` or `yarn`, replace commands accordingly.
 
 ## Environment variables
+
 Create a `.env.local` in the project root for secrets. Example:
 
 ```env
@@ -69,6 +76,7 @@ MONGODB_URI=mongodb+srv://<user>:<pass>@cluster.example.mongodb.net/dbname
 ---
 
 # Project structure
+
 ```
 .
 ├── app
@@ -121,6 +129,7 @@ MONGODB_URI=mongodb+srv://<user>:<pass>@cluster.example.mongodb.net/dbname
 ---
 
 # Important files / notes for maintainers
+
 - `app/api/contact/route.js` — server endpoint for the contact form. Check authentication, email sending, and DB write logic before enabling in production.
 - `lib/db.js` — small helper to connect to MongoDB; ensure `MONGODB_URI` is set.
 - `lib/haptic.js` & `lib/useGlobalHaptics.js` — the haptic helper and global binder. Useful when testing touch interactions on mobile devices.
@@ -129,13 +138,16 @@ MONGODB_URI=mongodb+srv://<user>:<pass>@cluster.example.mongodb.net/dbname
 ---
 
 # Deployment
+
 Recommended options:
+
 - **Vercel** — zero config for Next.js (preferred for App Router features).
 - **Hostinger / VPS + Nginx** — if you want full server control. For VPS, build with `npm run build` and run with `npm start` or use a process manager (PM2), and front with Nginx + HTTPS (Let's Encrypt).
 
 ---
 
 # Contribution / PR checklist
+
 - Run `npm run lint` and `npm test` (if tests are present).
 - Keep UI changes mobile‑first and accessible.
 - For content changes (team, contact), update `app/page.js` and relevant component files.
@@ -144,18 +156,22 @@ Recommended options:
 ---
 
 # Authors & credits
+
 Maintained by the Butt Networks team:
+
 - Wahb Amir — Technical Lead & Co‑founder.
 - Shahnawaz Saddam — Frontend & Full‑Stack Developer.
 
 ---
 
 # License
+
 Suggested: **MIT** — change to your preferred license in `LICENSE` file.
 
 ---
 
 # Troubleshooting & tips
+
 - If contact emails aren't sending: verify SMTP credentials, check provider (Gmail requires App Password when 2FA enabled).
 - If haptics don't work on iOS: the browser may require a user gesture to unlock the AudioContext — test on a real device.
 - If images don't show in production: ensure `public` paths are correct and not blocked by CSP.

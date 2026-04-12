@@ -30,7 +30,7 @@ const About = () => {
           observer.disconnect();
         }
       },
-      { threshold: 0.2 }
+      { threshold: 0.2 },
     );
 
     if (sectionRef.current) {
@@ -44,7 +44,6 @@ const About = () => {
 
   return (
     <>
-
       <section ref={sectionRef} className="Blogs mt-20">
         <h1 className="text-center font-bold text-[40px] mb-10">Blogs</h1>
 

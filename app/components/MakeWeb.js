@@ -24,7 +24,9 @@ const AnimatedPrice = ({ value, formatter }) => {
   }, [value, motionVal]);
 
   useEffect(() => {
-    const unsub = spring.on("change", (v) => setDisplay(formatter.format(Math.round(v))));
+    const unsub = spring.on("change", (v) =>
+      setDisplay(formatter.format(Math.round(v))),
+    );
     return unsub;
   }, [spring, formatter]);
 
@@ -37,7 +39,12 @@ const Spark = ({ x, y, color }) => (
     className="pointer-events-none absolute rounded-full"
     style={{ left: x, top: y, width: 6, height: 6, backgroundColor: color }}
     initial={{ scale: 0, opacity: 1 }}
-    animate={{ scale: [0, 1.4, 0], opacity: [1, 1, 0], x: (Math.random() - 0.5) * 40, y: (Math.random() - 0.5) * 40 }}
+    animate={{
+      scale: [0, 1.4, 0],
+      opacity: [1, 1, 0],
+      x: (Math.random() - 0.5) * 40,
+      y: (Math.random() - 0.5) * 40,
+    }}
     transition={{ duration: 0.55, ease: "easeOut" }}
   />
 );
@@ -51,14 +58,26 @@ const TrafficLight = ({ variant = "neutral", activeLabel }) => {
   ];
 
   return (
-    <span className="inline-flex items-center gap-1.5" title={activeLabel} aria-hidden="true">
+    <span
+      className="inline-flex items-center gap-1.5"
+      title={activeLabel}
+      aria-hidden="true"
+    >
       {dots.map((d) => (
         <span key={d.key} className="relative inline-block w-3 h-3">
           <motion.span
             className="absolute inset-0 rounded-full"
             style={{ backgroundColor: d.pulse ? d.color : "#d1d5db" }}
-            animate={d.pulse ? { scale: [1, 1.3, 1], opacity: [1, 0.7, 1] } : { scale: 1 }}
-            transition={d.pulse ? { repeat: Infinity, duration: 1.6, ease: "easeInOut" } : {}}
+            animate={
+              d.pulse
+                ? { scale: [1, 1.3, 1], opacity: [1, 0.7, 1] }
+                : { scale: 1 }
+            }
+            transition={
+              d.pulse
+                ? { repeat: Infinity, duration: 1.6, ease: "easeInOut" }
+                : {}
+            }
           />
           {d.pulse && (
             <motion.span
@@ -75,7 +94,15 @@ const TrafficLight = ({ variant = "neutral", activeLabel }) => {
 };
 
 /* ─── Option Button ───────────────────────────────── */
-const OptionButton = ({ id, label, subtitle, selected, onSelect, variant = "neutral", isDarkMode }) => {
+const OptionButton = ({
+  id,
+  label,
+  subtitle,
+  selected,
+  onSelect,
+  variant = "neutral",
+  isDarkMode,
+}) => {
   const [sparks, setSparks] = useState([]);
 
   const palettes = {
@@ -119,7 +146,12 @@ const OptionButton = ({ id, label, subtitle, selected, onSelect, variant = "neut
     const rect = e.currentTarget.getBoundingClientRect();
     const cx = e.clientX - rect.left;
     const cy = e.clientY - rect.top;
-    const newSparks = Array.from({ length: 6 }, (_, i) => ({ id: Date.now() + i, x: cx, y: cy, color: p.sparkColor }));
+    const newSparks = Array.from({ length: 6 }, (_, i) => ({
+      id: Date.now() + i,
+      x: cx,
+      y: cy,
+      color: p.sparkColor,
+    }));
     setSparks((s) => [...s, ...newSparks]);
     setTimeout(() => setSparks([]), 600);
     onSelect(id);
@@ -139,7 +171,9 @@ const OptionButton = ({ id, label, subtitle, selected, onSelect, variant = "neut
         backgroundColor: selected ? p.selectedBg : p.bg,
         borderColor: selected ? p.selectedBg : p.border,
         color: selected ? p.selectedText : p.text,
-        boxShadow: selected ? `0 0 0 3px ${p.sparkColor}55, 0 4px 16px ${p.sparkColor}33` : undefined,
+        boxShadow: selected
+          ? `0 0 0 3px ${p.sparkColor}55, 0 4px 16px ${p.sparkColor}33`
+          : undefined,
       }}
     >
       {/* Shine sweep on select */}
@@ -147,7 +181,10 @@ const OptionButton = ({ id, label, subtitle, selected, onSelect, variant = "neut
         {selected && (
           <motion.span
             className="absolute inset-0 pointer-events-none"
-            style={{ background: "linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.18) 55%, transparent 70%)" }}
+            style={{
+              background:
+                "linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.18) 55%, transparent 70%)",
+            }}
             initial={{ x: "-100%" }}
             animate={{ x: "200%" }}
             exit={{ opacity: 0 }}
@@ -156,10 +193,16 @@ const OptionButton = ({ id, label, subtitle, selected, onSelect, variant = "neut
         )}
       </AnimatePresence>
 
-      {sparks.map((s) => <Spark key={s.id} x={s.x} y={s.y} color={s.color} />)}
+      {sparks.map((s) => (
+        <Spark key={s.id} x={s.x} y={s.y} color={s.color} />
+      ))}
 
-      <span className="font-bold text-sm leading-tight capitalize relative z-10">{label}</span>
-      {subtitle && <small className="text-xs opacity-75 relative z-10">{subtitle}</small>}
+      <span className="font-bold text-sm leading-tight capitalize relative z-10">
+        {label}
+      </span>
+      {subtitle && (
+        <small className="text-xs opacity-75 relative z-10">{subtitle}</small>
+      )}
 
       <AnimatePresence>
         {selected && (
@@ -185,7 +228,11 @@ const containerVariants = {
 };
 const itemVariants = {
   hidden: { opacity: 0, y: 14 },
-  show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 260, damping: 22 } },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { type: "spring", stiffness: 260, damping: 22 },
+  },
 };
 
 /* ─── Main Component ─────────────────────────────── */
@@ -199,54 +246,131 @@ const MakeWeb = () => {
   const theme = typeof useTheme === "function" ? useTheme() : undefined;
   const isDarkMode = theme?.isDarkMode ?? false;
 
-  const PROJECTS = useMemo(() => ({
-    website:     { label: "Website",        base: 145, hint: "Marketing or business site",   icon: "🌐" },
-    reactnative: { label: "React Native",   base: 270, hint: "Cross-platform mobile app",    icon: "📱" },
-    ecommerce:   { label: "E-commerce",     base: 215, hint: "Online store with products",   icon: "🛒" },
-    portfolio:   { label: "Portfolio",      base: 70,  hint: "Simple personal site",          icon: "🎨" },
-    api:         { label: "API + Backend",  base: 125, hint: "Server / API work",            icon: "⚙️" },
-  }), []);
+  const PROJECTS = useMemo(
+    () => ({
+      website: {
+        label: "Website",
+        base: 145,
+        hint: "Marketing or business site",
+        icon: "🌐",
+      },
+      reactnative: {
+        label: "React Native",
+        base: 270,
+        hint: "Cross-platform mobile app",
+        icon: "📱",
+      },
+      ecommerce: {
+        label: "E-commerce",
+        base: 215,
+        hint: "Online store with products",
+        icon: "🛒",
+      },
+      portfolio: {
+        label: "Portfolio",
+        base: 70,
+        hint: "Simple personal site",
+        icon: "🎨",
+      },
+      api: {
+        label: "API + Backend",
+        base: 125,
+        hint: "Server / API work",
+        icon: "⚙️",
+      },
+    }),
+    [],
+  );
 
   const BUDGET_OPTIONS = [
-    { value: "low",    label: "Low",    add: 0,   variant: "success", hint: "Cost-conscious" },
-    { value: "medium", label: "Medium", add: 50,  variant: "mid",     hint: "Good balance"   },
-    { value: "high",   label: "High",   add: 100, variant: "warn",    hint: "Premium build"  },
+    {
+      value: "low",
+      label: "Low",
+      add: 0,
+      variant: "success",
+      hint: "Cost-conscious",
+    },
+    {
+      value: "medium",
+      label: "Medium",
+      add: 50,
+      variant: "mid",
+      hint: "Good balance",
+    },
+    {
+      value: "high",
+      label: "High",
+      add: 100,
+      variant: "warn",
+      hint: "Premium build",
+    },
   ];
 
   const DELIVERY_OPTIONS = [
-    { value: "normal",    label: "Normal",     add: 0,   hint: "7–10 days", icon: "🐢" },
-    { value: "fast",      label: "Fast",       add: 75,  hint: "3–5 days",  icon: "🚀" },
-    { value: "superfast", label: "Super Fast", add: 150, hint: "24–48 hrs", icon: "⚡" },
+    { value: "normal", label: "Normal", add: 0, hint: "7–10 days", icon: "🐢" },
+    { value: "fast", label: "Fast", add: 75, hint: "3–5 days", icon: "🚀" },
+    {
+      value: "superfast",
+      label: "Super Fast",
+      add: 150,
+      hint: "24–48 hrs",
+      icon: "⚡",
+    },
   ];
 
   const priceBreakdown = useMemo(() => {
     const project = PROJECTS[projectType];
-    if (!project) return { total: 0, base: 0, budgetAdd: 0, deliveryAdd: 0, valid: false };
+    if (!project)
+      return { total: 0, base: 0, budgetAdd: 0, deliveryAdd: 0, valid: false };
     const base = project.base;
     const budgetAdd = BUDGET_OPTIONS.find((b) => b.value === budget)?.add ?? 0;
-    const deliveryAdd = DELIVERY_OPTIONS.find((d) => d.value === delivery)?.add ?? 0;
-    return { total: base + budgetAdd + deliveryAdd, base, budgetAdd, deliveryAdd, valid: true };
+    const deliveryAdd =
+      DELIVERY_OPTIONS.find((d) => d.value === delivery)?.add ?? 0;
+    return {
+      total: base + budgetAdd + deliveryAdd,
+      base,
+      budgetAdd,
+      deliveryAdd,
+      valid: true,
+    };
   }, [projectType, budget, delivery, PROJECTS]);
 
   const priceStatus = useMemo(() => {
     if (!priceBreakdown.valid) return { label: "—", variant: "neutral" };
     const { base, total } = priceBreakdown;
-    if (total <= base * 1.4) return { label: "Budget-Friendly", variant: "success", emoji: "🟢" };
-    if (total <= base * 1.8) return { label: "Mid-Range",       variant: "mid",     emoji: "🟡" };
-    return                        { label: "Premium",            variant: "warn",    emoji: "🔴" };
+    if (total <= base * 1.4)
+      return { label: "Budget-Friendly", variant: "success", emoji: "🟢" };
+    if (total <= base * 1.8)
+      return { label: "Mid-Range", variant: "mid", emoji: "🟡" };
+    return { label: "Premium", variant: "warn", emoji: "🔴" };
   }, [priceBreakdown]);
 
   const gradientMap = {
     success: "from-emerald-500 to-teal-600",
-    mid:     "from-amber-500 to-orange-500",
-    warn:    "from-rose-500 to-pink-600",
-    neutral: isDarkMode ? "from-gray-800 to-gray-900" : "from-gray-100 to-gray-200",
+    mid: "from-amber-500 to-orange-500",
+    warn: "from-rose-500 to-pink-600",
+    neutral: isDarkMode
+      ? "from-gray-800 to-gray-900"
+      : "from-gray-100 to-gray-200",
   };
   const currentGradient = gradientMap[priceStatus.variant];
 
-  const currency = useMemo(() => new Intl.NumberFormat(undefined, { style: "currency", currency: "USD", maximumFractionDigits: 0 }), []);
+  const currency = useMemo(
+    () =>
+      new Intl.NumberFormat(undefined, {
+        style: "currency",
+        currency: "USD",
+        maximumFractionDigits: 0,
+      }),
+    [],
+  );
 
-  const resetAll = () => { setProjectType(""); setBudget(""); setDelivery(""); setHasQuoted(false); };
+  const resetAll = () => {
+    setProjectType("");
+    setBudget("");
+    setDelivery("");
+    setHasQuoted(false);
+  };
 
   const handleCopy = () => {
     const parts = [
@@ -255,7 +379,9 @@ const MakeWeb = () => {
       delivery && `Delivery: ${delivery}`,
       `Estimate: ${currency.format(priceBreakdown.total)}`,
     ].filter(Boolean);
-    navigator?.clipboard?.writeText?.(`Project Estimate — ${parts.join(" • ")}`);
+    navigator?.clipboard?.writeText?.(
+      `Project Estimate — ${parts.join(" • ")}`,
+    );
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -266,7 +392,10 @@ const MakeWeb = () => {
   return (
     <section
       aria-labelledby="make-project-title"
-      className={css("max-w-4xl mx-auto mt-16 p-5 sm:p-8", isDarkMode ? "text-gray-100" : "text-gray-900")}
+      className={css(
+        "max-w-4xl mx-auto mt-16 p-5 sm:p-8",
+        isDarkMode ? "text-gray-100" : "text-gray-900",
+      )}
     >
       {/* ── Header ── */}
       <motion.header
@@ -275,10 +404,18 @@ const MakeWeb = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       >
-        <h1 id="make-project-title" className="text-3xl sm:text-4xl font-extrabold tracking-tight">
+        <h1
+          id="make-project-title"
+          className="text-3xl sm:text-4xl font-extrabold tracking-tight"
+        >
           Build Your Project Budget
         </h1>
-        <p className={css("mt-2 max-w-xl mx-auto text-sm", isDarkMode ? "text-gray-400" : "text-gray-500")}>
+        <p
+          className={css(
+            "mt-2 max-w-xl mx-auto text-sm",
+            isDarkMode ? "text-gray-400" : "text-gray-500",
+          )}
+        >
           Three quick choices. Instant transparent estimate. No forms, no fluff.
         </p>
 
@@ -295,18 +432,38 @@ const MakeWeb = () => {
                 <motion.span
                   className="w-6 h-6 rounded-full text-xs font-bold flex items-center justify-center"
                   animate={{
-                    backgroundColor: progressSteps[i] ? "#059669" : isDarkMode ? "#374151" : "#e5e7eb",
-                    color: progressSteps[i] ? "#fff" : isDarkMode ? "#9ca3af" : "#6b7280",
+                    backgroundColor: progressSteps[i]
+                      ? "#059669"
+                      : isDarkMode
+                        ? "#374151"
+                        : "#e5e7eb",
+                    color: progressSteps[i]
+                      ? "#fff"
+                      : isDarkMode
+                        ? "#9ca3af"
+                        : "#6b7280",
                     scale: progressSteps[i] ? [1, 1.2, 1] : 1,
                   }}
                   transition={{ duration: 0.3 }}
                 >
                   {progressSteps[i] ? "✓" : i + 1}
                 </motion.span>
-                <span className={css("text-xs font-medium hidden sm:block", isDarkMode ? "text-gray-400" : "text-gray-500")}>{step}</span>
+                <span
+                  className={css(
+                    "text-xs font-medium hidden sm:block",
+                    isDarkMode ? "text-gray-400" : "text-gray-500",
+                  )}
+                >
+                  {step}
+                </span>
               </motion.div>
               {i < 2 && (
-                <div className="flex-1 max-w-[3rem] h-0.5 rounded-full overflow-hidden" style={{ backgroundColor: isDarkMode ? "#374151" : "#e5e7eb" }}>
+                <div
+                  className="flex-1 max-w-[3rem] h-0.5 rounded-full overflow-hidden"
+                  style={{
+                    backgroundColor: isDarkMode ? "#374151" : "#e5e7eb",
+                  }}
+                >
                   <motion.div
                     className="h-full bg-emerald-500 rounded-full"
                     animate={{ scaleX: progressSteps[i] ? 1 : 0 }}
@@ -322,17 +479,26 @@ const MakeWeb = () => {
 
       {/* ── Main Grid ── */}
       <main className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
-
         {/* ── LEFT PANEL ── */}
         <motion.div
-          className={css("lg:col-span-2 border rounded-2xl p-6 space-y-7 shadow-sm", isDarkMode ? "bg-gray-800/80 border-gray-700" : "bg-white/80 border-gray-200 backdrop-blur-sm")}
+          className={css(
+            "lg:col-span-2 border rounded-2xl p-6 space-y-7 shadow-sm",
+            isDarkMode
+              ? "bg-gray-800/80 border-gray-700"
+              : "bg-white/80 border-gray-200 backdrop-blur-sm",
+          )}
           initial={{ opacity: 0, x: -24 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
         >
           {/* Project Type */}
           <fieldset className="space-y-3">
-            <legend className={css("text-xs uppercase tracking-widest font-semibold", isDarkMode ? "text-gray-400" : "text-gray-400")}>
+            <legend
+              className={css(
+                "text-xs uppercase tracking-widest font-semibold",
+                isDarkMode ? "text-gray-400" : "text-gray-400",
+              )}
+            >
               01 · Project Type
             </legend>
             <motion.div
@@ -343,7 +509,15 @@ const MakeWeb = () => {
             >
               {Object.entries(PROJECTS).map(([key, { label, hint, icon }]) => (
                 <motion.div key={key} variants={itemVariants}>
-                  <OptionButton id={key} label={`${icon} ${label}`} subtitle={hint} selected={projectType === key} onSelect={setProjectType} variant="neutral" isDarkMode={isDarkMode} />
+                  <OptionButton
+                    id={key}
+                    label={`${icon} ${label}`}
+                    subtitle={hint}
+                    selected={projectType === key}
+                    onSelect={setProjectType}
+                    variant="neutral"
+                    isDarkMode={isDarkMode}
+                  />
                 </motion.div>
               ))}
             </motion.div>
@@ -351,7 +525,12 @@ const MakeWeb = () => {
 
           {/* Budget Range */}
           <fieldset className="space-y-3">
-            <legend className={css("text-xs uppercase tracking-widest font-semibold", isDarkMode ? "text-gray-400" : "text-gray-400")}>
+            <legend
+              className={css(
+                "text-xs uppercase tracking-widest font-semibold",
+                isDarkMode ? "text-gray-400" : "text-gray-400",
+              )}
+            >
               02 · Budget Range
             </legend>
             <motion.div
@@ -362,7 +541,15 @@ const MakeWeb = () => {
             >
               {BUDGET_OPTIONS.map((opt) => (
                 <motion.div key={opt.value} variants={itemVariants}>
-                  <OptionButton id={opt.value} label={opt.label} subtitle={opt.hint} selected={budget === opt.value} onSelect={setBudget} variant={opt.variant} isDarkMode={isDarkMode} />
+                  <OptionButton
+                    id={opt.value}
+                    label={opt.label}
+                    subtitle={opt.hint}
+                    selected={budget === opt.value}
+                    onSelect={setBudget}
+                    variant={opt.variant}
+                    isDarkMode={isDarkMode}
+                  />
                 </motion.div>
               ))}
             </motion.div>
@@ -370,7 +557,12 @@ const MakeWeb = () => {
 
           {/* Delivery */}
           <fieldset className="space-y-3">
-            <legend className={css("text-xs uppercase tracking-widest font-semibold", isDarkMode ? "text-gray-400" : "text-gray-400")}>
+            <legend
+              className={css(
+                "text-xs uppercase tracking-widest font-semibold",
+                isDarkMode ? "text-gray-400" : "text-gray-400",
+              )}
+            >
               03 · Delivery Speed
             </legend>
             <motion.div
@@ -381,20 +573,38 @@ const MakeWeb = () => {
             >
               {DELIVERY_OPTIONS.map((opt) => (
                 <motion.div key={opt.value} variants={itemVariants}>
-                  <OptionButton id={opt.value} label={`${opt.icon} ${opt.label}`} subtitle={opt.hint} selected={delivery === opt.value} onSelect={setDelivery} variant="neutral" isDarkMode={isDarkMode} />
+                  <OptionButton
+                    id={opt.value}
+                    label={`${opt.icon} ${opt.label}`}
+                    subtitle={opt.hint}
+                    selected={delivery === opt.value}
+                    onSelect={setDelivery}
+                    variant="neutral"
+                    isDarkMode={isDarkMode}
+                  />
                 </motion.div>
               ))}
             </motion.div>
           </fieldset>
 
           {/* Reset */}
-          <motion.div className="flex items-center justify-between" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}>
+          <motion.div
+            className="flex items-center justify-between"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5 }}
+          >
             <motion.button
               type="button"
               onClick={resetAll}
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.96 }}
-              className={css("py-2 px-4 rounded-lg text-xs font-semibold border transition-colors", isDarkMode ? "border-gray-600 text-gray-400 hover:text-gray-200 hover:border-gray-400" : "border-gray-300 text-gray-400 hover:text-gray-700 hover:border-gray-400")}
+              className={css(
+                "py-2 px-4 rounded-lg text-xs font-semibold border transition-colors",
+                isDarkMode
+                  ? "border-gray-600 text-gray-400 hover:text-gray-200 hover:border-gray-400"
+                  : "border-gray-300 text-gray-400 hover:text-gray-700 hover:border-gray-400",
+              )}
             >
               ↺ Reset
             </motion.button>
@@ -408,7 +618,12 @@ const MakeWeb = () => {
                   exit={{ opacity: 0, scale: 0.7 }}
                   className="text-xs font-semibold text-emerald-500 flex items-center gap-1"
                 >
-                  <motion.span animate={{ rotate: [0, 20, -10, 0] }} transition={{ delay: 0.1 }}>🎉</motion.span>
+                  <motion.span
+                    animate={{ rotate: [0, 20, -10, 0] }}
+                    transition={{ delay: 0.1 }}
+                  >
+                    🎉
+                  </motion.span>
                   All set!
                 </motion.span>
               )}
@@ -418,7 +633,10 @@ const MakeWeb = () => {
 
         {/* ── RIGHT PANEL: ESTIMATE CARD ── */}
         <motion.aside
-          className={css("rounded-2xl p-6 shadow-2xl flex flex-col gap-5 justify-between overflow-hidden relative", `bg-gradient-to-br ${currentGradient}`)}
+          className={css(
+            "rounded-2xl p-6 shadow-2xl flex flex-col gap-5 justify-between overflow-hidden relative",
+            `bg-gradient-to-br ${currentGradient}`,
+          )}
           initial={{ opacity: 0, x: 24 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
@@ -435,11 +653,18 @@ const MakeWeb = () => {
             className="absolute -bottom-8 -left-8 w-28 h-28 rounded-full opacity-10 pointer-events-none"
             style={{ backgroundColor: "white" }}
             animate={{ scale: [1, 1.15, 1] }}
-            transition={{ repeat: Infinity, duration: 7, ease: "easeInOut", delay: 1 }}
+            transition={{
+              repeat: Infinity,
+              duration: 7,
+              ease: "easeInOut",
+              delay: 1,
+            }}
           />
 
           <div className="relative z-10">
-            <h2 className="text-sm font-bold uppercase tracking-widest text-white/70">Estimated Price</h2>
+            <h2 className="text-sm font-bold uppercase tracking-widest text-white/70">
+              Estimated Price
+            </h2>
 
             <AnimatePresence mode="wait">
               {!priceBreakdown.valid ? (
@@ -450,7 +675,9 @@ const MakeWeb = () => {
                   exit={{ opacity: 0 }}
                   className="mt-3"
                 >
-                  <p className="text-white/60 text-sm mt-2">← Pick a project type to start</p>
+                  <p className="text-white/60 text-sm mt-2">
+                    ← Pick a project type to start
+                  </p>
                   <div className="mt-4 space-y-2">
                     {[80, 60, 70].map((w, i) => (
                       <motion.div
@@ -458,7 +685,11 @@ const MakeWeb = () => {
                         className="h-3 rounded-full bg-white/10"
                         style={{ width: `${w}%` }}
                         animate={{ opacity: [0.4, 0.8, 0.4] }}
-                        transition={{ repeat: Infinity, duration: 1.8, delay: i * 0.3 }}
+                        transition={{
+                          repeat: Infinity,
+                          duration: 1.8,
+                          delay: i * 0.3,
+                        }}
                       />
                     ))}
                   </div>
@@ -472,15 +703,24 @@ const MakeWeb = () => {
                   transition={{ type: "spring", stiffness: 200, damping: 20 }}
                 >
                   <p className="mt-2 text-4xl font-extrabold text-white tracking-tight">
-                    <AnimatedPrice value={priceBreakdown.total} formatter={currency} />
+                    <AnimatedPrice
+                      value={priceBreakdown.total}
+                      formatter={currency}
+                    />
                   </p>
 
                   {/* Breakdown rows */}
                   <div className="mt-4 bg-black/15 rounded-xl p-3.5 space-y-2 text-sm text-white/90">
                     {[
-                      { label: `${PROJECTS[projectType]?.icon} ${PROJECTS[projectType]?.label}`, val: priceBreakdown.base },
-                      { label: "Budget tier",          val: priceBreakdown.budgetAdd },
-                      { label: "Delivery speed",        val: priceBreakdown.deliveryAdd },
+                      {
+                        label: `${PROJECTS[projectType]?.icon} ${PROJECTS[projectType]?.label}`,
+                        val: priceBreakdown.base,
+                      },
+                      { label: "Budget tier", val: priceBreakdown.budgetAdd },
+                      {
+                        label: "Delivery speed",
+                        val: priceBreakdown.deliveryAdd,
+                      },
                     ].map((row, i) => (
                       <motion.div
                         key={row.label}
@@ -490,7 +730,9 @@ const MakeWeb = () => {
                         transition={{ delay: i * 0.07 }}
                       >
                         <span className="opacity-80">{row.label}</span>
-                        <span className="font-semibold tabular-nums">{currency.format(row.val)}</span>
+                        <span className="font-semibold tabular-nums">
+                          {currency.format(row.val)}
+                        </span>
                       </motion.div>
                     ))}
                     <div className="border-t border-white/20 my-1" />
@@ -508,8 +750,13 @@ const MakeWeb = () => {
           <div className="relative z-10 space-y-3">
             <div className="flex items-center justify-between text-sm">
               <div className="flex items-center gap-2">
-                <span className="text-white/70 font-medium text-xs uppercase tracking-wide">Status</span>
-                <TrafficLight variant={priceStatus.variant} activeLabel={priceStatus.label} />
+                <span className="text-white/70 font-medium text-xs uppercase tracking-wide">
+                  Status
+                </span>
+                <TrafficLight
+                  variant={priceStatus.variant}
+                  activeLabel={priceStatus.label}
+                />
               </div>
               <AnimatePresence mode="wait">
                 <motion.span
@@ -529,13 +776,18 @@ const MakeWeb = () => {
             <div className="flex gap-2">
               <motion.button
                 type="button"
-                onClick={() => { setHasQuoted(true); window?.open?.("/Contact", "_blank"); }}
+                onClick={() => {
+                  setHasQuoted(true);
+                  window?.open?.("/Contact", "_blank");
+                }}
                 disabled={!priceBreakdown.valid}
                 whileHover={priceBreakdown.valid ? { scale: 1.03, y: -1 } : {}}
                 whileTap={priceBreakdown.valid ? { scale: 0.97 } : {}}
                 className={css(
                   "flex-1 py-2.5 rounded-xl font-bold text-sm transition-all focus:outline-none focus-visible:ring-2",
-                  priceBreakdown.valid ? "bg-white text-gray-900 shadow-lg" : "bg-white/20 text-white/40 cursor-not-allowed"
+                  priceBreakdown.valid
+                    ? "bg-white text-gray-900 shadow-lg"
+                    : "bg-white/20 text-white/40 cursor-not-allowed",
                 )}
               >
                 {hasQuoted ? "✓ Requested" : "Get a Quote →"}
@@ -550,7 +802,7 @@ const MakeWeb = () => {
                   whileTap={priceBreakdown.valid ? { scale: 0.95 } : {}}
                   className={css(
                     "py-2.5 px-3 rounded-xl text-sm font-semibold border border-white/30 bg-white/10 text-white backdrop-blur transition",
-                    !priceBreakdown.valid && "opacity-40 cursor-not-allowed"
+                    !priceBreakdown.valid && "opacity-40 cursor-not-allowed",
                   )}
                 >
                   {copied ? "✓" : "Copy"}
@@ -575,12 +827,16 @@ const MakeWeb = () => {
       </main>
 
       <motion.footer
-        className={css("mt-6 text-center text-xs", isDarkMode ? "text-gray-600" : "text-gray-400")}
+        className={css(
+          "mt-6 text-center text-xs",
+          isDarkMode ? "text-gray-600" : "text-gray-400",
+        )}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.8 }}
       >
-        * Estimates only — final pricing depends on scope, integrations &amp; features. Contact us for a firm quote.
+        * Estimates only — final pricing depends on scope, integrations &amp;
+        features. Contact us for a firm quote.
       </motion.footer>
     </section>
   );
