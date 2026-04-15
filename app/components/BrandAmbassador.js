@@ -111,9 +111,10 @@ const BrandAmbassador = () => {
             {/* 🔥 POPUP SECTION */}
             {showPopup && (
               <div className="mt-6 flex flex-col items-center lg:items-start gap-3">
-                {/* Selected Info */}
                 {selectedInfo && (
-                  <p className="text-blue-600 font-medium">{selectedInfo}</p>
+                  <p className="text-blue-600 font-medium px-4 py-2 bg-blue-100 rounded-[50%_50%_40%_60%/60%_40%_60%_40%]">
+                    {selectedInfo}
+                  </p>
                 )}
 
                 {/* Icons */}
@@ -121,7 +122,11 @@ const BrandAmbassador = () => {
                   {/* WhatsApp */}
                   <div
                     onClick={() => setSelectedInfo("+92 300 1234567")}
-                    className="bg-green-500 p-4 rounded-full text-white cursor-pointer hover:scale-110 transition"
+                    className={`p-4 text-white cursor-pointer hover:scale-110 transition ${
+                      selectedInfo === "+92 300 1234567"
+                        ? "bg-gradient-to-r from-green-400 to-green-600 rounded-[50%_50%_40%_60%/60%_40%_60%_40%]"
+                        : "bg-gradient-to-r from-green-400 to-green-600 rounded-full"
+                    }`}
                   >
                     <FaWhatsapp size={20} />
                   </div>
@@ -129,7 +134,11 @@ const BrandAmbassador = () => {
                   {/* Instagram */}
                   <div
                     onClick={() => setSelectedInfo("@m.ali.dev")}
-                    className="bg-pink-500 p-4 rounded-full text-white cursor-pointer hover:scale-110 transition"
+                    className={`p-4 text-white cursor-pointer hover:scale-110 transition ${
+                      selectedInfo === "@m.ali.dev"
+                        ? "bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 rounded-[50%_50%_40%_60%/60%_40%_60%_40%]"
+                        : "bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 rounded-full"
+                    }`}
                   >
                     <FaInstagram size={20} />
                   </div>
@@ -137,7 +146,11 @@ const BrandAmbassador = () => {
                   {/* Email */}
                   <div
                     onClick={() => setSelectedInfo("mali@example.com")}
-                    className="bg-gray-700 p-4 rounded-full text-white cursor-pointer hover:scale-110 transition"
+                    className={`p-4 text-white cursor-pointer hover:scale-110 transition ${
+                      selectedInfo === "mali@example.com"
+                        ? "bg-gradient-to-r from-gray-600 to-gray-900 rounded-[50%_50%_40%_60%/60%_40%_60%_40%]"
+                        : "bg-gradient-to-r from-gray-600 to-gray-900 rounded-full"
+                    }`}
                   >
                     <MdEmail size={20} />
                   </div>

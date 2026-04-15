@@ -1,25 +1,5 @@
 "use client";
 
-/**
- * Hero — performance-optimised
- *
- * Changes vs original:
- *  1. framer-motion fully removed from this file.
- *     All entrance animations are pure CSS @keyframes → no JS animation
- *     engine spins up on mount → ~200 ms less main-thread work.
- *  2. usePrefersReducedMotion() is a tiny custom hook (no framer dep).
- *  3. AnimatePresence replaced by key-prop CSS cardIn animation.
- *  4. Partial hydration: MobileScrollStrip renders a static CLS-safe
- *     placeholder until after the first client paint (useHydrated +
- *     startTransition), then swaps in the interactive rAF version.
- *  5. All hover/active effects live in a single <style> block that the
- *     browser GPU-accelerates; zero JS touch handlers added.
- *  6. Every height-unstable container has an explicit min-height / fixed
- *     height so there is zero layout shift during hydration.
- *  7. CSS `contain: layout style` on fixed-size containers tells the
- *     browser not to recalculate the rest of the page on internal change.
- */
-
 import React, {
   useEffect,
   useRef,
@@ -51,10 +31,6 @@ const Typewriter = dynamic(
   },
 );
 
-/* ─────────────────────────────────────────────────────────────
-   STATIC DATA
-   ───────────────────────────────────────────────────────────── */
-
 const PROJECTS = [
   { src: "/projects/Ecom/light-shop.png", title: "E-commerce Store" },
   { src: "/projects/Platform/Dashboard.png", title: "Admin Dashboard" },
@@ -72,10 +48,6 @@ const WORDS = [
 
 const SPEED = 32;
 const EASE = "cubic-bezier(0.22,1,0.36,1)";
-
-/* ─────────────────────────────────────────────────────────────
-   GLOBAL CSS  — injected once, all compositor-thread animations
-   ───────────────────────────────────────────────────────────── */
 
 const GLOBAL_CSS = `
   /* ── decorative orb movement (translate property → compositor) ── */
@@ -185,14 +157,6 @@ const GLOBAL_CSS = `
   .h-strip::-webkit-scrollbar { display:none }
 `;
 
-/* ─────────────────────────────────────────────────────────────
-   HOOKS
-   ───────────────────────────────────────────────────────────── */
-
-/**
- * Lightweight replacement for framer-motion's useReducedMotion.
- * Defaults to `false` so SSR and first paint always match.
- */
 function usePrefersReduced() {
   const [r, setR] = useState(false);
   useEffect(() => {
@@ -675,7 +639,7 @@ const AuthorCard = memo(
       >
         <Image
           src="/butt.png"
-          alt="Wahb & Shahnawaz"
+          alt="Shahnawaz"
           width={compact ? 40 : 64}
           height={compact ? 40 : 64}
           className="object-cover w-full h-full"
@@ -683,7 +647,7 @@ const AuthorCard = memo(
         />
       </div>
       <div className="flex-1 min-w-0">
-        <p className={`text-sm font-bold ${t.heading}`}>Wahb &amp; Shahnawaz</p>
+        <p className={`text-sm font-bold ${t.heading}`}>Shahnawaz Saddam Butt</p>
         <p className={`text-xs mt-0.5 ${t.sub}`}>
           {compact
             ? "Design · Full-Stack · Asia"
@@ -905,8 +869,7 @@ export default function Hero() {
         {/* ══════════════════════════════════════════
             DESKTOP  (≥ lg)
             ══════════════════════════════════════════ */}
-        <div className="hidden lg:grid grid-cols-2 gap-12 xl:gap-16 items-start">
-          {/* ── Left column ── */}
+        <div className="hidden lg:grid grid-cols-2 gap-12 xl:gap-16 items-stretch">
           <div className="flex flex-col items-start text-left">
             <div
               className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-6 text-xs font-semibold uppercase tracking-widest border ${t.badge}`}
@@ -973,7 +936,6 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* ── Right column ── */}
           <div
             className="flex flex-col gap-5 pt-14"
             style={au("heroSlideRight", 0.15, "0.7s", reduced)}

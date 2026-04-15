@@ -34,6 +34,7 @@ import dynamic from "next/dynamic";
 import useHaptic from "@/lib/haptic";
 import useGlobalHaptics from "@/lib/useGlobalHaptics";
 import BrandAmbassador from "./components/BrandAmbassador";
+import Team from "./components/Team";
 
 /* ─────────────────────────────────────────────────────────────
    IMPORTS
@@ -52,7 +53,7 @@ const Skills       = dynamic(() => import("./components/Skills"),       { ssr: f
 const Projects     = dynamic(() => import("./components/Projects"),     { ssr: false });
 const Services     = dynamic(() => import("./components/Services"),     { ssr: false });
 const MakeWeb      = dynamic(() => import("./components/MakeWeb"),      { ssr: false });
-const Team         = dynamic(() => import("./components/Team"),         { ssr: false });
+const Ceo      = dynamic(() => import("./components/Ceo"),         { ssr: false });
 const Testimonials = dynamic(() => import("./components/Testimonials"), { ssr: false });
 const Offer        = dynamic(() => import("./components/Offer"),        { ssr: false });
 
@@ -69,7 +70,7 @@ const HEIGHTS = {
   Projects:     820,
   Services:     700,
   MakeWeb:      480,
-  Team:         620,
+  Ceo:         620,
   Testimonials: 500,
   Offer:        420,
 };
@@ -161,9 +162,10 @@ export default function Home() {
       <LazySection Component={Skills}       minHeight={HEIGHTS.Skills}       id="skills"       />
       <LazySection Component={Projects}     minHeight={HEIGHTS.Projects}     id="projects"     limit={3} />
       <LazySection Component={Services}     minHeight={HEIGHTS.Services}     id="services"     />
+      <Team />
       <LazySection Component={MakeWeb}      minHeight={HEIGHTS.MakeWeb}      id="make-web"     />
       <BrandAmbassador />
-      <LazySection Component={Team}         minHeight={HEIGHTS.Team}         id="team"         />
+      <LazySection Component={Ceo}         minHeight={HEIGHTS.Ceo}         id="ceo"         />
       <LazySection Component={Testimonials} minHeight={HEIGHTS.Testimonials} id="testimonials" />
       <LazySection Component={Offer}        minHeight={HEIGHTS.Offer}        id="offer"        />
     </>

@@ -7,14 +7,10 @@ import { useTheme } from "../components/ThemeProvider";
 
 const CONTACT_EMAILS = [
   "shahnawazsaddamb@gmail.com",
-  "wahbamir2010@gmail.com",
   "dev.buttnetworks@gmail.com",
 ];
-const CLIENT_PORTAL = "https://dashboard.wahb.space" || "#";
-const CLIENT_QUOTE = `${CLIENT_PORTAL}#request-quote`;
 
 const teamGitHub = [
-  { name: "Wahb Amir", url: "https://github.com/wahb-amir" },
   { name: "shahnawaz", url: "https://github.com/ShahanwazSaddam144" },
 ];
 
@@ -127,63 +123,6 @@ const Contact = () => {
         >
           Contact Our Team
         </h1>
-
-        {/* Portal card */}
-        <div
-          className={`rounded-xl p-4 flex flex-col items-center text-center gap-3 mb-6 ${cardBg} ${cardText}`}
-          role="note"
-          aria-label="Client portal information"
-          style={{
-            border: `1px solid ${isDarkMode ? "#1f2937" : "#e2e8f0"}`,
-            boxShadow: isDarkMode
-              ? "0 6px 18px rgba(2,6,23,0.6)"
-              : "0 6px 18px rgba(0,0,0,0.06)",
-          }}
-        >
-          <div>
-            <h3 className="text-sm font-semibold">
-              Client portal is live — manage projects & request quotes ✨
-            </h3>
-            <p className={`${subtleText} text-xs mt-2 max-w-lg mx-auto`}>
-              If you’re a client, request a quote or open the portal for
-              tracking. The form still works for quick messages.
-            </p>
-          </div>
-
-          <div className="flex flex-wrap items-center justify-center gap-3 mt-2">
-            <a
-              href={CLIENT_QUOTE}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-4 py-2 text-sm rounded-md font-medium shadow-sm"
-              aria-label="Request a quote"
-              style={{
-                backgroundColor: "#0ea5e9",
-                color: isDarkMode ? "#0f172a" : "#fff",
-                boxShadow: isDarkMode
-                  ? "0 6px 18px rgba(14,165,233,0.16)"
-                  : "0 6px 18px rgba(14,165,233,0.2)",
-              }}
-            >
-              Request a quote
-            </a>
-
-            <a
-              href={CLIENT_PORTAL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-4 py-2 text-sm rounded-md font-medium border"
-              aria-label="Open client portal"
-              style={{
-                borderColor: isDarkMode ? "#0f172a" : "#e6eef6",
-                backgroundColor: isDarkMode ? "#111827" : "#fff",
-                color: isDarkMode ? "#e6eef6" : "#000000",
-              }}
-            >
-              Open portal
-            </a>
-          </div>
-        </div>
 
         {/* emails + quick actions */}
         <div className="mb-6">
