@@ -65,11 +65,11 @@ const BrandAmbassador = () => {
           <div className="BrandAmbassador-ImageSection ml-5 flex justify-center">
             <div className="BrandAmbassador-ImageContainer relative">
               <Image
-                src={"/Ambassador.jpeg"}
+                src={"/ambassador.jpeg"}
                 alt="Brand Ambassador"
                 width={180}
                 height={180}
-                className="BrandAmbassador-Image rounded-xl shadow-lg object-cover"
+                className="BrandAmbassador-Image w-[250px] h-[250px] rounded-xl shadow-lg object-cover"
                 priority
               />
               <span className="BrandAmbassador-Verified absolute bottom-0 right-0 bg-blue-500 text-white text-xs px-2 py-1 rounded">

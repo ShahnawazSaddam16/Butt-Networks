@@ -1,6 +1,6 @@
 "use client";
-import { projects } from "../app/data/projects";
-import Projects from "../app/components/Projects";
+import { projects } from "../data/projects";
+import Projects from "./Projects";
 import { useParams } from "next/navigation";
 
 export default function ProjectCaseStudy() {
