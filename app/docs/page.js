@@ -416,7 +416,7 @@ export default function ButtLangDocsPage() {
                     A modern docs page for a language with zero shame and maximum cheek.
                   </h1>
                   <p className={cn("mt-5 max-w-2xl text-base leading-7 sm:text-lg", isDarkMode ? "text-slate-400" : "text-slate-600")}>
-                    Butt Lang is a tiny meme language built to feel like a real dev tool. It has a CLI, a fake terminal moment, playful keywords, and enough structure to make the joke land hard.
+                    Introducing Butt Lang — a lightweight experimental programming language designed to simulate the structure and workflow of real-world developer tools. It includes a CLI, a terminal-style execution environment, and a minimal syntax focused on simplicity and readability, while still maintaining a playful design layer underneath.
                   </p>
 
                   <div className="mt-7 flex flex-wrap gap-3">
