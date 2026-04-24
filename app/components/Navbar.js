@@ -15,6 +15,7 @@ import {
   Phone,
   HomeIcon,
   MessageSquareQuote,
+  BookOpen,
 } from "lucide-react";
 
 const Navbar = () => {
@@ -31,7 +32,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 Navbar left-0 w-full p-4 z-10 border-b transition-colors duration-200 ${
+      className={`fixed top-0 left-0 w-full p-4 z-[60] border-b transition-colors duration-200 ${
         isDarkMode
           ? "bg-gray-900 border-gray-700 text-white"
           : "bg-gray-50 border-gray-200 text-gray-900"
@@ -54,6 +55,12 @@ const Navbar = () => {
           <li>
             <Link href="/" className={`${linkBase} ${linkStyle}`}>
               <HomeIcon size={18} /> Home
+            </Link>
+          </li>
+
+          <li>
+            <Link href="/docs" className={`${linkBase} ${linkStyle}`}>
+              <BookOpen size={18} /> Docs
             </Link>
           </li>
 
@@ -87,7 +94,6 @@ const Navbar = () => {
             </Link>
           </li>
 
-          {/* Dark Mode Toggle */}
           <li>
             <button
               onClick={toggle}
@@ -123,11 +129,19 @@ const Navbar = () => {
             <Link
               href="/"
               onClick={() => setIsOpen(false)}
-              className={`flex items-center justify-center gap-2 px-3 py-2 rounded-lg transition-all duration-200 ${
-                linkStyle
-              }`}
+              className={`flex items-center justify-center gap-2 px-3 py-2 rounded-lg transition-all duration-200 ${linkStyle}`}
             >
               <HomeIcon size={18} /> Home
+            </Link>
+          </li>
+
+          <li>
+            <Link
+              href="/docs"
+              onClick={() => setIsOpen(false)}
+              className={`flex items-center justify-center gap-2 px-3 py-2 rounded-lg transition-all duration-200 ${linkStyle}`}
+            >
+              <BookOpen size={18} /> Docs
             </Link>
           </li>
 
@@ -143,7 +157,7 @@ const Navbar = () => {
 
           <li>
             <Link
-              href="/Projects"
+              href="/projects"
               onClick={() => setIsOpen(false)}
               className={`flex items-center justify-center gap-2 px-3 py-2 rounded-lg transition-all duration-200 ${linkStyle}`}
             >
@@ -153,7 +167,7 @@ const Navbar = () => {
 
           <li>
             <Link
-              href="#testimonials"
+              href="/#testimonials"
               onClick={() => setIsOpen(false)}
               className={`flex items-center justify-center gap-2 px-3 py-2 rounded-lg transition-all duration-200 ${linkStyle}`}
             >
@@ -163,7 +177,7 @@ const Navbar = () => {
 
           <li>
             <Link
-              href="/#founder"
+              href="/#team"
               onClick={() => setIsOpen(false)}
               className={`flex items-center justify-center gap-2 px-3 py-2 rounded-lg transition-all duration-200 ${linkStyle}`}
             >

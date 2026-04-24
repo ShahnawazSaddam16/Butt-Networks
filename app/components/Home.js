@@ -34,7 +34,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, MapPin, Sparkles, Zap } from "lucide-react";
 import { useTheme } from "./ThemeProvider";
-
+import { useRouter } from "next/navigation";
 /* ─────────────────────────────────────────────────────────────
    LAZY IMPORTS  — only Typewriter is lazy (already was before)
    ───────────────────────────────────────────────────────────── */
@@ -312,6 +312,29 @@ const SubLinks = ({ t }) => (
     </a>
   </div>
 );
+
+const LaunchNotice = ({ t }) => {
+  const router = useRouter();
+
+  return (
+    <div
+      onClick={() => router.push("/docs")}
+      className={`inline-flex cursor-pointer items-center gap-2 px-4 py-2 rounded-2xl border text-sm font-medium shadow-sm transition hover:scale-[1.02] active:scale-[0.98] ${t.card} ${t.text}`}
+      style={{
+        boxShadow: "0 8px 24px rgba(0,0,0,.08)",
+        backdropFilter: "blur(10px)",
+      }}
+    >
+      <span className="text-lg">🍑</span>
+      <span>
+        We are introducing a new programming language — <b>Butt</b>.
+        <span className="ml-1 opacity-80">
+          Finally, code with more cheek than syntax.
+        </span>
+      </span>
+    </div>
+  );
+};
 
 /* ─────────────────────────────────────────────────────────────
    BACKGROUND ORBS  — CSS-only, no framer, no filter:blur
@@ -683,7 +706,13 @@ const AuthorCard = memo(
         />
       </div>
       <div className="flex-1 min-w-0">
+<<<<<<< HEAD
         <p className={`text-sm font-bold ${t.heading}`}>Wahb &amp; Shahnawaz</p>
+=======
+        <p className={`text-sm font-bold ${t.heading}`}>
+          Shahnawaz Saddam Butt
+        </p>
+>>>>>>> 2166703 (feat(docs): modernize Butt Lang docs with dark/light mode, improved layout, and UI fixes)
         <p className={`text-xs mt-0.5 ${t.sub}`}>
           {compact
             ? "Design · Full-Stack · Asia"
@@ -835,6 +864,10 @@ export default function Hero() {
               Available for new projects
             </div>
 
+            <div style={au("heroFadeUp", 0.1, "0.55s", reduced)}>
+              <LaunchNotice t={t} />
+            </div>
+
             {/* Heading */}
             <h1
               className={`text-3xl sm:text-4xl font-black leading-[1.1] tracking-tight ${t.heading}`}
@@ -914,6 +947,13 @@ export default function Hero() {
             >
               <PulseDot />
               Available for new projects
+            </div>
+
+            <div
+              className="mb-5"
+              style={au("heroFadeUp", 0.08, "0.55s", reduced)}
+            >
+              <LaunchNotice t={t} />
             </div>
 
             <h1
