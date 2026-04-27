@@ -706,13 +706,8 @@ const AuthorCard = memo(
         />
       </div>
       <div className="flex-1 min-w-0">
-<<<<<<< HEAD
         <p className={`text-sm font-bold ${t.heading}`}>Wahb &amp; Shahnawaz</p>
-=======
-        <p className={`text-sm font-bold ${t.heading}`}>
-          Shahnawaz Saddam Butt
-        </p>
->>>>>>> 2166703 (feat(docs): modernize Butt Lang docs with dark/light mode, improved layout, and UI fixes)
+       
         <p className={`text-xs mt-0.5 ${t.sub}`}>
           {compact
             ? "Design · Full-Stack · Asia"
