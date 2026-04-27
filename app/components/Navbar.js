@@ -58,11 +58,11 @@ const Navbar = () => {
             </Link>
           </li>
 
-          <li>
+          {/* <li>
             <Link href="/docs" className={`${linkBase} ${linkStyle}`}>
               <BookOpen size={18} /> Docs
             </Link>
-          </li>
+          </li> */}
 
           <li>
             <Link href="/#About" className={`${linkBase} ${linkStyle}`}>
