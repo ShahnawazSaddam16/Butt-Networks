@@ -362,7 +362,7 @@ const useTeamData = () =>
   useMemo(
     () => [
       {
-        name: "Ayesha ",
+        name: "Shahanawaz Saddam Butt",
         role: "Founder & Full-Stack Developer",
         roleIcon: <Code size={14} />,
         image: "/developer.jpg",
