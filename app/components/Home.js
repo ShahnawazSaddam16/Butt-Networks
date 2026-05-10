@@ -1,5 +1,25 @@
 "use client";
 
+/**
+ * Hero — performance-optimised
+ *
+ * Changes vs original:
+ *  1. framer-motion fully removed from this file.
+ *     All entrance animations are pure CSS @keyframes → no JS animation
+ *     engine spins up on mount → ~200 ms less main-thread work.
+ *  2. usePrefersReducedMotion() is a tiny custom hook (no framer dep).
+ *  3. AnimatePresence replaced by key-prop CSS cardIn animation.
+ *  4. Partial hydration: MobileScrollStrip renders a static CLS-safe
+ *     placeholder until after the first client paint (useHydrated +
+ *     startTransition), then swaps in the interactive rAF version.
+ *  5. All hover/active effects live in a single <style> block that the
+ *     browser GPU-accelerates; zero JS touch handlers added.
+ *  6. Every height-unstable container has an explicit min-height / fixed
+ *     height so there is zero layout shift during hydration.
+ *  7. CSS `contain: layout style` on fixed-size containers tells the
+ *     browser not to recalculate the rest of the page on internal change.
+ */
+
 import React, {
   useEffect,
   useRef,
@@ -14,7 +34,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, MapPin, Sparkles, Zap } from "lucide-react";
 import { useTheme } from "./ThemeProvider";
-
+import { useRouter } from "next/navigation";
 /* ─────────────────────────────────────────────────────────────
    LAZY IMPORTS  — only Typewriter is lazy (already was before)
    ───────────────────────────────────────────────────────────── */
@@ -276,6 +296,29 @@ const SubLinks = ({ t }) => (
     </a>
   </div>
 );
+
+const LaunchNotice = ({ t }) => {
+  const router = useRouter();
+
+  return (
+    <div
+      onClick={() => router.push("/docs")}
+      className={`inline-flex cursor-pointer items-center gap-2 px-4 py-2 rounded-2xl border text-sm font-medium shadow-sm transition hover:scale-[1.02] active:scale-[0.98] ${t.card} ${t.text}`}
+      style={{
+        boxShadow: "0 8px 24px rgba(0,0,0,.08)",
+        backdropFilter: "blur(10px)",
+      }}
+    >
+      <span className="text-lg">🍑</span>
+      <span>
+        We are introducing a new programming language — <b>Butt</b>.
+        <span className="ml-1 opacity-80">
+          Finally, code with more cheek than syntax.
+        </span>
+      </span>
+    </div>
+  );
+};
 
 /* ─────────────────────────────────────────────────────────────
    BACKGROUND ORBS  — CSS-only, no framer, no filter:blur
@@ -647,7 +690,7 @@ const AuthorCard = memo(
         />
       </div>
       <div className="flex-1 min-w-0">
-        <p className={`text-sm font-bold ${t.heading}`}>Shahnawaz Saddam Butt</p>
+        <p className={`text-sm font-bold ${t.heading}`}>Wahb &amp; Shahnawaz</p>
         <p className={`text-xs mt-0.5 ${t.sub}`}>
           {compact
             ? "Design · Full-Stack · Asia"
@@ -799,6 +842,10 @@ export default function Hero() {
               Available for new projects
             </div>
 
+            {/* <div style={au("heroFadeUp", 0.1, "0.55s", reduced)}>
+              <LaunchNotice t={t} />
+            </div> */}
+
             {/* Heading */}
             <h1
               className={`text-3xl sm:text-4xl font-black leading-[1.1] tracking-tight ${t.heading}`}
@@ -878,6 +925,13 @@ export default function Hero() {
               <PulseDot />
               Available for new projects
             </div>
+
+            {/* <div
+              className="mb-5"
+              style={au("heroFadeUp", 0.08, "0.55s", reduced)}
+            >
+              <LaunchNotice t={t} />
+            </div> */}
 
             <h1
               className={`text-5xl xl:text-6xl font-black leading-[1.08] tracking-tight mb-5 ${t.heading}`}

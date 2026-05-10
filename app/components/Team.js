@@ -139,36 +139,232 @@ const Team = () => {
             </div>
           </div>
         </div>
-      )}
+      </motion.div>
+    </motion.div>
+  );
+};
 
-      {/* Animations */}
-      <style jsx>{`
-        .animate-fadeIn {
-          animation: fadeIn 0.3s ease;
-        }
-        .animate-scaleIn {
-          animation: scaleIn 0.3s ease;
-        }
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-          }
-          to {
-            opacity: 1;
-          }
-        }
-        @keyframes scaleIn {
-          from {
-            transform: scale(0.9);
-            opacity: 0;
-          }
-          to {
-            transform: scale(1);
-            opacity: 1;
-          }
-        }
-      `}</style>
-    </>
+/* ─── Data ───────────────────────────────────────────────── */
+// (Keep your existing useTeamData hook exactly as it is)
+const useTeamData = () =>
+  useMemo(
+    () => [
+      {
+        name: "Shahnawaz Saddam Butt",
+        role: "Founder & Full-Stack Developer",
+        roleIcon: <Code size={14} />,
+        image: "/developer.jpg",
+        githubUrl: "https://github.com/ShahanwazSaddam144",
+        profileUrl: "https://shahnawaz.buttnetworks.com/",
+        accent: "#3b82f6",
+        accentEnd: "#6366f1",
+        bio: "Founder and full-stack developer specialising in the MERN stack. Leads frontend architecture while bridging clean interfaces with robust backends and cross-platform mobile apps.",
+        skillGroups: [
+          {
+            label: "Frontend",
+            icon: <Globe size={11} />,
+            skills: [
+              { name: "Next.js", icon: <SiNextdotjs />, category: "Frontend" },
+              {
+                name: "React",
+                icon: <FaReact className="text-cyan-400" />,
+                category: "Frontend",
+              },
+              {
+                name: "TypeScript",
+                icon: <SiTypescript className="text-blue-500" />,
+                category: "Frontend",
+              },
+              {
+                name: "React Native",
+                icon: <SiReact className="text-sky-400" />,
+                category: "Frontend",
+              },
+              {
+                name: "Tailwind",
+                icon: <SiTailwindcss className="text-sky-500" />,
+                category: "Frontend",
+              },
+            ],
+          },
+          {
+            label: "Backend & Infra",
+            icon: <Server size={11} />,
+            skills: [
+              {
+                name: "Node.js",
+                icon: <FaNodeJs className="text-green-500" />,
+                category: "Backend",
+              },
+              {
+                name: "Python",
+                icon: <FaPython className="text-blue-500" />,
+                category: "Backend",
+              },
+              {
+                name: "MongoDB",
+                icon: <SiMongodb className="text-green-600" />,
+                category: "Database",
+              },
+              {
+                name: "Docker",
+                icon: <FaDocker className="text-blue-400" />,
+                category: "DevOps",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        name: "Wahb Amir",
+        role: "Co-Founder & Technical Lead",
+        roleIcon: <Database size={14} />,
+        image: "/developer2.svg",
+        profileUrl: "https://wahb.space",
+        githubUrl: "https://github.com/wahb-amir",
+        accent: "#a855f7",
+        accentEnd: "#3b82f6",
+        bio: "Co-founder and technical lead driving system design, backend APIs, AI/ML pipelines, and DevOps. Ensures every product ships scalable, secure, and production-ready — across the full stack.",
+        skillGroups: [
+          {
+            label: "Frontend",
+            icon: <Globe size={11} />,
+            skills: [
+              { name: "Next.js", icon: <SiNextdotjs />, category: "Frontend" },
+              {
+                name: "TypeScript",
+                icon: <SiTypescript className="text-blue-500" />,
+                category: "Frontend",
+              },
+              {
+                name: "Framer",
+                icon: <Layers size={12} className="text-pink-400" />,
+                category: "Frontend",
+              },
+            ],
+          },
+          {
+            label: "Backend & AI",
+            icon: <Server size={11} />,
+            skills: [
+              {
+                name: "Node.js",
+                icon: <FaNodeJs className="text-green-500" />,
+                category: "Backend",
+              },
+              {
+                name: "Python",
+                icon: <FaPython className="text-blue-500" />,
+                category: "Backend",
+              },
+              {
+                name: "PyTorch",
+                icon: <SiPytorch className="text-orange-500" />,
+                category: "AI",
+              },
+              {
+                name: "C++",
+                icon: <SiCplusplus className="text-blue-600" />,
+                category: "Backend",
+              },
+              {
+                name: "PostgreSQL",
+                icon: <SiPostgresql className="text-sky-600" />,
+                category: "Database",
+              },
+            ],
+          },
+          {
+            label: "DevOps",
+            icon: <GitBranch size={11} />,
+            skills: [
+              {
+                name: "Docker",
+                icon: <FaDocker className="text-blue-400" />,
+                category: "DevOps",
+              },
+              {
+                name: "Nginx",
+                icon: <Zap size={12} className="text-green-400" />,
+                category: "DevOps",
+              },
+              {
+                name: "Actions",
+                icon: <GitBranch size={12} className="text-gray-400" />,
+                category: "DevOps",
+              },
+            ],
+          },
+        ],
+      },
+    ],
+    [],
+  );
+
+/* ─── Export ─────────────────────────────────────────────── */
+const Team = () => {
+  const { isDarkMode } = useTheme();
+  const members = useTeamData();
+
+  return (
+    <section id="team" className={`mt-10 py-20 px-4 ${customFont.className}`}>
+      {/* Header */}
+      <motion.div
+        className="text-center mb-16"
+        initial={{ opacity: 0, y: -18 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: EASE }}
+      >
+        <motion.div
+          className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-bold uppercase tracking-widest mb-6 border"
+          style={{
+            color: "#3b82f6",
+            borderColor: "#3b82f640",
+            backgroundColor: "#3b82f60d",
+          }}
+          initial={{ scale: 0.88, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ delay: 0.1 }}
+        >
+          <User2 size={12} /> Leadership Team
+        </motion.div>
+
+        <h1
+          className={`text-4xl md:text-5xl font-black tracking-tight mb-5 ${isDarkMode ? "text-slate-100" : "text-gray-900"}`}
+        >
+          The People Behind{" "}
+          <span className="bg-gradient-to-r from-blue-500 to-violet-500 bg-clip-text text-transparent">
+            the Work
+          </span>
+        </h1>
+
+        <p
+          className={`max-w-lg mx-auto text-[15px] leading-relaxed ${isDarkMode ? "text-slate-400" : "text-gray-500"}`}
+        >
+          Full-stack builders covering frontend, backend, AI pipelines, and
+          infrastructure — end to end.
+        </p>
+
+        <motion.div
+          className="h-1 w-16 bg-gradient-to-r from-blue-500 to-violet-500 mx-auto mt-6 rounded-full"
+          initial={{ scaleX: 0 }}
+          animate={{ scaleX: 1 }}
+          transition={{ delay: 0.32, duration: 0.55, ease: EASE }}
+        />
+      </motion.div>
+
+      {/* Cards */}
+      <div className="max-w-5xl mx-auto space-y-10">
+        {members.map((m, i) => (
+          <MemberCard
+            key={m.name}
+            member={m}
+            index={i}
+            isDarkMode={isDarkMode}
+          />
+        ))}
+      </div>
+    </section>
   );
 };
 
