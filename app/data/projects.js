@@ -165,7 +165,7 @@ export const projects = [
     id: "Get-a-Developer",
     heading: "Get-a-Developer",
     description: "A modern platform built to connect clients with skilled developers across various technologies. Discover, chat, and hire trusted professionals with ease, explore portfolios, and collaborate securely — all in one place designed to streamline your development needs and accelerate project success.",
-    demoLink: "",
+    demoLink: "https://get-a-developer.buttnetworks.com/",
     githubLink: "https://github.com/ShahanwazSaddam144/get-a-developer2",
     githubLink: "https://github.com/ShahanwazSaddam144/get-a-developer2",
 
@@ -191,5 +191,36 @@ export const projects = [
       "User, content, and system management from a centralized panel",
     ],
     priority: 9.5,
+  },
+      {
+    id: "Opinion-Nest",
+    heading: "Opinion-Nest",
+    description: "Welcome to Opinion Nest by Butt Networks a modern AI-powered discussion and collaboration platform designed to help users share opinions, explore insights, and connect through meaningful conversations. The platform enables communities, creators, and professionals to engage in smart discussions, discover trending perspectives, and interact.",
+    demoLink: "https://opinion-nest.buttnetworks.com/",
+    githubLink: "https://github.com/ShahanwazSaddam144/opinion-nest",
+    githubLink: "https://github.com/ShahanwazSaddam144/opinion-nest",
+
+    images: [
+      "/projects/OpinionNest/image1.png",
+      "/projects/OpinionNest/image2.png",
+      "/projects/OpinionNest/image3.png",
+    ],
+    tech: ["Next.js", "Node.js", "MongoDB", "Express", "Tailwind CSS"],
+    authors: [
+      {
+        name: "Shahnawaz Butt",
+        role: "Full Stack",
+        portfolio: "https://shahnawaz.buttnetworks.com",
+      },
+    ],
+    startDate: "May 5, 2026",
+    endDate: "May 10, 2026",
+    status: "completed",
+    highlights: [
+      "Role-based admin access with secure authentication",
+      "Real-time Dashboard analytics and activity monitoring",
+      "User, content, and system management from a centralized panel",
+    ],
+    priority: 8,
   },
 ];
