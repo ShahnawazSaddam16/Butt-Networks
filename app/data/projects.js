@@ -192,7 +192,7 @@ export const projects = [
     ],
     priority: 9.5,
   },
-      {
+    {
     id: "Opinion-Nest",
     heading: "Opinion-Nest",
     description: "Welcome to Opinion Nest by Butt Networks a modern AI-powered discussion and collaboration platform designed to help users share opinions, explore insights, and connect through meaningful conversations. The platform enables communities, creators, and professionals to engage in smart discussions, discover trending perspectives, and interact.",
