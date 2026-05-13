@@ -55,7 +55,7 @@ const MakeWeb      = dynamic(() => import("./components/MakeWeb"),      { ssr: f
 const Ceo      = dynamic(() => import("./components/Ceo"),         { ssr: false });
 const Testimonials = dynamic(() => import("./components/Testimonials"), { ssr: false });
 const Offer        = dynamic(() => import("./components/Offer"),        { ssr: false });
-
+const Chatbot = dynamic(() => import("./components/Chatbot"),       { ssr: false });
 /* ─────────────────────────────────────────────────────────────
    PLACEHOLDER HEIGHTS
    Approximate rendered heights (px) per section.
@@ -166,6 +166,7 @@ export default function Home() {
       <LazySection Component={Ceo}         minHeight={HEIGHTS.Ceo}         id="ceo"         />
       <LazySection Component={Testimonials} minHeight={HEIGHTS.Testimonials} id="testimonials" />
       <LazySection Component={Offer}        minHeight={HEIGHTS.Offer}        id="offer"        />
+      <Chatbot />
     </>
   );
 }
