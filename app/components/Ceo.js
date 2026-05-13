@@ -435,7 +435,7 @@ const Ceo = () => {
   const members = useTeamData();
 
   return (
-    <section className={`mt-10 py-20 px-4 ${customFont.className}`}>
+    <section className={`mt-10 py-20 px-4 ${customFont.className}`} id="team">
       {/* Header */}
       <motion.div
         className="text-center mb-16"

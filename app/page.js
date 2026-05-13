@@ -34,7 +34,6 @@ import dynamic from "next/dynamic";
 import useHaptic from "@/lib/haptic";
 import useGlobalHaptics from "@/lib/useGlobalHaptics";
 import BrandAmbassador from "./components/BrandAmbassador";
-import Team from "./components/Team";
 
 /* ─────────────────────────────────────────────────────────────
    IMPORTS
@@ -162,7 +161,6 @@ export default function Home() {
       <LazySection Component={Skills}       minHeight={HEIGHTS.Skills}       id="skills"       />
       <LazySection Component={Projects}     minHeight={HEIGHTS.Projects}     id="projects"     limit={3} />
       <LazySection Component={Services}     minHeight={HEIGHTS.Services}     id="services"     />
-      <Team />
       <LazySection Component={MakeWeb}      minHeight={HEIGHTS.MakeWeb}      id="make-web"     />
       <BrandAmbassador />
       <LazySection Component={Ceo}         minHeight={HEIGHTS.Ceo}         id="ceo"         />
