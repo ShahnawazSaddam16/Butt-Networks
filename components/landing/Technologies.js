@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   SiNextdotjs,
   SiSupabase,
@@ -9,9 +9,15 @@ import {
   SiPostgresql,
   SiNodedotjs,
   SiVercel,
+  SiJavascript,
+  SiMongodb,
 } from 'react-icons/si';
-import { Zap } from 'lucide-react';
+import { Zap, Server, ArrowLeft, ArrowRight } from 'lucide-react';
 import { Sora, Inter } from 'next/font/google';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
 
 const sora = Sora({
   subsets: ['latin'],
@@ -42,8 +48,8 @@ const technologies = [
     desc: 'Ultra-low-latency AI inference, so the AI features we build feel instant instead of laggy.',
   },
   {
-    icon: SiTypescript,
-    name: 'TypeScript',
+    icon: SiJavascript,
+    name: 'JavaScript',
     desc: 'Type-safe code across the stack, catching bugs before they ever reach production.',
   },
   {
@@ -64,12 +70,24 @@ const technologies = [
   {
     icon: SiVercel,
     name: 'Vercel',
-    desc: 'Where our apps are deployed and served, built for instant global delivery.',
+    desc: 'Where our frontend projects get deployed and served, built for instant global delivery.',
+  },
+  {
+    icon: SiMongodb,
+    name: 'MongoDB',
+    desc: 'A flexible NoSQL database we reach for when a project needs schema-less, document-based data.',
+  },
+  {
+    icon: Server,
+    name: 'VPS Hosting',
+    desc: 'Self-managed VPS hosting for projects that need full control over the server and environment.',
   },
 ];
 
 const Technologies = () => {
   const [mounted, setMounted] = useState(false);
+  const prevRef = useRef(null);
+  const nextRef = useRef(null);
 
   useEffect(() => {
     setMounted(true);
@@ -97,29 +115,64 @@ const Technologies = () => {
           </p>
         </div>
 
-        <div className='grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6'>
-          {technologies.map((tech, index) => {
-            const Icon = tech.icon;
-            return (
-              <div
-                key={tech.name}
-                style={{ transitionDelay: mounted ? `${index * 80}ms` : '0ms' }}
-                className={`group relative bg-slate-800/40 border border-slate-800 hover:border-cyan-600/60 rounded-xl p-6 flex flex-col items-center text-center gap-4 transition-all duration-700 ease-out hover:-translate-y-2 hover:shadow-xl hover:shadow-cyan-600/10 ${
-                  mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-                }`}
-              >
-                <div className='w-14 h-14 rounded-xl bg-cyan-600/10 border border-cyan-600/30 flex items-center justify-center text-cyan-400 transition-all duration-500 group-hover:bg-cyan-600/20 group-hover:rotate-6 group-hover:scale-110'>
-                  <Icon size={26} />
-                </div>
+        <div
+          className={`transition-all duration-700 ease-out ${
+            mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+          }`}
+        >
+          <Swiper
+            modules={[Navigation]}
+            navigation={{ prevEl: prevRef.current, nextEl: nextRef.current }}
+            onBeforeInit={(swiper) => {
+              swiper.params.navigation.prevEl = prevRef.current;
+              swiper.params.navigation.nextEl = nextRef.current;
+            }}
+            spaceBetween={20}
+            slidesPerView={1.3}
+            breakpoints={{
+              480: { slidesPerView: 2.2 },
+              768: { slidesPerView: 3 },
+              1024: { slidesPerView: 4 },
+              1280: { slidesPerView: 5 },
+            }}
+            className='!pb-2 items-stretch'
+          >
+            {technologies.map((tech) => {
+              const Icon = tech.icon;
+              return (
+                <SwiperSlide key={tech.name} className='h-auto'>
+                  <div className='group relative bg-slate-800/40 border border-slate-800 hover:border-cyan-600/60 rounded-xl p-6 flex flex-col items-center text-center gap-4 h-60 transition-all duration-500 hover:-translate-y-2 hover:shadow-xl hover:shadow-cyan-600/10'>
+                    <div className='w-14 h-14 rounded-xl bg-cyan-600/10 border border-cyan-600/30 flex items-center justify-center text-cyan-400 transition-all duration-500 group-hover:bg-cyan-600/20 group-hover:rotate-6 group-hover:scale-110'>
+                      <Icon size={26} />
+                    </div>
 
-                <h3 className={`${sora.className} text-white text-base font-bold`}>{tech.name}</h3>
+                    <h3 className={`${sora.className} text-white text-base font-bold`}>{tech.name}</h3>
 
-                <p className='text-slate-400 text-xs leading-relaxed'>{tech.desc}</p>
+                    <p className='text-slate-400 text-xs leading-relaxed'>{tech.desc}</p>
 
-                <div className='pointer-events-none absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-t from-cyan-600/10 via-transparent to-transparent' />
-              </div>
-            );
-          })}
+                    <div className='pointer-events-none absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-t from-cyan-600/10 via-transparent to-transparent' />
+                  </div>
+                </SwiperSlide>
+              );
+            })}
+          </Swiper>
+
+          <div className='flex items-center justify-center gap-4 mt-10'>
+            <button
+              ref={prevRef}
+              aria-label='Previous technologies'
+              className='w-11 h-11 rounded-full border border-slate-700 hover:border-cyan-600/60 text-slate-300 hover:text-cyan-400 flex items-center justify-center transition-all duration-200 hover:bg-cyan-600/10'
+            >
+              <ArrowLeft size={18} />
+            </button>
+            <button
+              ref={nextRef}
+              aria-label='Next technologies'
+              className='w-11 h-11 rounded-full border border-slate-700 hover:border-cyan-600/60 text-slate-300 hover:text-cyan-400 flex items-center justify-center transition-all duration-200 hover:bg-cyan-600/10'
+            >
+              <ArrowRight size={18} />
+            </button>
+          </div>
         </div>
       </div>
     </section>
