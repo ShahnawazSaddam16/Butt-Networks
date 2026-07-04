@@ -4,6 +4,14 @@ html {
   scroll-behavior: smooth;
 }
 
-body{
-  @apply bg-slate-950
+body {
+  @apply bg-slate-950 text-white;
+  background-image:
+    radial-gradient(ellipse 80% 50% at 20% -10%, rgba(8, 145, 178, 0.18), transparent),
+    radial-gradient(ellipse 60% 50% at 100% 20%, rgba(8, 145, 178, 0.12), transparent),
+    linear-gradient(rgba(148, 163, 184, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.06) 1px, transparent 1px);
+  background-size: auto, auto, 48px 48px, 48px 48px;
+  background-attachment: fixed;
+  background-repeat: no-repeat, no-repeat, repeat, repeat;
 }

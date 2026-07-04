@@ -5,6 +5,19 @@ import Link from 'next/link';
 import { Mail, Menu, X } from 'lucide-react';
 import { FaWhatsapp } from 'react-icons/fa';
 import Image from 'next/image';
+import { Sora, Inter } from 'next/font/google';
+
+const sora = Sora({
+  subsets: ['latin'],
+  weight: ['600', '700', '800'],
+  display: 'swap',
+});
+
+const inter = Inter({
+  subsets: ['latin'],
+  weight: ['400', '500', '600'],
+  display: 'swap',
+});
 
 const navLinks = [
   { name: 'Home', href: '#home' },
@@ -18,15 +31,17 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className='bg-slate-900/95 backdrop-blur-md border-b border-slate-800 sticky top-0 z-50 w-full'>
+    <nav className={`${inter.className} bg-slate-900/95 backdrop-blur-md border-b border-slate-800 fixed top-0 left-0 z-50 w-full`}>
       <div className='max-w-7xl mx-auto flex items-center justify-between h-20 px-6 lg:px-10'>
         <div className='flex items-center gap-3'>
-          <Image src='/butt.png' 
-          width={130}
-          height={130}
-          alt='Butt Networks logo'
-           className='h-10 w-10 rounded-full border-2 border-cyan-600' />
-          <span className='text-white text-xl font-serif font-extrabold tracking-wide'>
+          <Image
+            src='/butt.png'
+            width={130}
+            height={130}
+            alt='Butt Networks logo'
+            className='h-10 w-10 rounded-full border-2 border-cyan-600'
+          />
+          <span className={`${sora.className} text-white text-xl font-extrabold tracking-wide`}>
             Butt Networks
           </span>
         </div>
@@ -36,9 +51,10 @@ const Navbar = () => {
             <Link
               key={link.name}
               href={link.href}
-              className='text-slate-300 hover:text-cyan-400 text-sm font-medium tracking-wide transition-colors duration-200'
+              className='group relative text-slate-300 hover:text-cyan-400 text-sm font-medium tracking-wide transition-colors duration-200'
             >
               {link.name}
+              <span className='absolute -bottom-1 left-0 h-[1.5px] w-0 bg-cyan-400 transition-all duration-300 group-hover:w-full' />
             </Link>
           ))}
         </div>
@@ -48,21 +64,21 @@ const Navbar = () => {
             href='https://wa.me/1234567890'
             target='_blank'
             rel='noopener noreferrer'
-            className='text-slate-300 hover:text-cyan-400 transition-colors duration-200'
+            className='text-slate-300 hover:text-cyan-400 hover:scale-110 transition-all duration-200'
           >
             <FaWhatsapp size={22} />
           </a>
 
           <a
             href='mailto:hello@buttnetworks.dev'
-            className='text-slate-300 hover:text-cyan-400 transition-colors duration-200'
+            className='text-slate-300 hover:text-cyan-400 hover:scale-110 transition-all duration-200'
           >
             <Mail size={20} />
           </a>
 
           <Link
             href='#contact'
-            className='bg-cyan-600 hover:bg-cyan-700 text-slate-300 text-sm font-semibold px-5 py-2.5 rounded-md transition-colors duration-200'
+            className={`${sora.className} bg-cyan-600 hover:bg-cyan-500 text-white text-sm font-semibold px-5 py-2.5 rounded-md transition-all duration-200 hover:shadow-lg hover:shadow-cyan-600/30`}
           >
             Get in Touch
           </Link>
@@ -70,7 +86,7 @@ const Navbar = () => {
 
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className='lg:hidden text-slate-200 relative w-7 h-7 flex items-center justify-center'
+          className='lg:hidden text-slate-200 hover:text-cyan-400 relative w-7 h-7 flex items-center justify-center transition-colors duration-200'
         >
           <Menu
             size={26}
@@ -103,7 +119,7 @@ const Navbar = () => {
               href={link.href}
               onClick={() => setIsOpen(false)}
               style={{ transitionDelay: isOpen ? `${index * 60}ms` : '0ms' }}
-              className={`text-slate-300 hover:text-blue-400 text-base font-medium transition-all duration-300 ${
+              className={`text-slate-300 hover:text-cyan-400 text-base font-medium transition-all duration-300 ${
                 isOpen ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'
               }`}
             >
@@ -116,14 +132,14 @@ const Navbar = () => {
               href='https://wa.me/1234567890'
               target='_blank'
               rel='noopener noreferrer'
-              className='text-slate-300 hover:text-blue-400'
+              className='text-slate-300 hover:text-cyan-400 transition-colors duration-200'
             >
               <FaWhatsapp size={22} />
             </a>
 
             <a
               href='mailto:hello@buttnetworks.dev'
-              className='text-slate-300 hover:text-blue-400'
+              className='text-slate-300 hover:text-cyan-400 transition-colors duration-200'
             >
               <Mail size={20} />
             </a>
@@ -132,7 +148,7 @@ const Navbar = () => {
           <Link
             href='#contact'
             onClick={() => setIsOpen(false)}
-            className='bg-blue-500 hover:bg-blue-400 text-slate-900 text-sm font-semibold px-5 py-2.5 rounded-md text-center transition-colors duration-200'
+            className={`${sora.className} bg-cyan-600 hover:bg-cyan-500 text-white text-sm font-semibold px-5 py-2.5 rounded-md text-center transition-all duration-200`}
           >
             Get in Touch
           </Link>
