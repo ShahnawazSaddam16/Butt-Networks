@@ -2,8 +2,12 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
-import { Globe, Layers, Smartphone, Server, ArrowRight, Sparkles } from 'lucide-react';
+import { Globe, Layers, Smartphone, Server, BrainCircuit, ArrowRight, ArrowLeft, Sparkles } from 'lucide-react';
 import { Sora, Inter } from 'next/font/google';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
 
 const sora = Sora({
   subsets: ['latin'],
@@ -40,11 +44,18 @@ const services = [
     title: 'Backend & APIs',
     desc: 'Secure, well-structured backends and APIs that power your product end to end.',
   },
+  {
+    icon: BrainCircuit,
+    title: 'AI Integration',
+    desc: 'AI-powered features built with Supabase for data and Groq for fast, real-time inference.',
+  },
 ];
 
 const Hero = () => {
   const [keywords, setKeywords] = useState(messages[0]);
   const indexRef = useRef(0);
+  const prevRef = useRef(null);
+  const nextRef = useRef(null);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -103,7 +114,7 @@ const Hero = () => {
             <span className='text-slate-400 text-sm'>Founder, Full Control</span>
           </div>
           <div className='flex flex-col items-center gap-1'>
-            <span className={`${sora.className} text-2xl font-bold text-cyan-400`}>4+</span>
+            <span className={`${sora.className} text-2xl font-bold text-cyan-400`}>5+</span>
             <span className='text-slate-400 text-sm'>Core Service Lines</span>
           </div>
           <div className='flex flex-col items-center gap-1'>
@@ -114,22 +125,52 @@ const Hero = () => {
       </div>
 
       <div className='relative z-10 max-w-7xl mx-auto px-6 lg:px-10 pb-24'>
-        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6'>
+        <Swiper
+          modules={[Navigation]}
+          navigation={{ prevEl: prevRef.current, nextEl: nextRef.current }}
+          onBeforeInit={(swiper) => {
+            swiper.params.navigation.prevEl = prevRef.current;
+            swiper.params.navigation.nextEl = nextRef.current;
+          }}
+          spaceBetween={24}
+          slidesPerView={1}
+          breakpoints={{
+            640: { slidesPerView: 2 },
+            1024: { slidesPerView: 4 },
+          }}
+          className='!pb-2'
+        >
           {services.map((service) => {
             const Icon = service.icon;
             return (
-              <div
-                key={service.title}
-                className='group bg-slate-800/40 border border-slate-800 hover:border-cyan-600/50 rounded-xl p-6 flex flex-col gap-4 transition-all duration-300 hover:-translate-y-1'
-              >
-                <div className='w-11 h-11 rounded-lg bg-cyan-600/10 border border-cyan-600/30 flex items-center justify-center text-cyan-400 group-hover:bg-cyan-600/20 transition-colors duration-300'>
-                  <Icon size={20} />
+              <SwiperSlide key={service.title}>
+                <div className='group bg-slate-800/40 border border-slate-800 hover:border-cyan-600/50 rounded-xl p-6 flex flex-col gap-4 h-full transition-all duration-300 hover:-translate-y-1'>
+                  <div className='w-11 h-11 rounded-lg bg-cyan-600/10 border border-cyan-600/30 flex items-center justify-center text-cyan-400 group-hover:bg-cyan-600/20 transition-colors duration-300'>
+                    <Icon size={20} />
+                  </div>
+                  <h3 className={`${sora.className} text-white text-lg font-bold`}>{service.title}</h3>
+                  <p className='text-slate-400 text-sm leading-relaxed'>{service.desc}</p>
                 </div>
-                <h3 className={`${sora.className} text-white text-lg font-bold`}>{service.title}</h3>
-                <p className='text-slate-400 text-sm leading-relaxed'>{service.desc}</p>
-              </div>
+              </SwiperSlide>
             );
           })}
+        </Swiper>
+
+        <div className='flex items-center justify-center gap-4 mt-8'>
+          <button
+            ref={prevRef}
+            aria-label='Previous services'
+            className='w-11 h-11 rounded-full border border-slate-700 hover:border-cyan-600/60 text-slate-300 hover:text-cyan-400 flex items-center justify-center transition-all duration-200 hover:bg-cyan-600/10'
+          >
+            <ArrowLeft size={18} />
+          </button>
+          <button
+            ref={nextRef}
+            aria-label='Next services'
+            className='w-11 h-11 rounded-full border border-slate-700 hover:border-cyan-600/60 text-slate-300 hover:text-cyan-400 flex items-center justify-center transition-all duration-200 hover:bg-cyan-600/10'
+          >
+            <ArrowRight size={18} />
+          </button>
         </div>
       </div>
     </section>
