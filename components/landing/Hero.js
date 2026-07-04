@@ -1,4 +1,6 @@
-import React from 'react';
+"use client";
+
+import React, { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { Globe, Layers, Smartphone, Server, ArrowRight, Sparkles } from 'lucide-react';
 import { Sora, Inter } from 'next/font/google';
@@ -14,6 +16,8 @@ const inter = Inter({
   weight: ['400', '500', '600'],
   display: 'swap',
 });
+
+const messages = ["Websites", "Web Apps", "Mobile Apps", "Backends", "APIs"];
 
 const services = [
   {
@@ -39,6 +43,18 @@ const services = [
 ];
 
 const Hero = () => {
+  const [keywords, setKeywords] = useState(messages[0]);
+  const indexRef = useRef(0);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      indexRef.current = (indexRef.current + 1) % messages.length;
+      setKeywords(messages[indexRef.current]);
+    }, 2000);
+
+    return () => clearInterval(intervalId);
+  }, []);
+
   return (
     <section id='home' className={`${inter.className} relative pt-20 bg-slate-900 text-white overflow-hidden`}>
       <div className='pointer-events-none absolute -top-32 -left-32 w-96 h-96 bg-cyan-600/20 rounded-full blur-3xl' />
@@ -47,7 +63,7 @@ const Hero = () => {
       <div className='relative z-10 max-w-7xl mx-auto px-6 lg:px-10 py-24 flex flex-col items-center text-center gap-8'>
         <span className='inline-flex items-center gap-2 border border-cyan-600/40 bg-cyan-600/10 text-cyan-400 rounded-full px-4 py-1.5 text-xs font-medium tracking-widest uppercase'>
           <Sparkles size={14} />
-          Websites · Web Apps · Mobile Apps · Backends · APIs
+         {keywords}
         </span>
 
         <h1 className={`${sora.className} font-extrabold tracking-tight text-4xl sm:text-5xl md:text-7xl leading-[1.1] max-w-4xl`}>
