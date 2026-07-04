@@ -141,7 +141,7 @@ const Technologies = () => {
               const Icon = tech.icon;
               return (
                 <SwiperSlide key={tech.name} className='h-auto'>
-                  <div className='group relative bg-slate-800/40 border border-slate-800 hover:border-cyan-600/60 rounded-xl p-6 flex flex-col items-center text-center gap-4 h-60 transition-all duration-500 hover:-translate-y-2 hover:shadow-xl hover:shadow-cyan-600/10'>
+                  <div className='group relative bg-slate-800/40 border border-slate-800 hover:border-cyan-600/60 rounded-xl p-6 flex flex-col items-center text-center gap-4 h-60  transition-all duration-500 hover:-translate-y-2 hover:shadow-xl hover:shadow-cyan-600/10'>
                     <div className='w-14 h-14 rounded-xl bg-cyan-600/10 border border-cyan-600/30 flex items-center justify-center text-cyan-400 transition-all duration-500 group-hover:bg-cyan-600/20 group-hover:rotate-6 group-hover:scale-110'>
                       <Icon size={26} />
                     </div>
