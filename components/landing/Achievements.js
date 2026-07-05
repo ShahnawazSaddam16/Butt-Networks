@@ -17,13 +17,12 @@ const inter = Inter({
 });
 
 const stats = [
-  { icon: Award, value: 40, suffix: '+', label: 'Projects Delivered' },
+  { icon: Award, value: 2, suffix: '+', label: 'Projects Delivered' },
   { icon: Users, value: 98, suffix: '%', label: 'Client Satisfaction' },
   { icon: TrendingUp, value: 100, suffix: '%', label: 'On-Time Delivery' },
   { icon: BadgeCheck, value: 5, suffix: '+', label: 'Service Lines Mastered' },
 ];
 
-// Eased count-up hook, only runs once the section scrolls into view
 const useCountUp = (end, inView, duration = 1600) => {
   const [value, setValue] = useState(0);
 
@@ -146,20 +145,18 @@ const Achievements = () => {
                 <div className='absolute bottom-3 right-3 w-6 h-6 border-b-2 border-r-2 border-cyan-500/60 rounded-br-md' />
 
                 <img
-                  src='/certificate.jpeg'
+                  src='/certificate.png'
                   alt='Certificate awarded to Shahnawaz Saddam Butt'
                   className='w-full h-auto rounded-lg object-cover'
                 />
+             <a href='/certificate.png' download>
+              <button className='mt-1 block m-auto bg-slate-900/40 border-slate-800
+                border px-6 py-1 hover:border-cyan-600 rounded-[10px]'><Download /></button>
+            </a>
               </div>
-
               <p className='text-slate-500 text-xs italic text-center mt-4'>
                 Certified &amp; personally earned by Shahnawaz Saddam Butt.
               </p>
-
-                <a href='/certificate.jpeg' download="/certificate.jpeg">
-              <button className='mt-2 block m-auto bg-slate-800/40 border-slate-800
-                border px-6 py-1 hover:border-cyan-600'><Download /></button>
-                </a>
             </div>
           </div>
         </div>
