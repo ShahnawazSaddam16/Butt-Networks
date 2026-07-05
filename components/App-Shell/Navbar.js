@@ -35,7 +35,7 @@ const Navbar = () => {
       <div className='max-w-7xl mx-auto flex items-center justify-between h-20 px-6 lg:px-10'>
         <div className='flex items-center gap-3'>
           <Image
-            src='/butt.png'
+            src='/favicon.png'
             width={130}
             height={130}
             alt='Butt Networks logo'
