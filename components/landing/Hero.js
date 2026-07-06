@@ -46,8 +46,6 @@ const ChooseUs = [
 const Hero = () => {
   const [keywords, setKeywords] = useState(messages[0]);
   const indexRef = useRef(0);
-  const prevRef = useRef(null);
-  const nextRef = useRef(null);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
