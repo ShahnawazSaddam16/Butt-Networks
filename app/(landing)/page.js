@@ -3,6 +3,7 @@ import Hero from '@/components/landing/Hero';
 import Technologies from '@/components/landing/Technologies';
 import React from 'react'
 import Projects from '../projects/[slug]/Projects';
+import WhatWeFix from '@/components/landing/WhatWeFix';
 
 const Home = () => {
   return (
@@ -11,6 +12,7 @@ const Home = () => {
     <Technologies />
     <Achievements />
     <Projects />
+    <WhatWeFix />
     </>
   )
 }
