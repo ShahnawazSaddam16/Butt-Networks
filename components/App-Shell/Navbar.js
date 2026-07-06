@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { Mail, Menu, X } from 'lucide-react';
 import { FaWhatsapp } from 'react-icons/fa';
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { Sora, Inter } from 'next/font/google';
 
@@ -20,20 +21,22 @@ const inter = Inter({
 });
 
 const navLinks = [
-  { name: 'Home', href: '#home' },
-  { name: 'About', href: '#about' },
+  { name: 'Home', href: '/' },
+  { name: 'About', href: '/about' },
   { name: 'Projects', href: '#projects' },
-  { name: 'Team', href: '#team' },
-  { name: 'Contact', href: '#contact' },
+  { name: 'Services', href: '/#services' },
+  { name: 'Contact', href: '/contact' },
 ];
 
 const Navbar = () => {
+  const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
+
 
   return (
     <nav className={`${inter.className} bg-slate-900/95 backdrop-blur-md border-b border-slate-800 fixed top-0 left-0 z-50 w-full`}>
       <div className='max-w-7xl mx-auto flex items-center justify-between h-20 px-6 lg:px-10'>
-        <div className='flex items-center gap-3'>
+        <div className='flex items-center gap-3' onClick={()=>{router.push("/")}}>
           <Image
             src='/favicon.png'
             width={130}
