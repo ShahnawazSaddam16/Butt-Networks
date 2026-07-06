@@ -51,6 +51,26 @@ const services = [
   },
 ];
 
+const ChooseUs = [
+  {
+    id: 1,
+    Heading: "75% AI Architects and Engineers.",
+    Desc: "The experts of the experts, we know the complex systems that keep your business running."
+  },
+
+  {
+    id: 2,
+    Heading: "Enterprise-Class. Operationalized.",
+    Desc: "We get your tech and how it connects — then we deliver together enterprise-quality reality.",
+  },
+
+  {
+    id: 3,
+    Heading: "Outcome-Based. Human First.",
+    Desc: "You come first. We listen, we start with you, then we deliver aligned to your needs.",
+  }
+];
+
 const Hero = () => {
   const [keywords, setKeywords] = useState(messages[0]);
   const indexRef = useRef(0);
@@ -65,6 +85,13 @@ const Hero = () => {
 
     return () => clearInterval(intervalId);
   }, []);
+
+  const getLineColor = (id) => {
+  if (id === 1) return 'bg-cyan-400';
+  if (id === 2) return 'bg-sky-400';
+  if (id === 3) return 'bg-teal-400';
+  return 'bg-cyan-400';
+};
 
   return (
     <section id='home' className={`${inter.className} relative pt-20 bg-slate-900 text-white overflow-hidden`}>
@@ -171,6 +198,25 @@ const Hero = () => {
           >
             <ArrowRight size={18} />
           </button>
+        </div>
+
+        <div className='pt-20'>
+          <h1 className={`${sora.className} text-center font-extrabold text-[30px] sm:text-[45px]`}>
+            Why <span className='text-cyan-400'>ButtNetworks</span>
+          </h1>
+
+          <div className='mt-12 flex flex-col sm:flex-row justify-center items-stretch gap-6'>
+            {ChooseUs.map((item) => (
+              <div
+                key={item.Heading}
+                className='w-full sm:w-1/3 flex flex-col gap-3 text-center'
+              >
+                <h3 className={`${sora.className} text-white text-lg font-bold`}>{item.Heading}</h3>
+                <div className={`${getLineColor(item.id)} w-[200px] h-[2px] block m-auto`}></div>
+                <p className='text-slate-400 text-sm leading-relaxed'>{item.Desc}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
