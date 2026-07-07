@@ -70,7 +70,7 @@ const Services = () => {
     <>
       <section
         className={`${inter.className} relative pt-20 pb-10 bg-slate-900 text-white overflow-hidden`}
-      >
+      id='services'>
         <div className="pointer-events-none absolute -top-32 -left-32 w-96 h-96 bg-cyan-600/20 rounded-full blur-3xl" />
         <div className="pointer-events-none absolute top-40 -right-32 w-96 h-96 bg-cyan-600/10 rounded-full blur-3xl" />
 

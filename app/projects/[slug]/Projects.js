@@ -196,7 +196,7 @@ function ProjectCard({ project, index }) {
         }`}
       />
 
-      <div className="relative z-10 flex flex-col">
+      <div className="relative z-10 flex flex-col" id="projects">
         <div className="relative">
           <Swiper
             modules={[Pagination, EffectFade]}

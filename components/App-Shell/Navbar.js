@@ -23,7 +23,7 @@ const inter = Inter({
 const navLinks = [
   { name: 'Home', href: '/' },
   { name: 'About', href: '/about' },
-  { name: 'Projects', href: '#projects' },
+  { name: 'Projects', href: '/#projects' },
   { name: 'Services', href: '/#services' },
   { name: 'Contact', href: '/contact' },
 ];
@@ -75,7 +75,7 @@ const Navbar = () => {
           </a>
 
           <a
-            href='mailto:buttnetworksOfficial.com'
+            href='buttnetworksofficial@gmail.com'
             className='text-slate-300 hover:text-cyan-400 hover:scale-110 transition-all duration-200'
           >
             <Mail size={20} />
@@ -143,7 +143,7 @@ const Navbar = () => {
             </a>
 
             <a
-              href='mailto:buttnetworksOfficial.com'
+              href='buttnetworksofficial@gmail.com'
               className='text-slate-300 hover:text-cyan-400 transition-colors duration-200'
             >
               <Mail size={20} />

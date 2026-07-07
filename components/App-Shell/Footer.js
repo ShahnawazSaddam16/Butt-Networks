@@ -94,7 +94,7 @@ const Footer = () => {
                 className='flex items-center gap-3 text-sm text-slate-400 hover:text-cyan-400 transition-colors duration-200'
               >
                 <Mail size={16} className='text-cyan-400' />
-                hello@buttnetworks.dev
+                buttnetworksofficial@gmail.com
               </a>
 
               <a
