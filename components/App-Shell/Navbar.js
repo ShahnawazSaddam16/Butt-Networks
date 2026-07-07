@@ -82,7 +82,7 @@ const Navbar = () => {
           </a>
 
           <Link
-            href='#contact'
+            href='/contact'
             className={`${sora.className} bg-cyan-600 hover:bg-cyan-500 text-white text-sm font-semibold px-5 py-2.5 rounded-md transition-all duration-200 hover:shadow-lg hover:shadow-cyan-600/30`}
           >
             Get in Touch
@@ -151,7 +151,7 @@ const Navbar = () => {
           </div>
 
           <Link
-            href='#contact'
+            href='/contact'
             onClick={() => setIsOpen(false)}
             className={`${sora.className} bg-cyan-600 hover:bg-cyan-500 text-white text-sm font-semibold px-5 py-2.5 rounded-md text-center transition-all duration-200`}
           >
