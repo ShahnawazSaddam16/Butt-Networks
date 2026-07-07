@@ -21,7 +21,7 @@ const whatsappNumber = '923004907243';
 const navLinks = [
   { name: 'Home', href: '/' },
   { name: 'About', href: '/about' },
-  { name: 'Projects', href: '#projects' },
+  { name: 'Projects', href: '/#projects' },
   { name: 'Services', href: '/#services' },
   { name: 'Contact', href: '/contact' },
 ];
