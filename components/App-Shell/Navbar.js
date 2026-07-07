@@ -28,6 +28,8 @@ const navLinks = [
   { name: 'Contact', href: '/contact' },
 ];
 
+const whatsappNumber = '923004907243';
+
 const Navbar = () => {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
@@ -36,7 +38,7 @@ const Navbar = () => {
   return (
     <nav className={`${inter.className} bg-slate-900/95 backdrop-blur-md border-b border-slate-800 fixed top-0 left-0 z-50 w-full`}>
       <div className='max-w-7xl mx-auto flex items-center justify-between h-20 px-6 lg:px-10'>
-        <div className='flex items-center gap-3' onClick={()=>{router.push("/")}}>
+        <div className='flex items-center gap-3 cursor-pointer' onClick={()=>{router.push("/")}}>
           <Image
             src='/favicon.png'
             width={130}
@@ -64,7 +66,7 @@ const Navbar = () => {
 
         <div className='hidden lg:flex items-center gap-5'>
           <a
-            href='https://wa.me/1234567890'
+            href={`https://wa.me/${whatsappNumber}`}
             target='_blank'
             rel='noopener noreferrer'
             className='text-slate-300 hover:text-cyan-400 hover:scale-110 transition-all duration-200'
@@ -73,7 +75,7 @@ const Navbar = () => {
           </a>
 
           <a
-            href='mailto:hello@buttnetworks.dev'
+            href='mailto:buttnetworksOfficial.com'
             className='text-slate-300 hover:text-cyan-400 hover:scale-110 transition-all duration-200'
           >
             <Mail size={20} />
@@ -132,7 +134,7 @@ const Navbar = () => {
 
           <div className='flex items-center gap-6 pt-4 border-t border-slate-800'>
             <a
-              href='https://wa.me/1234567890'
+              href={`https://wa.me/${whatsappNumber}`}
               target='_blank'
               rel='noopener noreferrer'
               className='text-slate-300 hover:text-cyan-400 transition-colors duration-200'
