@@ -90,7 +90,7 @@ const Hero = () => {
 
         <div className='flex flex-col sm:flex-row items-center gap-4 pt-2'>
           <Link
-            href='#contact'
+            href='/contact'
             className={`${sora.className} group inline-flex items-center gap-2 bg-cyan-600 hover:bg-cyan-500 text-white text-sm font-semibold px-6 py-3 rounded-md transition-all duration-200 hover:shadow-lg hover:shadow-cyan-600/30`}
           >
             Start a Project
