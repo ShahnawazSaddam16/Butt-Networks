@@ -13,6 +13,9 @@ import {
   ClipboardList,
   Rocket,
   ChevronDown,
+  CheckCircle2,
+  XCircle,
+  Loader2,
 } from 'lucide-react';
 
 const sora = Sora({
@@ -101,16 +104,41 @@ function FaqItem({ faq, isOpen, onClick }) {
 export default function Contact() {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [openFaq, setOpenFaq] = useState(0);
+  const [status, setStatus] = useState('idle');
+  const [feedback, setFeedback] = useState('');
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const subject = encodeURIComponent(`Message from ${formData.name || 'website visitor'}`);
-    const body = encodeURIComponent(`${formData.message}\n\nFrom: ${formData.name} (${formData.email})`);
-    window.location.href = `mailto:hello@buttnetworks.dev?subject=${subject}&body=${body}`;
+    setStatus('loading');
+    setFeedback('');
+
+    try {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_ORIGIN}/create-contact`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+
+      if (response.ok && result.success) {
+        setStatus('success');
+        setFeedback(result.message || 'Contact Submitted Successfully');
+        setFormData({ name: '', email: '', message: '' });
+      } else {
+        setStatus('error');
+        setFeedback(result.message || 'Something went wrong. Please try again.');
+      }
+    } catch (err) {
+      setStatus('error');
+      setFeedback('Something went wrong. Please try again.');
+    }
   };
 
   return (
@@ -131,6 +159,20 @@ export default function Contact() {
         <div className='mt-14 grid grid-cols-1 lg:grid-cols-2 gap-10'>
           <div className='bg-slate-800/60 border border-slate-800 rounded-2xl p-8'>
             <h3 className={`${sora.className} text-xl font-bold text-white`}>Send us a message</h3>
+
+            {status === 'success' && (
+              <div className='mt-6 flex items-center gap-3 bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-sm rounded-lg px-4 py-3'>
+                <CheckCircle2 size={18} className='shrink-0' />
+                {feedback}
+              </div>
+            )}
+
+            {status === 'error' && (
+              <div className='mt-6 flex items-center gap-3 bg-red-500/10 border border-red-500/30 text-red-400 text-sm rounded-lg px-4 py-3'>
+                <XCircle size={18} className='shrink-0' />
+                {feedback}
+              </div>
+            )}
 
             <form onSubmit={handleSubmit} className='mt-6 flex flex-col gap-5'>
               <div>
@@ -183,10 +225,20 @@ export default function Contact() {
 
               <button
                 type='submit'
-                className={`${sora.className} mt-2 inline-flex items-center justify-center gap-2 bg-cyan-600 hover:bg-cyan-500 text-white text-sm font-semibold px-6 py-3 rounded-lg transition-all duration-200 hover:shadow-lg hover:shadow-cyan-600/30`}
+                disabled={status === 'loading'}
+                className={`${sora.className} mt-2 inline-flex items-center justify-center gap-2 bg-cyan-600 hover:bg-cyan-500 disabled:opacity-60 disabled:cursor-not-allowed text-white text-sm font-semibold px-6 py-3 rounded-lg transition-all duration-200 hover:shadow-lg hover:shadow-cyan-600/30`}
               >
-                Send Message
-                <Send size={16} />
+                {status === 'loading' ? (
+                  <>
+                    Sending
+                    <Loader2 size={16} className='animate-spin' />
+                  </>
+                ) : (
+                  <>
+                    Send Message
+                    <Send size={16} />
+                  </>
+                )}
               </button>
             </form>
 
@@ -198,7 +250,7 @@ export default function Contact() {
                 <span className='w-9 h-9 flex items-center justify-center rounded-full bg-slate-900 border border-slate-700'>
                   <Mail size={16} className='text-cyan-400' />
                 </span>
-                hello@buttnetworks.dev
+                buttnetworksOfficial@gmail.com
               </a>
 
               <a
