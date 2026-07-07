@@ -12,7 +12,7 @@ const Home = () => {
   useEffect(() => {
     const registerVisit = async () => {
       try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/user/details`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_ORIGIN}/user/details`, {
           method: "POST",
           credentials: "include",
           headers: {
