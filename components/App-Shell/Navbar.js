@@ -143,7 +143,7 @@ const Navbar = () => {
             </a>
 
             <a
-              href='mailto:hello@buttnetworks.dev'
+              href='mailto:buttnetworksOfficial.com'
               className='text-slate-300 hover:text-cyan-400 transition-colors duration-200'
             >
               <Mail size={20} />

@@ -27,6 +27,8 @@ const inter = Inter({
   display: 'swap',
 });
 
+const whatsappNumber = '923004907243';
+
 const steps = [
   {
     icon: PhoneCall,
@@ -190,7 +192,7 @@ export default function Contact() {
 
             <div className='mt-8 pt-6 border-t border-slate-800 flex flex-col gap-4'>
               <a
-                href='mailto:hello@buttnetworks.dev'
+                href='mailto:buttnetworksOfficial.com'
                 className='flex items-center gap-3 text-sm text-slate-300 hover:text-cyan-400 transition-colors duration-200'
               >
                 <span className='w-9 h-9 flex items-center justify-center rounded-full bg-slate-900 border border-slate-700'>
@@ -200,7 +202,7 @@ export default function Contact() {
               </a>
 
               <a
-                href='tel:+923004907243'
+                href={`https://wa.me/${whatsappNumber}`}
                 className='flex items-center gap-3 text-sm text-slate-300 hover:text-cyan-400 transition-colors duration-200'
               >
                 <span className='w-9 h-9 flex items-center justify-center rounded-full bg-slate-900 border border-slate-700'>
