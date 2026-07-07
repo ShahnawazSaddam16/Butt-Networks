@@ -2,6 +2,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/App-Shell/Navbar";
 import Footer from "@/components/App-Shell/Footer";
+import { projects } from "../Data/projectsData";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -13,14 +14,26 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const siteUrl = "https://buttnetworks.com";
+const siteTitle = "Butt Networks | Custom Web & Mobile App Development Agency";
+const siteDescription =
+  "Butt Networks builds high-performance Next.js websites, SaaS platforms, and AI-enabled dashboards. Explore featured work such as Resume-AI, ValueMax, URL Shortener, and Zehna Portfolio.";
+const featuredProjects = projects.slice(0, 5);
+const itemListElement = featuredProjects.map((project, index) => ({
+  "@type": "ListItem",
+  position: index + 1,
+  url: project.demoLink,
+  name: project.Heading,
+  description: project.description?.slice(0, 160) || project.Text,
+}));
+
 export const metadata = {
-  metadataBase: new URL("https://buttnetworks.com"),
+  metadataBase: new URL(siteUrl),
   title: {
-    default: "Butt Networks | Custom Web & Mobile App Development Agency",
+    default: siteTitle,
     template: "%s | Butt Networks",
   },
-  description:
-    "Expert full-stack development by Shahnawaz Saddam. Specializing in Next.js, high-performance dashboards, AI-powered tools, and digital transformation.",
+  description: siteDescription,
   keywords: [
     "Butt Networks",
     "Shahnawaz Saddam",
@@ -48,10 +61,9 @@ export const metadata = {
     apple: "/favicon/apple-touch-icon.png",
   },
   openGraph: {
-    title: "Butt Networks | Premium Web & Mobile Solutions",
-    description:
-      "Transforming ideas into scalable digital products. Explore our portfolio including our URL Shortener, AI Resume Builder, ValueMax, and Zehna Portfolio.",
-    url: "https://buttnetworks.com",
+    title: siteTitle,
+    description: siteDescription,
+    url: siteUrl,
     siteName: "Butt Networks",
     images: [
       {
@@ -120,32 +132,7 @@ const jsonLd = {
       name: "Our Featured Projects",
       description:
         "A collection of high-end digital products developed by Butt Networks.",
-      itemListElement: [
-        {
-          "@type": "ListItem",
-          position: 1,
-          url: "https://url-shortner.buttnetworks.com",
-          name: "URL Shortener",
-        },
-        {
-          "@type": "ListItem",
-          position: 3,
-          url: "https://resume-ai.buttnetworks.com",
-          name: "AI Assistant",
-        },
-        {
-          "@type": "ListItem",
-          position: 4,
-          url: "https://valuemax.com.pk",
-          name: "ValueMax",
-        },
-        {
-          "@type": "ListItem",
-          position: 5,
-          url: "https://zehna.buttnetworks.com",
-          name: "Zehna Portfolio",
-        },
-      ],
+      itemListElement,
     },
   ],
 };
