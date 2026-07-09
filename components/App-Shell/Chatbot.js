@@ -46,8 +46,8 @@ export default function Chatbot() {
     try {
       const res = await fetch(`${API_ORIGIN}/chatbot`, {
         method: 'POST',
-          credentials: 'include',
-  headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           message: trimmed,
           history: newMessages.slice(-10),
@@ -76,10 +76,10 @@ export default function Chatbot() {
   };
 
   return (
-    <div className={`${inter.className} fixed bottom-6 right-6 z-50`}>
+    <div className={`${inter.className} fixed bottom-6 right-6 z-50 flex flex-col items-end`}>
       {isOpen && (
-        <div className='mb-4 w-[90vw] max-w-sm h-[500px] bg-slate-900 border border-slate-700 rounded-xl shadow-2xl shadow-cyan-600/10 flex flex-col overflow-hidden'>
-          <div className='flex items-center justify-between px-4 py-3 border-b border-slate-800 bg-slate-900/80'>
+        <div className='mb-4 w-[90vw] max-w-sm h-[70vh] max-h-[560px] bg-slate-900 border border-slate-700 rounded-xl shadow-2xl shadow-cyan-600/10 flex flex-col overflow-hidden'>
+          <div className='flex items-center justify-between px-4 py-3 border-b border-slate-800 bg-slate-900/80 shrink-0'>
             <div className='flex items-center gap-2'>
               <div className='w-8 h-8 rounded-full bg-cyan-600/10 border border-cyan-600/40 flex items-center justify-center'>
                 <Bot size={16} className='text-cyan-400' />
@@ -139,7 +139,7 @@ export default function Chatbot() {
             )}
           </div>
 
-          <div className='border-t border-slate-800 px-3 py-3 bg-slate-900/80'>
+          <div className='border-t border-slate-800 px-3 py-3 bg-slate-900/80 shrink-0'>
             <div className='flex items-end gap-2'>
               <textarea
                 value={input}
@@ -164,12 +164,14 @@ export default function Chatbot() {
         </div>
       )}
 
-      <button
-        onClick={() => setIsOpen((prev) => !prev)}
-        className='w-14 h-14 rounded-full bg-cyan-600 hover:bg-cyan-500 text-white flex items-center justify-center shadow-lg shadow-cyan-600/30 transition-all duration-200 hover:scale-105'
-      >
-        {isOpen ? <X size={22} /> : <MessageCircle size={22} />}
-      </button>
+      {!isOpen && (
+        <button
+          onClick={() => setIsOpen(true)}
+          className='w-14 h-14 rounded-full bg-cyan-600 hover:bg-cyan-500 text-white flex items-center justify-center shadow-lg shadow-cyan-600/30 transition-all duration-200 hover:scale-105'
+        >
+          <MessageCircle size={22} />
+        </button>
+      )}
     </div>
   );
 }
