@@ -170,9 +170,9 @@ function ProjectCard({ project, index }) {
   const status = statusConfig[project.status] || statusConfig.default;
   const images = project.gallery?.length ? project.gallery : [project.image];
   const isActive = isMobile ? false : hovered;
-    const isSpotify = project.slug === "spotifyclone-app";
+  const isReelo = project.slug === "reelo-app";
   const isFitPath = project.slug === "fitpath-app";
-  const useContainImage = isSpotify || isFitPath;
+  const useContainImage = isReelo || isFitPath;
 
   return (
     <div

@@ -208,9 +208,9 @@ export default function ProjectDetailPage({ params }) {
 
   const status = statusConfig[project.status] || statusConfig.default;
   const images = project.gallery?.length ? project.gallery : [project.image];
-  const isSpotify = project.slug === "spotifyclone-app";
+  const isReelo = project.slug === "reelo-app";
   const isFitPath = project.slug === "fitpath-app";
-  const useContainImage = isSpotify || isFitPath;
+  const useContainImage = isReelo || isFitPath;
 
   return (
     <>
@@ -363,7 +363,7 @@ export default function ProjectDetailPage({ params }) {
                 >
                   {images.map((img, i) => (
                     <SwiperSlide key={i}>
-                      <div style={{ position: "relative", width: "100%", aspectRatio: "16/9", background: isSpotify ? "#000" : "rgba(7,21,27,1)" }}>
+                      <div style={{ position: "relative", width: "100%", aspectRatio: "16/9", background: useContainImage ? "#000" : "rgba(7,21,27,1)" }}>
                         <Image
                           src={img}
                           alt={`${project.Heading} screenshot ${i + 1}`}
