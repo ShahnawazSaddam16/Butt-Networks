@@ -1,16 +1,24 @@
 "use client";
 
-import React, { useState} from "react";
+import React, { useState, useEffect } from "react";
 import { ArrowRight, X, Sparkles } from "lucide-react";
 
 export default function Header() {
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(true);
+
+  useEffect(() => {
+    const dismissed = localStorage.getItem("reelo-header-dismissed");
+    if (dismissed === "true") {
+      setVisible(false);
+    }
+  }, []);
 
   const handleDismiss = () => {
     localStorage.setItem("reelo-header-dismissed", "true");
     setVisible(false);
   };
 
+  if (!visible) return null;
 
   return (
     <div className="relative w-full bg-slate-950 border-b border-neutral-800/80 overflow-hidden">
@@ -26,7 +34,7 @@ export default function Header() {
             <span className="hidden sm:inline text-neutral-300">
               is here, share your story with the world
             </span>
-            <a
+            
               href="https://7dish70hhldpcvsw.public.blob.vercel-storage.com/reelo.apk"
               target="_blank"
               download
