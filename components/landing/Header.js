@@ -34,7 +34,7 @@ export default function Header() {
             <span className="hidden sm:inline text-neutral-300">
               is here, share your story with the world
             </span>
-            
+            <a
               href="https://7dish70hhldpcvsw.public.blob.vercel-storage.com/reelo.apk"
               target="_blank"
               download

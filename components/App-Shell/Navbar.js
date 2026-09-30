@@ -160,6 +160,7 @@ const Navbar = () => {
           </Link>
         </div>
       </div>
+      <Header />
     </nav>
   );
 };
