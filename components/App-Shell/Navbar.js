@@ -38,7 +38,7 @@ const Navbar = () => {
 
   return (
     <nav className={`${inter.className} bg-slate-900/95 backdrop-blur-md border-b border-slate-800 fixed top-0 left-0 z-50 w-full`}>
-      <div className='max-w-7xl mx-auto flex items-center justify-between h-20 px-6 lg:px-10'>
+      <div className='relative max-w-7xl mx-auto flex items-center justify-between h-20 px-6 lg:px-10'>
         <div className='flex items-center gap-3 cursor-pointer' onClick={()=>{router.push("/")}}>
           <Image
             src='/favicon.png'
@@ -52,7 +52,7 @@ const Navbar = () => {
           </span>
         </div>
 
-        <div className='hidden lg:flex items-center gap-10'>
+        <div className='hidden lg:flex items-center gap-10 absolute left-1/2 -translate-x-1/2'>
           {navLinks.map((link) => (
             <Link
               key={link.name}
@@ -66,20 +66,12 @@ const Navbar = () => {
         </div>
 
         <div className='hidden lg:flex items-center gap-5'>
-          <a
-            href={`https://wa.me/${whatsappNumber}`}
-            target='_blank'
-            rel='noopener noreferrer'
-            className='text-slate-300 hover:text-cyan-400 hover:scale-110 transition-all duration-200'
-          >
-            <FaWhatsapp size={22} />
-          </a>
 
           <a
-            href='buttnetworksofficial@gmail.com'
-            className='text-slate-300 hover:text-cyan-400 hover:scale-110 transition-all duration-200'
+            href='https://client-portal.buttnetworks.com/'
+            className={`${sora.className} border border-cyan-600 text-cyan-400 hover:bg-cyan-600 hover:text-white text-sm font-semibold px-5 py-2.5 rounded-md transition-all duration-200`}
           >
-            <Mail size={20} />
+            Client Portal
           </a>
 
           <Link
@@ -158,6 +150,13 @@ const Navbar = () => {
           >
             Get in Touch
           </Link>
+
+            <a
+            href='https://client-portal.buttnetworks.com/'
+            className={`${sora.className} border border-cyan-600 text-cyan-400 hover:bg-cyan-600 hover:text-white text-sm font-semibold px-5 py-2.5 rounded-md transition-all duration-200`}
+          >
+            Client Portal
+          </a>
         </div>
       </div>
       <Header />
