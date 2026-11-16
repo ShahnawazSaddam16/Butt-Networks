@@ -16,6 +16,7 @@ import {
   CheckCircle2,
   XCircle,
   Loader2,
+  LayoutDashboard,
 } from 'lucide-react';
 
 const sora = Sora({
@@ -261,6 +262,16 @@ export default function Contact() {
                   <Phone size={16} className='text-cyan-400' />
                 </span>
                 +92 300 4907243
+              </a>
+
+              <a
+                href='https://client-portal.buttnetworks.com/'
+                className='flex items-center gap-3 text-sm text-slate-300 hover:text-cyan-400 transition-colors duration-200'
+              >
+                <span className='w-9 h-9 flex items-center justify-center rounded-full bg-slate-900 border border-slate-700'>
+                  <LayoutDashboard size={16} className='text-cyan-400' />
+                </span>
+                Client Portal
               </a>
 
               <div className='flex items-center gap-3 text-sm text-slate-300'>

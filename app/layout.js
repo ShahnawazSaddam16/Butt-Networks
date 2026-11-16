@@ -48,6 +48,7 @@ export const metadata = {
     "Zehna Portfolio",
     "Custom Admin Dashboards",
     "Full-stack Developers",
+    "Client Portal",
   ],
   authors: [
     { name: "Shahnawaz Saddam", url: "https://shahnawaz.buttnetworks.com" },
@@ -127,6 +128,14 @@ const jsonLd = {
       "@id": "https://buttnetworks.com/#website",
       url: "https://buttnetworks.com",
       name: "Butt Networks",
+      publisher: { "@id": "https://buttnetworks.com/#organization" },
+    },
+    {
+      "@type": "WebApplication",
+      "@id": "https://client-portal.buttnetworks.com/#webapp",
+      url: "https://client-portal.buttnetworks.com/",
+      name: "Butt Networks Client Portal",
+      applicationCategory: "BusinessApplication",
       publisher: { "@id": "https://buttnetworks.com/#organization" },
     },
     {
