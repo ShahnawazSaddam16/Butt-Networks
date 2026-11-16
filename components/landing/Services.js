@@ -12,6 +12,18 @@ import {
   Smartphone,
   ArrowLeft,
   ArrowRight,
+  Rocket,
+  ShoppingCart,
+  Briefcase,
+  Layers,
+  Bell,
+  Store,
+  ShieldCheck,
+  Database,
+  Cloud,
+  Bot,
+  Workflow,
+  TrendingUp,
 } from 'lucide-react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
@@ -24,47 +36,140 @@ const inter = Inter({
   display: 'swap',
 });
 
-const services = [
+const categories = [
   {
+    name: 'Web',
     icon: Globe,
-    title: 'Web Development',
-    desc: 'Fast, responsive websites built with modern frameworks and clean, maintainable code.',
+    items: [
+      {
+        icon: Globe,
+        title: 'Web Development',
+        desc: 'Fast, responsive websites built with modern frameworks and clean, maintainable code.',
+      },
+      {
+        icon: LayoutTemplate,
+        title: 'Web Apps',
+        desc: 'Interactive, scalable web applications tailored to your business workflows.',
+      },
+      {
+        icon: Rocket,
+        title: 'Landing Pages',
+        desc: 'High-converting, SEO-friendly landing pages that load instantly and look sharp.',
+      },
+      {
+        icon: ShoppingCart,
+        title: 'E-commerce',
+        desc: 'Online stores with secure checkout, product management, and smooth user journeys.',
+      },
+      {
+        icon: Briefcase,
+        title: 'Portfolio Sites',
+        desc: 'Personal and business portfolios that showcase your work with a polished identity.',
+      },
+    ],
   },
   {
-    icon: LayoutTemplate,
-    title: 'Web Apps',
-    desc: 'Interactive, scalable web applications tailored to your business workflows.',
-  },
-  {
-    icon: Server,
-    title: 'Backend & APIs',
-    desc: 'Robust backend systems and RESTful APIs built for performance and reliability.',
-  },
-  {
-    icon: BrainCircuit,
-    title: 'AI Integration',
-    desc: 'Seamless integration of AI models and intelligent features into your products.',
-  },
-  {
-    icon: Network,
-    title: 'System Design',
-    desc: 'Scalable, well-architected systems designed to grow with your business.',
-  },
-  {
+    name: 'Mobile',
     icon: Smartphone,
-    title: 'Mobile Apps',
-    desc: 'Cross-platform mobile apps with smooth performance and native-like feel.',
+    items: [
+      {
+        icon: Smartphone,
+        title: 'Mobile Apps',
+        desc: 'Cross-platform mobile apps with smooth performance and native-like feel.',
+      },
+      {
+        icon: Layers,
+        title: 'Cross-Platform',
+        desc: 'One codebase shipping to both iOS and Android without compromising quality.',
+      },
+      {
+        icon: Bell,
+        title: 'Push Notifications',
+        desc: 'Real-time notification systems that keep your users engaged and informed.',
+      },
+      {
+        icon: Store,
+        title: 'Store Release',
+        desc: 'Build, sign, and publish your app to the Play Store and App Store.',
+      },
+    ],
+  },
+  {
+    name: 'Backend',
+    icon: Server,
+    items: [
+      {
+        icon: Server,
+        title: 'Backend & APIs',
+        desc: 'Robust backend systems and RESTful APIs built for performance and reliability.',
+      },
+      {
+        icon: ShieldCheck,
+        title: 'Authentication',
+        desc: 'Secure login, sessions, and role-based access using proven, modern practices.',
+      },
+      {
+        icon: Database,
+        title: 'Database Design',
+        desc: 'Well-structured schemas and queries on SQL or NoSQL that stay fast as data grows.',
+      },
+      {
+        icon: Cloud,
+        title: 'Cloud & VPS',
+        desc: 'Deployment, hosting, and server setup with full control over your environment.',
+      },
+    ],
+  },
+  {
+    name: 'AI',
+    icon: BrainCircuit,
+    items: [
+      {
+        icon: BrainCircuit,
+        title: 'AI Integration',
+        desc: 'Seamless integration of AI models and intelligent features into your products.',
+      },
+      {
+        icon: Bot,
+        title: 'AI Chatbots',
+        desc: 'Conversational assistants trained around your product, data, and customers.',
+      },
+      {
+        icon: Workflow,
+        title: 'Automation',
+        desc: 'Smart workflows that remove repetitive tasks and save your team hours every week.',
+      },
+    ],
+  },
+  {
+    name: 'Architecture',
+    icon: Network,
+    items: [
+      {
+        icon: Network,
+        title: 'System Design',
+        desc: 'Scalable, well-architected systems designed to grow with your business.',
+      },
+      {
+        icon: TrendingUp,
+        title: 'Scalability',
+        desc: 'Performance tuning and structure that keeps your product stable under heavy traffic.',
+      },
+    ],
   },
 ];
 
 const Services = () => {
   const [mounted, setMounted] = useState(false);
+  const [active, setActive] = useState(0);
   const prevRef = useRef(null);
   const nextRef = useRef(null);
 
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  const current = categories[active];
 
   return (
     <>
@@ -86,12 +191,33 @@ const Services = () => {
           End-to-end solutions across web, mobile, and backend, powered by clean architecture and modern tooling.
         </p>
 
+        <div className="mt-10 px-6 flex flex-wrap items-center justify-center gap-3">
+          {categories.map(({ name, icon: TabIcon }, i) => {
+            const isActive = i === active;
+            return (
+              <button
+                key={name}
+                onClick={() => setActive(i)}
+                className={`flex items-center gap-2 px-5 py-2.5 rounded-full border text-sm font-medium transition-all duration-300 ${
+                  isActive
+                    ? 'bg-cyan-600 border-cyan-500 text-white shadow-lg shadow-cyan-600/30'
+                    : 'bg-slate-800/40 border-slate-700 text-slate-300 hover:border-cyan-600/60 hover:text-cyan-400'
+                }`}
+              >
+                <TabIcon className="w-4 h-4" />
+                {name}
+              </button>
+            );
+          })}
+        </div>
+
         <div
-          className={`relative mt-14 px-6 md:px-12 pb-10 transition-all duration-700 ease-out ${
+          className={`relative mt-10 px-6 md:px-12 pb-10 transition-all duration-700 ease-out ${
             mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
           }`}
         >
           <Swiper
+            key={current.name}
             modules={[Navigation]}
             spaceBetween={24}
             slidesPerView={1}
@@ -107,11 +233,11 @@ const Services = () => {
               swiper.params.navigation.prevEl = prevRef.current;
               swiper.params.navigation.nextEl = nextRef.current;
             }}
-            className="pb-4"
+            className="pt-2 pb-4"
           >
-            {services.map(({ icon: Icon, title, desc }, i) => (
-              <SwiperSlide key={i}>
-                <div className="group relative bg-slate-800/40 border border-cyan-600/20 rounded-2xl p-6 h-56 flex flex-col justify-between transition-all duration-300 hover:border-cyan-400/50 hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(8,145,178,0.15)]">
+            {current.items.map(({ icon: Icon, title, desc }, i) => (
+              <SwiperSlide key={`${current.name}-${i}`}>
+                <div className="group relative bg-slate-800/40 border border-cyan-600/20 rounded-2xl p-6 h-56 flex flex-col justify-between transition-all duration-300 hover:border-cyan-400/50  hover:shadow-[0_0_30px_rgba(8,145,178,0.15)]">
                   <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-cyan-600/10 border border-cyan-600/30 text-cyan-400 transition-all duration-300 group-hover:bg-cyan-600/20 group-hover:border-cyan-400/50 group-hover:scale-110">
                     <Icon className="w-6 h-6" />
                   </div>
