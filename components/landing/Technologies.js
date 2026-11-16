@@ -35,51 +35,61 @@ const technologies = [
   {
     icon: SiNextdotjs,
     name: 'Next.js',
+    color: '#FFFFFF',
     desc: 'The framework behind every project we ship, giving us fast, SEO-friendly, full-stack React apps.',
   },
   {
     icon: SiSupabase,
     name: 'Supabase',
+    color: '#3ECF8E',
     desc: 'Our backend of choice, handling the database, authentication, and storage in one managed platform.',
   },
   {
     icon: Zap,
     name: 'Groq',
+    color: '#F55036',
     desc: 'Ultra-low-latency AI inference, so the AI features we build feel instant instead of laggy.',
   },
   {
     icon: SiJavascript,
     name: 'JavaScript',
+    color: '#F7DF1E',
     desc: 'Type-safe code across the stack, catching bugs before they ever reach production.',
   },
   {
     icon: SiTailwindcss,
     name: 'Tailwind CSS',
+    color: '#06B6D4',
     desc: 'How we design and ship clean, responsive interfaces without slowing development down.',
   },
   {
     icon: SiPostgresql,
     name: 'PostgreSQL',
+    color: '#4169E1',
     desc: 'The relational database under Supabase, powering the data layer for every product.',
   },
   {
     icon: SiNodedotjs,
     name: 'Node.js',
+    color: '#5FA04E',
     desc: 'Custom backend services and APIs whenever a project needs more than a managed platform.',
   },
   {
     icon: SiVercel,
     name: 'Vercel',
+    color: '#FFFFFF',
     desc: 'Where our frontend projects get deployed and served, built for instant global delivery.',
   },
   {
     icon: SiMongodb,
     name: 'MongoDB',
+    color: '#47A248',
     desc: 'A flexible NoSQL database we reach for when a project needs schema-less, document-based data.',
   },
   {
     icon: Server,
     name: 'VPS Hosting',
+    color: '#22D3EE',
     desc: 'Self-managed VPS hosting for projects that need full control over the server and environment.',
   },
 ];
@@ -128,9 +138,9 @@ const Technologies = () => {
               swiper.params.navigation.nextEl = nextRef.current;
             }}
             spaceBetween={20}
-            slidesPerView={1.3}
+            slidesPerView={1}
             breakpoints={{
-              480: { slidesPerView: 2.2 },
+              441: { slidesPerView: 2.2 },
               768: { slidesPerView: 3 },
               1024: { slidesPerView: 4 },
               1280: { slidesPerView: 5 },
@@ -141,9 +151,9 @@ const Technologies = () => {
               const Icon = tech.icon;
               return (
                 <SwiperSlide key={tech.name} className='h-auto'>
-                  <div className='group relative bg-slate-800/40 border border-slate-800 hover:border-cyan-600/60 rounded-xl p-6 flex flex-col items-center text-center gap-4 h-60  transition-all duration-500 hover:-translate-y-2 hover:shadow-xl hover:shadow-cyan-600/10'>
+                  <div className='group relative bg-slate-800/40 border border-slate-800 hover:border-cyan-600/60 rounded-xl p-6 flex flex-col items-center text-center gap-4 h-60 max-w-xs mx-auto sm:max-w-none transition-all duration-500 hover:-translate-y-2 hover:shadow-xl hover:shadow-cyan-600/10'>
                     <div className='w-14 h-14 rounded-xl bg-cyan-600/10 border border-cyan-600/30 flex items-center justify-center text-cyan-400 transition-all duration-500 group-hover:bg-cyan-600/20 group-hover:rotate-6 group-hover:scale-110'>
-                      <Icon size={26} />
+                      <Icon size={26} color={tech.color} />
                     </div>
 
                     <h3 className={`${sora.className} text-white text-base font-bold`}>{tech.name}</h3>
